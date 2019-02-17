@@ -12,10 +12,10 @@ public class OdessaPortCheckApplication {
 
     public static void main(String[] args) {
         System.out.println("OPCBot: starting...");
-        Properties botInfo = new Properties();
+       /* Properties botInfo = new Properties();
         try {
             FileInputStream fis = new FileInputStream(OdessaPortCheckApplication.class
-                    .getResource("/bot.properties").getFile());
+                    .getResource("bot.properties").getFile());
             botInfo.load(fis);
 
             OPCBot.setBotToken(botInfo.getProperty("botToken"));
@@ -26,7 +26,10 @@ public class OdessaPortCheckApplication {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
+
+        OPCBot.setBotToken("711608450:AAGcmLVZLBskemrf88PFKJ5b_3j8ATQl7yg");
+        OPCBot.setBotUsername("OdessaPortCheck");
 
         ApiContextInitializer.init();
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();

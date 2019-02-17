@@ -1,0 +1,4 @@
+OPCBot.class
+managers\CommandInterpreter.class
+managers\Parser.class
+OdessaPortCheckApplication.class

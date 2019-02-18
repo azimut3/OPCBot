@@ -1,1 +1,1 @@
-worker: sh target/bin/OPCBot
+worker: sh target/bin/OPCBot.bat

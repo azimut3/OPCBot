@@ -1,1 +1,1 @@
-worker: sh target/bin/OPCBot.bat
+worker: sh target/bin/opcBot

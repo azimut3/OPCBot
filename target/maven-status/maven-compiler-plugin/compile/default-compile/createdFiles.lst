@@ -1,4 +1,9 @@
-OPCBot.class
+data\CurrentWeather.class
+data\StaxReader.class
+data\PortContent.class
+managers\CurrentWeatherUpdate.class
 managers\CommandInterpreter.class
+managers\PortUpdate.class
+OPCBot.class
 managers\Parser.class
 OdessaPortCheckApplication.class

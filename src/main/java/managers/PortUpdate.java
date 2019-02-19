@@ -16,7 +16,7 @@ public class PortUpdate extends Thread{
                 System.out.println("=== Vessels in port were updated ===");
                 Thread.sleep(1800000);
             } catch (InterruptedException e) {
-                System.out.println("Thread has been interrupted");
+                System.out.println("Port thread has been interrupted");
                 e.printStackTrace();
             }
 

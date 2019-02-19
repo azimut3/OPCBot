@@ -1,12 +1,9 @@
+import managers.CurrentWeatherUpdate;
 import managers.PortUpdate;
+import data.CurrentWeather;
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.TelegramBotsApi;
 import org.telegram.telegrambots.exceptions.TelegramApiRequestException;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Properties;
 
 
 public class OdessaPortCheckApplication {
@@ -29,10 +26,12 @@ public class OdessaPortCheckApplication {
             e.printStackTrace();
         }*/
 
-        Thread portUpdate = new PortUpdate("PortUpdater");
-        portUpdate.start();
+        Thread portUpdateThread = new PortUpdate("portUpdateThread");
+        portUpdateThread.start();
+        Thread currentWeatherThread = new CurrentWeatherUpdate("currentWeatherThread");
+        currentWeatherThread.start();
         OPCBot.setBotToken("711608450:AAGcmLVZLBskemrf88PFKJ5b_3j8ATQl7yg");
-        OPCBot.setBotUsername("OdessaPortCheck");
+        OPCBot.setBotUsername("OPCbot");
 
         ApiContextInitializer.init();
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();

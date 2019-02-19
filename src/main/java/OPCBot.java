@@ -1,4 +1,5 @@
 import managers.CommandInterpreter;
+import org.telegram.telegrambots.api.methods.ParseMode;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -26,9 +27,10 @@ public class OPCBot extends TelegramLongPollingBot {
      */
     public synchronized void sendMsg(String chatId, String s) {
         SendMessage sendMessage = new SendMessage();
-        sendMessage.enableMarkdown(true);
+        //sendMessage.enableHtml(true);
         sendMessage.setChatId(chatId);
         sendMessage.setText(s);
+        sendMessage.setParseMode(ParseMode.HTML);
         try {
             sendMessage(sendMessage);
         } catch (TelegramApiException e) {

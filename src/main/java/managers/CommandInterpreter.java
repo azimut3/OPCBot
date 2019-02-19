@@ -1,11 +1,13 @@
 package managers;
 
+import data.PortContent;
+
 public class CommandInterpreter {
 
     public static String processCommand(String command){
         switch (command){
-        case "/port": return new Parser().Parser();
+        case "/port": return PortContent.getPortInfo();
         }
-        return null;
+        return "<pre>Invalid command</pre>";
     }
 }

@@ -1,3 +1,4 @@
+import managers.PortUpdate;
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.TelegramBotsApi;
 import org.telegram.telegrambots.exceptions.TelegramApiRequestException;
@@ -28,6 +29,8 @@ public class OdessaPortCheckApplication {
             e.printStackTrace();
         }*/
 
+        Thread portUpdate = new PortUpdate("PortUpdater");
+        portUpdate.start();
         OPCBot.setBotToken("711608450:AAGcmLVZLBskemrf88PFKJ5b_3j8ATQl7yg");
         OPCBot.setBotUsername("OdessaPortCheck");
 

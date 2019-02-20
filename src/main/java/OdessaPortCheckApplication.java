@@ -1,6 +1,7 @@
-import managers.CurrentWeatherUpdate;
+import data.Weather.CurrentWeatherThread;
+import data.Weather.ForecastThread;
 import managers.PortUpdate;
-import data.CurrentWeather;
+import managers.SecretData;
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.TelegramBotsApi;
 import org.telegram.telegrambots.exceptions.TelegramApiRequestException;
@@ -28,10 +29,12 @@ public class OdessaPortCheckApplication {
 
         Thread portUpdateThread = new PortUpdate("portUpdateThread");
         portUpdateThread.start();
-        Thread currentWeatherThread = new CurrentWeatherUpdate("currentWeatherThread");
+        Thread currentWeatherThread = new CurrentWeatherThread("currentWeatherThread");
         currentWeatherThread.start();
-        OPCBot.setBotToken("711608450:AAGcmLVZLBskemrf88PFKJ5b_3j8ATQl7yg");
-        OPCBot.setBotUsername("OPCbot");
+        Thread forecastWeatherThread = new ForecastThread("forecastWeatherThread");
+        forecastWeatherThread.start();
+        OPCBot.setBotToken(SecretData.botToken);
+        OPCBot.setBotUsername(SecretData.botName);
 
         ApiContextInitializer.init();
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();

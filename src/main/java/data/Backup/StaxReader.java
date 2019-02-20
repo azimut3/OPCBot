@@ -1,6 +1,5 @@
-package data;
-
-import data.Weather.WeatherTemplate;
+/*
+package data.Backup;
 
 import javax.xml.namespace.QName;
 import javax.xml.stream.XMLEventReader;
@@ -101,31 +100,30 @@ public class StaxReader {
                     StartElement startElement = xmlEvent.asStartElement();
 
                     if(startElement.getName().getLocalPart().equals("time")){
-                        Attribute Attr = startElement.getAttributeByName(new QName("from"));
-                        if(Attr != null){
-                            forecast.put(WeatherTemplate.DATE, Attr.getValue());
-                            //System.out.println(Attr.getValue());
+                        Attribute riseAttr = startElement.getAttributeByName(new QName("from"));
+                        if(riseAttr != null){
+                            forecast.put("date", riseAttr.getValue());
                         }
                     }
 
                     if(startElement.getName().getLocalPart().equals("temperature")){
                         Attribute attr = startElement.getAttributeByName(new QName("value"));
                         if(attr != null){
-                            forecast.put(WeatherTemplate.TEMPERATURE, attr.getValue());
+                            forecast.put("temperature", attr.getValue());
                         }
                     }
 
                     if(startElement.getName().getLocalPart().equals("humidity")){
                         Attribute attr = startElement.getAttributeByName(new QName("value"));
                         if(attr != null){
-                            forecast.put(WeatherTemplate.HUMIDITY, attr.getValue());
+                            forecast.put("humidity", attr.getValue());
                         }
                     }
 
                     if(startElement.getName().getLocalPart().equals("pressure")){
                         Attribute attr = startElement.getAttributeByName(new QName("value"));
                         if(attr != null){
-                            forecast.put(WeatherTemplate.PRESSURE, attr.getValue());
+                            forecast.put("pressure", attr.getValue());
                         }
                     }
 
@@ -133,7 +131,7 @@ public class StaxReader {
                     if(startElement.getName().getLocalPart().equals("windSpeed")) {
                         Attribute attr = startElement.getAttributeByName(new QName("mps"));
                         if (attr != null) {
-                            forecast.put(WeatherTemplate.WIND_SPEED, attr.getValue());
+                            forecast.put("wind_speed", attr.getValue());
                         }
                     }
                     //}
@@ -141,9 +139,8 @@ public class StaxReader {
                     if(startElement.getName().getLocalPart().equals("clouds")){
                         Attribute attrDescr = startElement.getAttributeByName(new QName("value"));
                         if(attrDescr != null){
-                            forecast.put(WeatherTemplate.CLOUDS, attrDescr.getValue());
+                            forecast.put("clouds", attrDescr.getValue());
                         }
-                        //TODO добавить процент затученности
                         Attribute attr = startElement.getAttributeByName(new QName("all"));
                         if(attr != null){
                             forecast.put("clouds%", attr.getValue());
@@ -153,14 +150,14 @@ public class StaxReader {
                     if(startElement.getName().getLocalPart().equals("precipitation")){
                         Attribute attr = startElement.getAttributeByName(new QName("value"));
                         if(attr != null){
-                            forecast.put(WeatherTemplate.PRECIPITATION, attr.getValue());
+                            forecast.put("precipitation", attr.getValue());
                         }
                     }
 
                     if(startElement.getName().getLocalPart().equals("symbol")){
                         Attribute attr = startElement.getAttributeByName(new QName("name"));
                         if(attr != null){
-                            forecast.put(WeatherTemplate.WEATHER_STATE, attr.getValue());
+                            forecast.put("weatherState", attr.getValue());
                         }
                     }
 
@@ -169,7 +166,7 @@ public class StaxReader {
                     EndElement endElement = xmlEvent.asEndElement();
                     if(endElement.getName().getLocalPart().equals("time")){
                         weatherForecast.add(forecast);
-                        forecast = new TreeMap<>();
+                        forecast.clear();
                     }
                 }
             }
@@ -180,3 +177,4 @@ public class StaxReader {
         return weatherForecast;
     }
 }
+*/

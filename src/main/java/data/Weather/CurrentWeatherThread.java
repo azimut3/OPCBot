@@ -1,21 +1,21 @@
-package managers;
+package data.Weather;
 
-import data.CurrentWeather;
+import data.WeatherUpdate;
 
-public class CurrentWeatherUpdate extends Thread{
+public class CurrentWeatherThread extends Thread{
 
-    public CurrentWeatherUpdate(String name) {
+    public CurrentWeatherThread(String name) {
         super(name);
     }
 
     public void run(){
         while (true) {
             try {
-                CurrentWeather.updateWeather();
+                WeatherUpdate.updateCurrentWeather();
                 System.out.println("=== Current weather was updated ===");
                 Thread.sleep(1000*60*10);
             } catch (InterruptedException e) {
-                System.out.println("Weather thread has been interrupted");
+                System.out.println("WeatherUpdate thread has been interrupted");
                 e.printStackTrace();
             }
 

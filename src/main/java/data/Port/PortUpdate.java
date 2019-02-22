@@ -1,6 +1,6 @@
-package managers;
+package data.Port;
 
-import data.PortContent;
+import managers.Parser;
 
 public class PortUpdate extends Thread{
 

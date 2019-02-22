@@ -1,6 +1,7 @@
 package data;
 
 import data.Weather.WeatherForecast;
+import data.Weather.WeatherTemplate;
 import managers.SecretData;
 
 import java.io.IOException;
@@ -68,8 +69,23 @@ public class WeatherUpdate {
 
     public static String getCurrentWeather() {
         StringBuilder weather = new StringBuilder();
+        String uppChar = currentWeather.get(WeatherTemplate.WEATHER_STATE).substring(0, 1).toUpperCase();
+
         weather.append("<b>Текущая погода:</b>").append(System.lineSeparator())
+                .append(uppChar + currentWeather.get(WeatherTemplate.WEATHER_STATE).substring(1)).append(",  ")
+                .append(currentWeather.get("temperature")).append(" \u00B0" + "C, ")
+                .append(currentWeather.get("clouds")).append(",  ")
+                .append("ветер - ").append(currentWeather.get("wind_speed")).append(" м/с.")
+                .append(System.lineSeparator());
+        weather.append("Видимость - ").append(currentWeather.get("visibility")).append(" м.");
+        weather.append("давление - ").append(currentWeather.get("pressure")).append(" hPa, ")
+                .append("влажность - ").append(currentWeather.get("humidity")).append(" %.")
+                .append(System.lineSeparator());
+        return weather.toString();
+
+        /*weather.append("<b>Текущая погода:</b>").append(System.lineSeparator())
                 .append("Температура  ").append(currentWeather.get("temperature")).append(" \u00B0" + "C, ")
+                .append(currentWeather.get(WeatherTemplate.WEATHER_STATE + " "))
                 .append("скорость ветра - ").append(currentWeather.get("wind_speed")).append(" м/с.")
                 .append(System.lineSeparator());
         weather.append("Облачность - ").append(currentWeather.get("clouds")).append(", ")
@@ -78,7 +94,7 @@ public class WeatherUpdate {
         weather.append("Давление - ").append(currentWeather.get("pressure")).append(" hPa, ")
                 .append("влажность - ").append(currentWeather.get("humidity")).append(" %.")
                 .append(System.lineSeparator());
-        return weather.toString();
+        return weather.toString();*/
     }
 
    /* public static String getWeatherForecast() {

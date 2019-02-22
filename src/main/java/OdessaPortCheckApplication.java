@@ -1,6 +1,6 @@
 import data.Weather.CurrentWeatherThread;
 import data.Weather.ForecastThread;
-import managers.PortUpdate;
+import data.Port.PortUpdate;
 import managers.SecretData;
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.TelegramBotsApi;
@@ -10,15 +10,15 @@ import org.telegram.telegrambots.exceptions.TelegramApiRequestException;
 public class OdessaPortCheckApplication {
 
     public static void main(String[] args) {
-        System.out.println("OPCBot: starting...");
+        System.out.println("OpcBot: starting...");
        /* Properties botInfo = new Properties();
         try {
             FileInputStream fis = new FileInputStream(OdessaPortCheckApplication.class
                     .getResource("bot.properties").getFile());
             botInfo.load(fis);
 
-            OPCBot.setBotToken(botInfo.getProperty("botToken"));
-            OPCBot.setBotUsername(botInfo.getProperty("botName"));
+            OpcBot.setBotToken(botInfo.getProperty("botToken"));
+            OpcBot.setBotUsername(botInfo.getProperty("botName"));
 
             fis.close();
         } catch (FileNotFoundException e) {
@@ -33,13 +33,13 @@ public class OdessaPortCheckApplication {
         currentWeatherThread.start();
         Thread forecastWeatherThread = new ForecastThread("forecastWeatherThread");
         forecastWeatherThread.start();
-        OPCBot.setBotToken(SecretData.botToken);
-        OPCBot.setBotUsername(SecretData.botName);
+        OpcBot.setBotToken(SecretData.botToken);
+        OpcBot.setBotUsername(SecretData.botName);
 
         ApiContextInitializer.init();
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
         try {
-            telegramBotsApi.registerBot(OPCBot.getOpcBotInstance());
+            telegramBotsApi.registerBot(OpcBot.getOpcBotInstance());
         } catch (TelegramApiRequestException e) {
             e.printStackTrace();
         }

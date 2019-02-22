@@ -2,7 +2,7 @@ package managers;
 
 import data.Weather.WeatherForecast;
 import data.WeatherUpdate;
-import data.PortContent;
+import data.Port.PortContent;
 
 public class CommandInterpreter {
 

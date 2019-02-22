@@ -2,23 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c64ec7b1-9447-4f3c-be4e-bd3aac8781ef" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/data/Weather/CurrentWeather.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/data/Weather/ForecastThread.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/data/Weather/WeatherForecast.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/data/Weather/WeatherTemplate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/data/WeatherUpdate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/managers/SecretData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/data/DatabaseConnector/JdbcConnector.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/managers/Subber.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/OPCBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/OpcBot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/OdessaPortCheckApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/OdessaPortCheckApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/data/CurrentWeather.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data/Backup/StaxReader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data/PortContent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/Port/PortContent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/data/StaxReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/StaxReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data/WeatherUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/WeatherUpdate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/managers/CommandInterpreter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managers/CommandInterpreter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/managers/CurrentWeatherUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/Weather/CurrentWeatherThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managers/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managers/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managers/PortUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/Port/PortUpdate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managers/SecretData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managers/SecretData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/OPCBot.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/OPCBot.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/OdessaPortCheckApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/OdessaPortCheckApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/data/CurrentWeather.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/data/PortContent.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/data/StaxReader.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/data/StaxReader.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/data/WeatherUpdate.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/data/WeatherUpdate.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/managers/CommandInterpreter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/managers/CommandInterpreter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/managers/CurrentWeatherUpdate.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/managers/Parser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/managers/Parser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/managers/PortUpdate.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/managers/SecretData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/managers/SecretData.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -30,10 +35,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/managers/CommandInterpreter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
+            <state relative-caret-position="476">
               <caret line="28" column="81" selection-start-line="28" selection-start-column="81" selection-end-line="28" selection-end-column="81" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -43,10 +48,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/data/Weather/WeatherForecast.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/data/Port/PortContent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-706">
-              <caret line="28" column="14" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
+            <state relative-caret-position="136">
+              <caret line="61" column="47" selection-start-line="61" selection-start-column="47" selection-end-line="61" selection-end-column="47" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/managers/Subber.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="82" selection-start-line="7" selection-start-column="82" selection-end-line="7" selection-end-column="82" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -55,13 +72,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/data/WeatherUpdate.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/managers/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="71" column="37" selection-start-line="71" selection-start-column="37" selection-end-line="71" selection-end-column="37" />
+            <state relative-caret-position="184">
+              <caret line="27" column="60" selection-start-line="27" selection-start-column="60" selection-end-line="27" selection-end-column="60" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/data/Port/PortUpdate.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="18" column="42" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -84,7 +110,6 @@
         <option value="$PROJECT_DIR$/system.properties" />
         <option value="$PROJECT_DIR$/Procfile" />
         <option value="$PROJECT_DIR$/src/main/java/PortContent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/managers/Parser.java" />
         <option value="$PROJECT_DIR$/src/main/java/OPCBot.java" />
         <option value="$PROJECT_DIR$/src/main/java/data/PortContent.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
@@ -102,10 +127,16 @@
         <option value="$PROJECT_DIR$/src/main/java/data/Weather/ForecastThread.java" />
         <option value="$PROJECT_DIR$/src/main/java/OdessaPortCheckApplication.java" />
         <option value="$PROJECT_DIR$/src/main/java/data/Backup/StaxReader.java" />
-        <option value="$PROJECT_DIR$/src/main/java/data/StaxReader.java" />
         <option value="$PROJECT_DIR$/src/main/java/data/Weather/WeatherForecast.java" />
-        <option value="$PROJECT_DIR$/src/main/java/data/WeatherUpdate.java" />
         <option value="$PROJECT_DIR$/src/main/java/managers/CommandInterpreter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/data/StaxReader.java" />
+        <option value="$PROJECT_DIR$/src/main/java/data/WeatherUpdate.java" />
+        <option value="$PROJECT_DIR$/src/main/java/managers/SecretData.java" />
+        <option value="$PROJECT_DIR$/src/main/java/data/DatabaseConnector/JdbcConnector.java" />
+        <option value="$PROJECT_DIR$/src/main/java/managers/Parser.java" />
+        <option value="$PROJECT_DIR$/src/main/java/managers/SubscribeManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/managers/Subber.java" />
+        <option value="$PROJECT_DIR$/src/main/java/data/Port/PortContent.java" />
       </list>
     </option>
   </component>
@@ -143,6 +174,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -188,6 +221,15 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="Port" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OPCBot_M" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OPCBot_M" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
               <item name="Weather" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -209,14 +251,12 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550701575843" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550844320754" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -226,19 +266,20 @@
     <property name="settings.editor.selected.configurable" value="preferences.general" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="data.Port" />
       <recent name="data.Weather" />
       <recent name="managers" />
       <recent name="data" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="H:\Projects\OPCBot_M\src\main\resources" />
-    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="data.Backup" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="H:\Projects\OPCBot_M\src\main\resources" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -281,28 +322,29 @@
       <workItem from="1550415702881" duration="3335000" />
       <workItem from="1550476544015" duration="1289000" />
       <workItem from="1550488799777" duration="24864000" />
-      <workItem from="1550652876265" duration="15780000" />
+      <workItem from="1550652876265" duration="16144000" />
+      <workItem from="1550768651406" duration="598000" />
+      <workItem from="1550828769634" duration="8104000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45753000" />
+    <option name="totallyTimeSpent" value="54819000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2184466" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2249191" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Capture Tool" order="4" />
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Duplicate detector" weight="0.3298731" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3298731" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.30795848" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.30795848" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -314,6 +356,7 @@
       <window_info anchor="bottom" id="Java Enterprise" order="11" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
       <window_info anchor="bottom" id="Version Control" order="13" />
+      <window_info anchor="bottom" id="Duplicate detector" order="14" weight="0.3298731" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -367,16 +410,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/managers/Parser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="22" column="18" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/telegram/telegrambots-meta/3.5/telegrambots-meta-3.5.jar!/org/telegram/telegrambots/api/methods/send/SendMessage.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
@@ -419,27 +452,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/data/PortContent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="39" column="52" selection-start-line="39" selection-start-column="52" selection-end-line="39" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/managers/PortUpdate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="18" column="42" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/managers/SecretData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="72" selection-start-line="6" selection-start-column="72" selection-end-line="6" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/data/Weather/CurrentWeather.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
@@ -447,7 +459,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/OPCBot.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/OpcBot.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="29" column="10" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
@@ -513,20 +525,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/data/StaxReader.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/data/Weather/WeatherForecast.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="106" column="30" selection-start-line="106" selection-start-column="30" selection-end-line="106" selection-end-column="30" />
+        <state relative-caret-position="442">
+          <caret line="28" column="14" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/data/Weather/WeatherForecast.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/data/StaxReader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-706">
-          <caret line="28" column="14" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
+        <state relative-caret-position="348">
+          <caret line="76" column="80" lean-forward="true" selection-start-line="76" selection-start-column="80" selection-end-line="76" selection-end-column="80" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -535,8 +547,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/data/WeatherUpdate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="71" column="37" selection-start-line="71" selection-start-column="37" selection-end-line="71" selection-end-column="37" />
+        <state relative-caret-position="416">
+          <caret line="80" column="25" selection-start-line="80" selection-start-column="25" selection-end-line="80" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/managers/SecretData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/data/DatabaseConnector/JdbcConnector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="55" selection-start-line="15" selection-start-column="55" selection-end-line="15" selection-end-column="55" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -545,8 +574,45 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/managers/CommandInterpreter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
+        <state relative-caret-position="476">
           <caret line="28" column="81" selection-start-line="28" selection-start-column="81" selection-end-line="28" selection-end-column="81" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/data/Port/PortUpdate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="18" column="42" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/managers/Parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="27" column="60" selection-start-line="27" selection-start-column="60" selection-end-line="27" selection-end-column="60" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/data/Port/PortContent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="61" column="47" selection-start-line="61" selection-start-column="47" selection-end-line="61" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/managers/Subber.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="82" selection-start-line="7" selection-start-column="82" selection-end-line="7" selection-end-column="82" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

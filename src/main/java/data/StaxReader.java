@@ -74,6 +74,13 @@ public class StaxReader {
                         }
                     }
 
+                    if(startElement.getName().getLocalPart().equals("weather")){
+                        Attribute attr = startElement.getAttributeByName(new QName("value"));
+                        if(attr != null){
+                            currentWeather.put(WeatherTemplate.WEATHER_STATE, attr.getValue());
+                        }
+                    }
+
                     if(startElement.getName().getLocalPart().equals("visibility")){
                         Attribute attr = startElement.getAttributeByName(new QName("value"));
                         if(attr != null){

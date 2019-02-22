@@ -1,9 +1,14 @@
-package data;
+package data.Port;
+
+import javafx.util.Builder;
 
 import java.util.ArrayList;
+import java.util.Set;
+import java.util.TreeMap;
 
 public class PortContent {
     private static PortContent portContentInstance;
+    public static TreeMap<Integer, ArrayList<ArrayList<String>>> portBerths = new TreeMap<>();
     private static ArrayList<String> berthArr = new ArrayList<>(), vesselArr = new ArrayList<>(),
             dateArr = new ArrayList<>(), agentArr = new ArrayList<>(),
             flagArr = new ArrayList<>(), codeArr = new ArrayList<>();
@@ -36,7 +41,7 @@ public class PortContent {
         return portContentInstance;
     }
 
-    public static String getPortInfo(){
+   /* public static String getPortInfo(){
         StringBuilder builder = new StringBuilder();
         builder.append(" | ").append(formatString(BERTH, berthL)).append(" | ")
                 .append(formatString(VESSEL, vesselL)).append(" | ")
@@ -47,6 +52,22 @@ public class PortContent {
                     .append(formatString(dateArr.get(i), dateL)).append(" |").append(System.lineSeparator());
         }
        // System.out.println(berthL + " " + vesselL + " " + dateL);
+        return builder.toString();
+    }*/
+
+    public static String getPortInfo(){
+        StringBuilder builder = new StringBuilder();
+        builder.append("<b>Список причалов и судов(дата швартовки):</b>").append(System.lineSeparator())
+                .append(System.lineSeparator());
+        Set<Integer> set = portBerths.keySet();
+        for (Integer key : set){
+            ArrayList<ArrayList<String>> vessels = portBerths.get(key);
+            for (ArrayList<String> vessel : vessels) {
+                builder.append(formatString(key.toString(), 2)).append(" | ").append(vessel.get(0))
+                        .append(" <i>(").append(vessel.get(1)).append(")</i>")
+                        .append(System.lineSeparator());
+            }
+        }
         return builder.toString();
     }
 

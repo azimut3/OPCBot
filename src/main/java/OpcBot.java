@@ -6,8 +6,8 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
 
-public class OPCBot extends TelegramLongPollingBot {
-    private static OPCBot opcBotInstance;
+public class OpcBot extends TelegramLongPollingBot {
+    private static OpcBot opcBotInstance;
     private static String botUsername, botToken;
     /**
      * Метод для приема сообщений.
@@ -57,20 +57,20 @@ public class OPCBot extends TelegramLongPollingBot {
     }
 
     /**
-     * Method creates an instance of OPCBot
-     * @return instance of OPCBot
+     * Method creates an instance of OpcBot
+     * @return instance of OpcBot
      */
-    public static OPCBot getOpcBotInstance() {
-        if (opcBotInstance == null) opcBotInstance = new OPCBot();
+    public static OpcBot getOpcBotInstance() {
+        if (opcBotInstance == null) opcBotInstance = new OpcBot();
         return opcBotInstance;
     }
 
     public static void setBotUsername(String botUsername) {
-        OPCBot.botUsername = botUsername;
+        OpcBot.botUsername = botUsername;
     }
 
     public static void setBotToken(String botToken) {
-        OPCBot.botToken = botToken;
+        OpcBot.botToken = botToken;
     }
 }
 

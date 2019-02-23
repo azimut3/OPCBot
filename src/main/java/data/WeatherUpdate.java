@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.TreeMap;
 
 public class WeatherUpdate {
@@ -33,7 +32,6 @@ public class WeatherUpdate {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //currentWeather = (TreeMap<String, String>)updateWeather(URL_CURRENT);
     }
 
     public static void updateForecastWeather() {
@@ -49,8 +47,6 @@ public class WeatherUpdate {
         } catch (IOException e) {
             e.printStackTrace();
         }
-       /* WeatherForecast.getWeatherForecastInstance().
-                setWeatherForecast((ArrayList<TreeMap<String, String>>)updateWeather(URL_FORECAST));*/
     }
 
     public static Object updateWeather(String source) {
@@ -74,44 +70,15 @@ public class WeatherUpdate {
         weather.append("<b>Текущая погода:</b>").append(System.lineSeparator())
                 .append(uppChar + currentWeather.get(WeatherTemplate.WEATHER_STATE).substring(1)).append(",  ")
                 .append(currentWeather.get("temperature")).append(" \u00B0" + "C, ")
-                .append(currentWeather.get("clouds")).append(",  ")
+                .append("облачность ")
+                .append(currentWeather.get("cloudage")).append(" %,  ")
                 .append("ветер - ").append(currentWeather.get("wind_speed")).append(" м/с.")
                 .append(System.lineSeparator());
-        weather.append("Видимость - ").append(currentWeather.get("visibility")).append(" м.");
+        weather.append("Видимость - ").append(currentWeather.get("visibility")).append(" м. ");
         weather.append("давление - ").append(currentWeather.get("pressure")).append(" hPa, ")
                 .append("влажность - ").append(currentWeather.get("humidity")).append(" %.")
                 .append(System.lineSeparator());
         return weather.toString();
-
-        /*weather.append("<b>Текущая погода:</b>").append(System.lineSeparator())
-                .append("Температура  ").append(currentWeather.get("temperature")).append(" \u00B0" + "C, ")
-                .append(currentWeather.get(WeatherTemplate.WEATHER_STATE + " "))
-                .append("скорость ветра - ").append(currentWeather.get("wind_speed")).append(" м/с.")
-                .append(System.lineSeparator());
-        weather.append("Облачность - ").append(currentWeather.get("clouds")).append(", ")
-                .append("видимость - ").append(currentWeather.get("visibility")).append(" м.")
-                .append(System.lineSeparator());
-        weather.append("Давление - ").append(currentWeather.get("pressure")).append(" hPa, ")
-                .append("влажность - ").append(currentWeather.get("humidity")).append(" %.")
-                .append(System.lineSeparator());
-        return weather.toString();*/
     }
 
-   /* public static String getWeatherForecast() {
-        StringBuilder weather = new StringBuilder();
-        //String[] time = "";
-        for (TreeMap<String, String> map : weatherForecast) {
-            weather.append("<b>Текущая погода:</b>").append(System.lineSeparator())
-                    .append("Температура - ").append(currentWeather.get("temperature")).append(" \u00B0" + "C, ")
-                    .append("скорость ветра - ").append(currentWeather.get("wind_speed")).append(" м/с.")
-                    .append(System.lineSeparator());
-            weather.append("Облачность - ").append(currentWeather.get("clouds")).append(", ")
-                    .append("видимость - ").append(currentWeather.get("visibility")).append(" м.")
-                    .append(System.lineSeparator());
-            weather.append("Давление - ").append(currentWeather.get("pressure")).append(" hPa, ")
-                    .append("влажность - ").append(currentWeather.get("humidity")).append(" %.")
-                    .append(System.lineSeparator());
-        }
-        return weather.toString();
-    }*/
 }

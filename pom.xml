@@ -48,7 +48,7 @@
                     <assembleDirectory>target</assembleDirectory>
                     <programs>
                         <program>
-                            <mainClass>OdessaPortCheckApplication</mainClass>
+                            <mainClass>managers.OdessaPortCheckApplication</mainClass>
                             <name>opcBot</name>
                         </program>
                     </programs>

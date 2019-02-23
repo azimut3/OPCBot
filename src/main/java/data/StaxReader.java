@@ -72,6 +72,10 @@ public class StaxReader {
                         if(attr != null){
                             currentWeather.put("clouds", attr.getValue());
                         }
+                        Attribute attrValue = startElement.getAttributeByName(new QName("value"));
+                        if(attr != null){
+                            currentWeather.put("cloudage", attrValue.getValue());
+                        }
                     }
 
                     if(startElement.getName().getLocalPart().equals("weather")){

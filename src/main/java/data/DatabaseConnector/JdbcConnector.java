@@ -9,11 +9,12 @@ public class JdbcConnector {
     private static String dbLogin = SecretData.dbLogin;
     private static String dbPass = SecretData.dbPass;
 
-    public static void JdbcConnector() {
+    private Statement statement;
+
+    public JdbcConnector() {
         try {
             Connection con = DriverManager.getConnection(dbUtl, dbLogin, dbPass);
-            Statement statement = con.createStatement();
-            ResultSet res = statement.executeQuery("");
+            statement = con.createStatement();
         } catch (SQLException e) {
             e.printStackTrace();
         }

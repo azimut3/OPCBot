@@ -64,16 +64,29 @@ public class WeatherForecast {
         return builder.toString();
     }
 
+    public static String getTodaysForecast() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Прогноз погоды на сегодня:").append(System.lineSeparator())
+                .append(System.lineSeparator());
+        builder.append(getForecast(todayForecast)).append(System.lineSeparator());
+        return builder.toString();
+    }
+
     private static String getForecast(ArrayList<ForecastWeather> forecast) {
         StringBuilder builder = new StringBuilder();
         for (ForecastWeather weather : forecast) {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM' ('HH:mm')'");
             builder.append(dateFormat.format(weather.getDay().getTime())).append(": ")
-                    .append(weather.getWeatherState()).append(", " + weather.getTemperature())
+                    .append(weather.getWeatherState()).append(", ")
+                    .append(Math.round(Double.parseDouble(weather.getTemperature())))
                     .append(" \u00B0" + "C").append(System.lineSeparator());
             if (weather.getPrecipitation() != null) {
-                builder.append("Осадки: ").append(weather.getPrecipitation())
-                        .append("%").append(System.lineSeparator());
+                double precipitation = (double)Math.round(Double.parseDouble(weather.getPrecipitation())
+                        *100)/100;
+                if (precipitation >= 0.01) {
+                    builder.append("Осадки: ").append(precipitation).append(" мм")
+                            .append(System.lineSeparator());
+                }
             }
         }
         return builder.toString();

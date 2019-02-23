@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.TimeZone;
 
 public class UkrCalendar {
-    public static Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Kiev"));
+    public static Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
     static SimpleDateFormat formatHours = new SimpleDateFormat("H");
     static SimpleDateFormat formatMinutes = new SimpleDateFormat("m");
     static SimpleDateFormat formatDay = new SimpleDateFormat("d");

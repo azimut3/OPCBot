@@ -2,6 +2,7 @@ package data.Subscriprions;
 
 import data.Port.PortContent;
 import managers.OpcBot;
+import managers.UkrCalendar;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -22,18 +23,14 @@ public class BerthSubThread extends Thread {
             boolean firstLaunch = true;
             try {
                 if (firstLaunch){
-                    Calendar cal = Calendar.getInstance();
-                    cal.setTimeZone(TimeZone.getTimeZone("EET"));
-                    SimpleDateFormat formatHours = new SimpleDateFormat("H");
-                    SimpleDateFormat formatMinutes = new SimpleDateFormat("m");
-                    int hours = Integer.parseInt(formatHours.format(cal.getTime()));
-                    int minutes = Integer.parseInt(formatMinutes.format(cal.getTime()));
+                    int hours = Integer.parseInt(UkrCalendar.getHours());
+                    int minutes = Integer.parseInt(UkrCalendar.getMinutes());
                     System.out.println("time " + hours + ":" + minutes);
                     System.out.println("Рассылка причалов осуществляется в " + timeMorning + ":" +
-                            + minutesMorning + "и" + timeEvening+ ":" + minutesEvening);
+                            + minutesMorning + " и " + timeEvening+ ":" + minutesEvening);
                     if (hours < timeMorning) {
-                        System.out.println("До утренней рассылки причалов " + (60*(timeMorning-hours) -
-                                - minutesMorning));
+                        System.out.println("До утренней рассылки причалов " + (60*(timeMorning-hours)) +
+                                ":" +  (minutesMorning - minutes));
                         BerthSubThread.sleep(1000*60*60*(timeMorning-hours) -
                                 - 1000*60*(minutesMorning));
                         berthState();
@@ -46,7 +43,7 @@ public class BerthSubThread extends Thread {
                     } else {
                         //if (minutes > 0) hours++;
                         System.out.println("До утренней рассылки причалов " + (24 - hours + timeMorning) +
-                                ":" + (60-minutesMorning));
+                                ":" +  (minutesMorning - minutes));
                         BerthSubThread.sleep(1000*60*60*(24 - hours + timeMorning) -
                                 - 1000*60*(minutesMorning));
                         berthState();

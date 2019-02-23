@@ -1,5 +1,7 @@
 package data.Weather;
 
+import managers.UkrCalendar;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -19,8 +21,8 @@ public class WeatherForecast {
     }
 
     public void setWeatherForecast(ArrayList<TreeMap<String, String>> forecast){
-        Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("EET"));
         SimpleDateFormat formatDay = new SimpleDateFormat("d");
+        formatDay.setTimeZone(TimeZone.getTimeZone("Europe/Kiev"));
         todayForecast.clear();
         tomorrowForecast.clear();
         afterTomorrowForecast.clear();
@@ -34,7 +36,7 @@ public class WeatherForecast {
                 //System.out.println(weather.get(WeatherTemplate.DATE));
                 calendar.setTime(dateFormat.parse(weather.get(WeatherTemplate.DATE)));
                 dateNum = Integer.parseInt(formatDay.format(calendar.getTime())) -
-                        Integer.parseInt(formatDay.format(cal.getTime()));
+                        Integer.parseInt(UkrCalendar.getDay());
                 //System.out.println(dateNum + " num");
                 forecastWeather.setDay(calendar);
             } catch (ParseException e) {

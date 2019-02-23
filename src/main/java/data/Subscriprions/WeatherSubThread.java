@@ -2,6 +2,7 @@ package data.Subscriprions;
 
 import data.Weather.WeatherForecast;
 import managers.OpcBot;
+import managers.UkrCalendar;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -20,14 +21,10 @@ public class WeatherSubThread extends Thread{
             boolean firstLaunch = true;
             try {
                 if (firstLaunch){
-                    Calendar cal = Calendar.getInstance();
-                    cal.setTimeZone(TimeZone.getTimeZone("EET"));
-                    SimpleDateFormat formatHours = new SimpleDateFormat("H");
-                    SimpleDateFormat formatMinutes = new SimpleDateFormat("m");
-                    int hours = Integer.parseInt(formatHours.format(cal.getTime()));
-                    int minutes = Integer.parseInt(formatMinutes.format(cal.getTime()));
+                    int hours = Integer.parseInt(UkrCalendar.getHours());
+                    int minutes = Integer.parseInt(UkrCalendar.getMinutes());
                     System.out.println("Рассылка погоды осуществляется в " + timeMorning +
-                            "и" + timeEvening);
+                            " и " + timeEvening);
                     if (hours < timeMorning) {
                         System.out.println("До утренней рассылки погоды " +
                                 + (60*(timeMorning-hours) - minutes));

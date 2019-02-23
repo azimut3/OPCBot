@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c64ec7b1-9447-4f3c-be4e-bd3aac8781ef" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/managers/UkrCalendar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/data/Subscriprions/BerthSubThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/Subscriprions/BerthSubThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/data/Subscriprions/WeatherSubThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/Subscriprions/WeatherSubThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/data/Weather/WeatherForecast.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/Weather/WeatherForecast.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/data/Subscriprions/BerthSubThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/data/Subscriprions/BerthSubThread.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/data/Subscriprions/WeatherSubThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/data/Subscriprions/WeatherSubThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managers/UkrCalendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managers/UkrCalendar.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -47,8 +41,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/managers/UkrCalendar.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="501">
-              <caret line="30" column="24" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
+            <state relative-caret-position="110">
+              <caret line="7" column="89" selection-start-line="7" selection-start-column="89" selection-end-line="7" selection-end-column="89" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#526#527#0" expanded="true" />
@@ -261,7 +255,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550947132430" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550947464181" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -331,12 +325,12 @@
       <workItem from="1550652876265" duration="16144000" />
       <workItem from="1550768651406" duration="598000" />
       <workItem from="1550828769634" duration="30092000" />
-      <workItem from="1550911608460" duration="13636000" />
+      <workItem from="1550911608460" duration="13968000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="90443000" />
+    <option name="totallyTimeSpent" value="90775000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
@@ -667,8 +661,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/managers/UkrCalendar.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="30" column="24" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
+        <state relative-caret-position="110">
+          <caret line="7" column="89" selection-start-line="7" selection-start-column="89" selection-end-line="7" selection-end-column="89" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#526#527#0" expanded="true" />

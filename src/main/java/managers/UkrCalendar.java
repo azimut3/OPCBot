@@ -13,21 +13,21 @@ public class UkrCalendar {
 
 
     {
-        formatHours.setTimeZone(TimeZone.getTimeZone("Europe/Kiev"));
+        /*formatHours.setTimeZone(TimeZone.getTimeZone("Europe/Kiev"));
         formatMinutes.setTimeZone(TimeZone.getTimeZone("Europe/Kiev"));
-        formatDay.setTimeZone(TimeZone.getTimeZone("Europe/Kiev"));
+        formatDay.setTimeZone(TimeZone.getTimeZone("Europe/Kiev"));*/
 
     }
 
     public static String getHours() {
-        return formatHours.format(cal.getTime());
+        return String.valueOf(Integer.parseInt(formatHours.format(cal.getTime())) + 2);
     }
 
     public static String getMinutes() {
-        return formatMinutes.format(cal.getTime());
+        return String.valueOf(Integer.parseInt(formatMinutes.format(cal.getTime())) + 2);
     }
 
     public static String getDay() {
-        return formatDay.format(cal.getTime());
+        return String.valueOf(Integer.parseInt(formatDay.format(cal.getTime())) + 2);
     }
 }

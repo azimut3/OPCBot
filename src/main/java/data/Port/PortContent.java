@@ -7,6 +7,8 @@ import java.util.TreeMap;
 public class PortContent {
     private static PortContent portContentInstance;
     public static TreeMap<Integer, ArrayList<ArrayList<String>>> portBerths = new TreeMap<>();
+    public static TreeMap<Integer, ArrayList<ArrayList<String>>> oldPortBerths = new TreeMap<>();
+
     private static ArrayList<String> berthArr = new ArrayList<>(), vesselArr = new ArrayList<>(),
             dateArr = new ArrayList<>(), agentArr = new ArrayList<>(),
             flagArr = new ArrayList<>(), codeArr = new ArrayList<>();

@@ -70,7 +70,7 @@ public class CommandInterpreter {
                 OpcBot.getOpcBotInstance().sendMsg(message, berthSubInstruction);
                 break;
         }
-        if (command.startsWith("/bertSub") || command.startsWith("/subBerthUpdate")) {
+        if (command.startsWith("/bertsub") || command.startsWith("/subberthupdate")) {
             String berths = command.replaceAll("[^\\d\\s]", "").trim();
             if (berths.length() < 1) {
                 OpcBot.getOpcBotInstance().sendMsg(message,

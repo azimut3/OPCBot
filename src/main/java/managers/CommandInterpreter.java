@@ -53,13 +53,39 @@ public class CommandInterpreter {
                 OpcBot.getOpcBotInstance().sendMsg(message, followWeather);
                 break;
             case "/subscribeWeather":
-                Subs.weatherSubs.add(message.getChatId());
+                Subs.subscribeWeather(message.getChatId());
                 System.out.println(message.getChatId() + " подписался на рассылку погоды");
                 OpcBot.getOpcBotInstance().sendMsg(OpcBot.getOpcBotInstance()
                                 .createMsg(message.getChatId()),
                         "Вы подписались на рассылку погоды");
                 break;
 
+            case "/subBerthUpdateInstruction":
+                Keyboard.setBerthFollowKeyboard(message, true);
+                OpcBot.getOpcBotInstance().sendMsg(message, berthSubInstruction);
+                break;
+
+            case "/subBerthInstruction":
+                Keyboard.setBerthFollowKeyboard(message, false);
+                OpcBot.getOpcBotInstance().sendMsg(message, berthSubInstruction);
+                break;
+        }
+        if (command.startsWith("/bertSub") || command.startsWith("/subBerthUpdate")) {
+            String berths = command.replaceAll("[^\\d\\s]", "").trim();
+            if (berths.length() < 1) {
+                OpcBot.getOpcBotInstance().sendMsg(message,
+                        "<pre>Некорректный ввод</pre>");
+            } else {
+                if (command.startsWith("/bertSub")) {
+                    Subs.subscribeBerths(message.getChatId(), berths);
+                    OpcBot.getOpcBotInstance().sendMsg(message,
+                            "Вы подписаны на [" + berths + "] причал(-ы)");
+                } else {
+                    Subs.subscribeBerthsOnChanges(message.getChatId(), berths);
+                    OpcBot.getOpcBotInstance().sendMsg(message,
+                            "Вы подписаны на обновления [" + berths + "] причала(-ов)");
+                }
+            }
         }
         return "<pre>Invalid command</pre>";
     }
@@ -94,4 +120,7 @@ public class CommandInterpreter {
     static String followWeather = "Вы можете подписаться" +
             " на уведомления о погоде. В 17:00 вам будет приходить почасовой прогноз погоды на" +
             " ближайшие 3 дня, а в 7:00 почасовой прогноз на день.";
+
+    static String berthSubInstruction = "Введите команду 'bertSub' и номера причалов на которые вы хотите подписаться" +
+            " через пробел. Пример:" + System.lineSeparator() + "/bertSub 7 8 28 14";
 }

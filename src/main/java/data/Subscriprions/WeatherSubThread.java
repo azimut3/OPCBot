@@ -8,6 +8,8 @@ import java.util.Calendar;
 import java.util.TimeZone;
 
 public class WeatherSubThread extends Thread{
+    int timeMorning = 7;
+    int timeEvening = 17;
 
     public WeatherSubThread(String name) {
         super(name);
@@ -18,37 +20,43 @@ public class WeatherSubThread extends Thread{
             boolean firstLaunch = true;
             try {
                 if (firstLaunch){
-                    Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("EET"));
-                    SimpleDateFormat formatHours = new SimpleDateFormat("k");
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTimeZone(TimeZone.getTimeZone("EET"));
+                    SimpleDateFormat formatHours = new SimpleDateFormat("H");
                     SimpleDateFormat formatMinutes = new SimpleDateFormat("m");
                     int hours = Integer.parseInt(formatHours.format(cal.getTime()));
                     int minutes = Integer.parseInt(formatMinutes.format(cal.getTime()));
-                    System.out.println("time " + hours + ":" + minutes);
-                    if (minutes > 0) hours++;
-                    if (hours < 7) {
-                        System.out.println("До рассылки " + (7-hours) + ":" + (60 - minutes));
-                        WeatherSubThread.sleep(1000*60*60*(7-hours) - 1000*60*(60 - minutes));
+                    System.out.println("Рассылка погоды осуществляется в " + timeMorning +
+                            "и" + timeEvening);
+                    if (hours < timeMorning) {
+                        System.out.println("До утренней рассылки погоды " +
+                                + (60*(timeMorning-hours) - minutes));
+                        WeatherSubThread.sleep(1000*60*60*(timeMorning-hours) - 1000*60*(minutes));
                         morningMessages();
-                    } else if (hours > 7 && hours < 17) {
-                        System.out.println("До рассылки " + (17-hours) + ":" + (60-minutes));
-                        WeatherSubThread.sleep(1000*60*60*(17-hours) - 1000*60*(60-minutes));
+                    } else if (hours > timeMorning && hours < timeEvening) {
+                        System.out.println("До вечерней рассылки  погоды " +
+                                + (60*(timeEvening-hours) - minutes));
+                        WeatherSubThread.sleep(1000*60*60*(timeEvening-hours) - 1000*60*(minutes));
                         eveningMessages();
                     } else {
-                        System.out.println("До рассылки " + (24 - hours + 7) + ":" + (60-minutes));
-                        WeatherSubThread.sleep(1000*60*60*(24 - hours + 7) - 1000*60*(60-minutes));
+                        //if (minutes > 0) hours++;
+                        System.out.println("До рассылки погоды " + (24 - hours + timeMorning) +
+                                ":" + (60-minutes));
+                        WeatherSubThread.sleep(1000*60*60*(24 - hours + timeMorning) -
+                                 - 1000*60*(minutes));
                         morningMessages();
                     }
                     firstLaunch = false;
                 }
-                WeatherSubThread.sleep(1000*60*60*10);
+                WeatherSubThread.sleep(1000*60*60*(timeEvening-timeMorning));
                 morningMessages();
                 System.out.println("=== Weather forecast for today was sent ===");
-                WeatherSubThread.sleep(1000*60*10*14);
+                WeatherSubThread.sleep(1000*60*10*(24 - timeEvening + timeMorning));
                 eveningMessages();
                 System.out.println("=== Weather forecast for 3 days was sent ===");
 
             } catch (InterruptedException e) {
-                System.out.println("Port thread has been interrupted");
+                System.out.println("Weather forecast thread has been interrupted");
                 e.printStackTrace();
             }
 
@@ -57,12 +65,6 @@ public class WeatherSubThread extends Thread{
 
     private void morningMessages() {
         for (String chatId : Subs.weatherSubs) {
-            try {
-                WeatherSubThread.sleep(1000*60*60*10);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
             OpcBot.getOpcBotInstance().sendMsg(OpcBot.getOpcBotInstance().createMsg(chatId),
                     WeatherForecast.getTodaysForecast());
         }
@@ -70,11 +72,6 @@ public class WeatherSubThread extends Thread{
 
     private void eveningMessages() {
         for (String chatId : Subs.weatherSubs) {
-            try {
-                WeatherSubThread.sleep(1000*60*10*14);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
             OpcBot.getOpcBotInstance().sendMsg(OpcBot.getOpcBotInstance().createMsg(chatId),
                     WeatherForecast.getThreeDayForecast());
         }

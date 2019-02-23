@@ -1,10 +1,9 @@
 package managers;
 
-import data.Subscriprions.Subs;
 import data.Subscriprions.SubsLauncher;
 import data.Weather.CurrentWeatherThread;
 import data.Weather.ForecastThread;
-import data.Port.PortUpdate;
+import data.Port.PortUpdateThread;
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.TelegramBotsApi;
 import org.telegram.telegrambots.exceptions.TelegramApiRequestException;
@@ -30,7 +29,7 @@ public class OdessaPortCheckApplication {
             e.printStackTrace();
         }*/
 
-        Thread portUpdateThread = new PortUpdate("portUpdateThread");
+        Thread portUpdateThread = new PortUpdateThread("portUpdateThread");
         portUpdateThread.start();
         Thread currentWeatherThread = new CurrentWeatherThread("currentWeatherThread");
         currentWeatherThread.start();

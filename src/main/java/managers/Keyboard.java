@@ -41,6 +41,7 @@ public class Keyboard {
         // и устанваливаем этот список нашей клавиатуре
         replyKeyboardMarkup.setKeyboard(keyboard);
     }
+
     public static void setPortKeyboard(SendMessage sendMessage, boolean portMenu) {
         List<List<InlineKeyboardButton>> buttons = new ArrayList<>();
         List<InlineKeyboardButton> buttons1 = new ArrayList<>();
@@ -51,9 +52,9 @@ public class Keyboard {
             buttons.add(buttons1);
         } else {
             buttons1.add(new InlineKeyboardButton().setText("Отслеживать статус причалов")
-                    .setCallbackData("/subBerthUpdate"));
+                    .setCallbackData("/subBerthUpdateInstruction"));
             buttons2.add(new InlineKeyboardButton().setText("Отслеживать причалы")
-                    .setCallbackData("/subBerth"));
+                    .setCallbackData("/subBerthInstruction"));
             buttons.add(buttons1);
             buttons.add(buttons2);
         }
@@ -83,7 +84,8 @@ public class Keyboard {
     public static void setShareKeyboard(SendMessage sendMessage, String text) {
         List<List<InlineKeyboardButton>> buttons = new ArrayList<>();
         List<InlineKeyboardButton> buttons2 = new ArrayList<>();
-        buttons2.add(new InlineKeyboardButton().setText("Поделиться").setSwitchInlineQuery(text));
+        buttons2.add(new InlineKeyboardButton().setText("Поделиться")
+                .setSwitchInlineQuery(text));
         buttons.add(buttons2);
 
         InlineKeyboardMarkup markupKeyboard = new InlineKeyboardMarkup();
@@ -94,9 +96,27 @@ public class Keyboard {
     public static void setWeatherSubscribeKeyboard(SendMessage sendMessage) {
         List<List<InlineKeyboardButton>> buttons = new ArrayList<>();
         List<InlineKeyboardButton> buttons2 = new ArrayList<>();
-        buttons2.add(new InlineKeyboardButton().setText("Подписаться").setCallbackData("/subscribeWeather"));;
+        buttons2.add(new InlineKeyboardButton().setText("Подписаться")
+                .setCallbackData("/subscribeWeather"));;
         buttons.add(buttons2);
 
+        InlineKeyboardMarkup markupKeyboard = new InlineKeyboardMarkup();
+        sendMessage.setReplyMarkup(markupKeyboard);
+        markupKeyboard.setKeyboard(buttons);
+    }
+
+    public static void setBerthFollowKeyboard(SendMessage sendMessage, boolean updates) {
+        List<List<InlineKeyboardButton>> buttons = new ArrayList<>();
+        List<InlineKeyboardButton> buttons2 = new ArrayList<>();
+        if (updates) {
+            buttons2.add(new InlineKeyboardButton().setText("Подписаться")
+                    .setCallbackData("/subBerthUpdate"));
+            buttons.add(buttons2);
+        } else {
+            buttons2.add(new InlineKeyboardButton().setText("Подписаться")
+                    .setCallbackData("/subBerth"));
+            buttons.add(buttons2);
+        }
         InlineKeyboardMarkup markupKeyboard = new InlineKeyboardMarkup();
         sendMessage.setReplyMarkup(markupKeyboard);
         markupKeyboard.setKeyboard(buttons);

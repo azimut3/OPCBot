@@ -1,12 +1,13 @@
 package data.Subscriprions;
 
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 public class Subs {
     private static Subs subberInstance;
 
-    public static ArrayList<String> berthSubs = new ArrayList<>();
-    public static ArrayList<String> berthChangeSubs = new ArrayList<>();
+    public static TreeMap<String, String> berthSubs = new TreeMap<>();
+    public static TreeMap<String, String> berthChangeSubs = new TreeMap<>();
     public static ArrayList<String> weatherSubs = new ArrayList<>();
 
     public static Subs getSubberInstance() {
@@ -14,20 +15,23 @@ public class Subs {
         return subberInstance;
     }
 
-    public static void subscribeBerthsOnChanges(String user){
-        if (berthChangeSubs.contains(user)) {
-
+    public static void subscribeBerthsOnChanges(String user, String berths){
+        if (berthChangeSubs.containsKey(user)) {
+            berthChangeSubs.replace(user, berths);
         } else {
-            berthChangeSubs.add(user);
+            berthChangeSubs.put(user, berths);
         }
+        System.out.println("user: " + user + " followed berths updates - " + berths);
+
     }
 
-    public static void subscribeBerths(String user){
-        if (berthSubs.contains(user)) {
-
+    public static void subscribeBerths(String user, String berths){
+        if (berthSubs.containsKey(user)) {
+            berthSubs.replace(user, berths);
         } else {
-            berthSubs.add(user);
+            berthSubs.put(user, berths);
         }
+        System.out.println("user: " + user + "followed berths - " + berths);
     }
 
     public static void subscribeWeather(String user){

@@ -2,9 +2,9 @@ package data.Port;
 
 import managers.Parser;
 
-public class PortUpdate extends Thread{
+public class PortUpdateThread extends Thread{
 
-    public PortUpdate(String name) {
+    public PortUpdateThread(String name) {
         super(name);
     }
 

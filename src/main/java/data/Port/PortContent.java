@@ -59,13 +59,22 @@ public class PortContent {
                 .append(System.lineSeparator());
         Set<Integer> set = portBerths.keySet();
         for (Integer key : set){
+           builder.append(getBerthByNumber(key));
+        }
+        return builder.toString();
+    }
+
+    public static String getBerthByNumber(Integer key) {
+        StringBuilder builder = new StringBuilder();
+        if (portBerths.containsKey(key)) {
             ArrayList<ArrayList<String>> vessels = portBerths.get(key);
             for (ArrayList<String> vessel : vessels) {
                 builder.append(formatString(key.toString(), 2)).append(" | ").append(vessel.get(0))
                         .append(" <i>(").append(vessel.get(1)).append(")</i>")
                         .append(System.lineSeparator());
             }
-        }
+        } else builder.append("");
+
         return builder.toString();
     }
 

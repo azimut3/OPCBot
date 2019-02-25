@@ -62,7 +62,7 @@ public class CommandInterpreter {
 
             case "/subBerthUpdateInstruction":
                 Keyboard.setBerthFollowKeyboard(message, true);
-                OpcBot.getOpcBotInstance().sendMsg(message, berthSubInstruction);
+                OpcBot.getOpcBotInstance().sendMsg(message, berthUpdateInstruction);
                 break;
 
             case "/subBerthInstruction":
@@ -70,13 +70,13 @@ public class CommandInterpreter {
                 OpcBot.getOpcBotInstance().sendMsg(message, berthSubInstruction);
                 break;
         }
-        if (command.startsWith("/bertsub") || command.startsWith("/subberthupdate")) {
+        if (command.startsWith("bs ") || command.startsWith("bsu ")) {
             String berths = command.replaceAll("[^\\d\\s]", "").trim();
             if (berths.length() < 1) {
                 OpcBot.getOpcBotInstance().sendMsg(message,
                         "<pre>Некорректный ввод</pre>");
             } else {
-                if (command.startsWith("/bertSub")) {
+                if (command.startsWith("bs ")) {
                     Subs.subscribeBerths(message.getChatId(), berths);
                     OpcBot.getOpcBotInstance().sendMsg(message,
                             "Вы подписаны на [" + berths + "] причал(-ы)");
@@ -121,6 +121,9 @@ public class CommandInterpreter {
             " на уведомления о погоде. В 17:00 вам будет приходить почасовой прогноз погоды на" +
             " ближайшие 3 дня, а в 7:00 почасовой прогноз на день.";
 
-    static String berthSubInstruction = "Введите команду 'bertSub' и номера причалов на которые вы хотите подписаться" +
-            " через пробел. Пример:" + System.lineSeparator() + "/bertSub 7 8 28 14";
+    static String berthSubInstruction = "Введите команду 'bs' и номера причалов на которые вы хотите подписаться" +
+            " через пробел. Пример:" + System.lineSeparator() + "bs 7 8 28 14";
+
+    static String berthUpdateInstruction = "Введите команду 'bsu' и номера причалов на которые вы хотите подписаться" +
+            " через пробел. Пример:" + System.lineSeparator() + "bsu 7 8 28 14";
 }

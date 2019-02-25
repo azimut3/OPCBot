@@ -97,7 +97,7 @@ public class Keyboard {
         List<List<InlineKeyboardButton>> buttons = new ArrayList<>();
         List<InlineKeyboardButton> buttons2 = new ArrayList<>();
         buttons2.add(new InlineKeyboardButton().setText("Подписаться")
-                .setCallbackData("/subscribeWeather"));;
+                .setCallbackData("/subscribeWeather"));
         buttons.add(buttons2);
 
         InlineKeyboardMarkup markupKeyboard = new InlineKeyboardMarkup();

@@ -45,7 +45,7 @@ public class Subs {
         } else {
             berthSubs.put(user, berths);
         }
-        System.out.println("user: " + user + "followed berths - " + berths);
+        System.out.println("user: " + user + " followed berths - " + berths);
     }
 
     public static void subscribeWeather(String user){

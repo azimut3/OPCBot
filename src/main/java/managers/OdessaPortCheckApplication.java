@@ -1,5 +1,6 @@
 package managers;
 
+import data.DatabaseConnector.JdbcConnector;
 import data.Subscriprions.SubsLauncher;
 import data.Weather.CurrentWeatherThread;
 import data.Weather.ForecastThread;
@@ -28,7 +29,7 @@ public class OdessaPortCheckApplication {
         } catch (IOException e) {
             e.printStackTrace();
         }*/
-
+        JdbcConnector jdbcConnector = new JdbcConnector();
         Thread portUpdateThread = new PortUpdateThread("portUpdateThread");
         portUpdateThread.start();
         Thread currentWeatherThread = new CurrentWeatherThread("currentWeatherThread");

@@ -1,9 +1,5 @@
 package data.DatabaseConnector;
 
-import managers.SecretData;
-
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.sql.*;
 
 public class JdbcConnector {
@@ -17,5 +13,15 @@ public class JdbcConnector {
         } catch (SQLException e1) {
             e1.printStackTrace();
         }
+    }
+
+    private Statement initTable() {
+        Statement statement = null;
+        try {
+            statement = connection.createStatement();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return statement;
     }
 }

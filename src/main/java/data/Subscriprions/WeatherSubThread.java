@@ -4,10 +4,6 @@ import data.Weather.WeatherForecast;
 import managers.OpcBot;
 import managers.UkrCalendar;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.TimeZone;
-
 public class WeatherSubThread extends Thread{
     int timeMorning = 7;
     int timeEvening = 17;
@@ -54,11 +50,11 @@ public class WeatherSubThread extends Thread{
                     }
                     firstLaunch = false;
                 }
-                WeatherSubThread.sleep(1000*60*60*(timeEvening-timeMorning));
                 morningMessages();
+                WeatherSubThread.sleep(1000*60*60*(timeEvening-timeMorning));
                 System.out.println("=== Weather forecast for today was sent(morning) ===");
-                WeatherSubThread.sleep(1000*60*10*(24 - timeEvening + timeMorning));
                 eveningMessages();
+                WeatherSubThread.sleep(1000*60*10*(24 - timeEvening + timeMorning));
                 System.out.println("=== Weather forecast for 3 days was sent(evening) ===");
 
             } catch (InterruptedException e) {

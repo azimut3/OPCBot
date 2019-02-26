@@ -7,9 +7,9 @@ import managers.UkrCalendar;
 
 public class BerthSubThread extends Thread {
     int timeMorning = 5;
-    int minutesMorning = 30;
+    int minutesMorning = 0;
     int timeEvening = 17;
-    int minutesEvening = 30;
+    int minutesEvening = 0;
 
     public BerthSubThread(String name) {
         super(name);
@@ -56,11 +56,11 @@ public class BerthSubThread extends Thread {
                     }
                     firstLaunch = false;
                 }
+                berthState();
                 BerthSubThread.sleep(1000*60*60*(timeEvening-timeMorning));
-                berthState();
                 System.out.println("=== Berth state was sent(morning) ===");
-                BerthSubThread.sleep(1000*60*10*(24 - timeEvening + timeMorning));
                 berthState();
+                BerthSubThread.sleep(1000*60*10*(24 - timeEvening + timeMorning));
                 System.out.println("=== Berth state was sent(evening) ===");
 
             } catch (InterruptedException e) {

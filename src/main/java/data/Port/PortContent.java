@@ -41,28 +41,18 @@ public class PortContent {
         return portContentInstance;
     }
 
-   /* public static String getPortInfo(){
-        StringBuilder builder = new StringBuilder();
-        builder.append(" | ").append(formatString(BERTH, berthL)).append(" | ")
-                .append(formatString(VESSEL, vesselL)).append(" | ")
-                .append(formatString(DATE, dateL)).append(" |").append(System.lineSeparator());
-        for (int i = 1; i < berthArr.size(); i++){
-            builder.append(" | ").append(formatString(berthArr.get(i), berthL)).append(" | ")
-                    .append(formatString(vesselArr.get(i), vesselL)).append(" | ")
-                    .append(formatString(dateArr.get(i), dateL)).append(" |").append(System.lineSeparator());
-        }
-       // System.out.println(berthL + " " + vesselL + " " + dateL);
-        return builder.toString();
-    }*/
 
     public static String getPortInfo(){
         StringBuilder builder = new StringBuilder();
         builder.append("<b>Список причалов и судов(дата швартовки):</b>").append(System.lineSeparator())
                 .append(System.lineSeparator());
-        Set<Integer> set = portBerths.keySet();
-        for (Integer key : set){
-           builder.append(getBerthByNumber(key));
-        }
+        if (portBerths.size()>=1) {
+            Set<Integer> set = portBerths.keySet();
+            for (Integer key : set) {
+                builder.append(getBerthByNumber(key));
+            }
+        } else builder.append("К сожалению в данный момент нет доступа к данным с сайта одесского" +
+                " порта(");
         return builder.toString();
     }
 

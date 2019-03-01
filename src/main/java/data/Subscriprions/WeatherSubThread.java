@@ -66,16 +66,20 @@ public class WeatherSubThread extends Thread{
     }
 
     private void morningMessages() {
-        for (String chatId : Subs.weatherSubs) {
-            OpcBot.getOpcBotInstance().sendMsg(OpcBot.getOpcBotInstance().createMsg(chatId),
-                    WeatherForecast.getTodaysForecast());
+        for (String chatId : Subs.users.keySet()) {
+            if (Subs.users.get(chatId).get(0).equals("true")) {
+                OpcBot.getOpcBotInstance().sendMsg(OpcBot.getOpcBotInstance().createMsg(chatId),
+                        WeatherForecast.getTodaysForecast());
+            }
         }
     }
 
     private void eveningMessages() {
-        for (String chatId : Subs.weatherSubs) {
-            OpcBot.getOpcBotInstance().sendMsg(OpcBot.getOpcBotInstance().createMsg(chatId),
-                    WeatherForecast.getThreeDayForecast());
+        for (String chatId : Subs.users.keySet()) {
+            if (Subs.users.get(chatId).get(0).equals("true")) {
+                OpcBot.getOpcBotInstance().sendMsg(OpcBot.getOpcBotInstance().createMsg(chatId),
+                        WeatherForecast.getThreeDayForecast());
+            }
         }
     }
 }

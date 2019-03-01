@@ -1,5 +1,6 @@
 package managers;
 
+import data.DatabaseConnector.JdbcConnector;
 import data.Subscriprions.Subs;
 import data.Weather.WeatherForecast;
 import data.WeatherUpdate;
@@ -9,10 +10,17 @@ import org.telegram.telegrambots.api.methods.send.SendMessage;
 public class CommandInterpreter {
 
     public static String processCommand(String command, SendMessage message){
+        //System.out.println("Команда: " + command);
         switch (command){
             case "/start":
                 Keyboard.getMainKeyboard(message);
+                JdbcConnector.addBasicUser(message.getChatId());
                 OpcBot.getOpcBotInstance().sendMsg(message, start);
+                break;
+            case "/wipedata":
+                JdbcConnector.wipeData();
+                Subs.users.clear();
+                System.out.println("Data wiped!");
                 break;
             case "/port":
                 Keyboard.setPortKeyboard(message, true);
@@ -54,37 +62,30 @@ public class CommandInterpreter {
                 break;
             case "/subscribeWeather":
                 Subs.subscribeWeather(message.getChatId());
-                System.out.println(message.getChatId() + " подписался на рассылку погоды");
-                OpcBot.getOpcBotInstance().sendMsg(OpcBot.getOpcBotInstance()
-                                .createMsg(message.getChatId()),
-                        "Вы подписались на рассылку погоды");
                 break;
 
-            case "/subBerthUpdateInstruction":
-                Keyboard.setBerthFollowKeyboard(message, true);
-                OpcBot.getOpcBotInstance().sendMsg(message, berthUpdateInstruction);
-                break;
-
-            case "/subBerthInstruction":
-                Keyboard.setBerthFollowKeyboard(message, false);
+            case "/sequenceOfBerths":
                 OpcBot.getOpcBotInstance().sendMsg(message, berthSubInstruction);
                 break;
+
+            case "/subscribeBerthsOnChanges":
+                Subs.subscribeBerthsOnChanges(message.getChatId());
+                break;
+
+            case "/subscribeBerths":
+                Subs.subscribeBerths(message.getChatId());
+                break;
         }
+
         if (command.startsWith("bs ") || command.startsWith("bsu ")) {
             String berths = command.replaceAll("[^\\d\\s]", "").trim();
             if (berths.length() < 1) {
                 OpcBot.getOpcBotInstance().sendMsg(message,
                         "<pre>Некорректный ввод</pre>");
             } else {
-                if (command.startsWith("bs ")) {
-                    Subs.subscribeBerths(message.getChatId(), berths);
-                    OpcBot.getOpcBotInstance().sendMsg(message,
-                            "Вы подписаны на [" + berths + "] причал(-ы)");
-                } else {
-                    Subs.subscribeBerthsOnChanges(message.getChatId(), berths);
-                    OpcBot.getOpcBotInstance().sendMsg(message,
-                            "Вы подписаны на обновления [" + berths + "] причала(-ов)");
-                }
+            Subs.setBerthSequence(message.getChatId(), berths);
+            OpcBot.getOpcBotInstance().sendMsg(message,
+                    "Вы подписаны на [" + berths + "] причал(-ы)");
             }
         }
         return "<pre>Invalid command</pre>";
@@ -114,7 +115,7 @@ public class CommandInterpreter {
     static String followPort = "Вы можете подписаться" +
             " на уведомления по изменению статуса причалов (судно пришвартовано/" +
             "отшвартовано - вам будет приходить уведомление) либо простое отслеживание, " +
-            "уведомление по состоянию выбранных причалов два раза в сутки (5:30 и 17:30)." +
+            "уведомление по состоянию выбранных причалов два раза в сутки (5:00 и 17:00)." +
             System.lineSeparator() + "<i>(Можно выбрать оба варианта уведомления)</i>";
 
     static String followWeather = "Вы можете подписаться" +
@@ -124,6 +125,6 @@ public class CommandInterpreter {
     static String berthSubInstruction = "Введите команду 'bs' и номера причалов на которые вы хотите подписаться" +
             " через пробел. Пример:" + System.lineSeparator() + "bs 7 8 28 14";
 
-    static String berthUpdateInstruction = "Введите команду 'bsu' и номера причалов на которые вы хотите подписаться" +
-            " через пробел. Пример:" + System.lineSeparator() + "bsu 7 8 28 14";
+    /*static String berthUpdateInstruction = "Введите команду 'bsu' и номера причалов на которые вы хотите подписаться" +
+            " через пробел. Пример:" + System.lineSeparator() + "bsu 7 8 28 14";*/
 }

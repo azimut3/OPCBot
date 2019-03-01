@@ -18,7 +18,10 @@ public class PortUpdateThread extends Thread{
             try {
                 PortContent.oldPortBerths = PortContent.portBerths;
                 PortContent.clearTable();
-                Parser.parsePort();
+                if (!Parser.parsePort()) {
+                    Thread.sleep(1000*60*3);
+                    continue;
+                }
                 System.out.println("=== Vessels in port were updated ===");
                 UpdateBerths.compareResults();
                 Thread.sleep(1800000);

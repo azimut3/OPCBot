@@ -67,7 +67,7 @@ public class WeatherUpdate {
         StringBuilder weather = new StringBuilder();
         String uppChar = currentWeather.get(WeatherTemplate.WEATHER_STATE).substring(0, 1).toUpperCase();
 
-        weather.append("<b>Текущая погода:</b>").append(System.lineSeparator())
+        weather.append("Текущая погода:").append(System.lineSeparator())
                 .append(uppChar + currentWeather.get(WeatherTemplate.WEATHER_STATE).substring(1)).append(",  ")
                 .append(currentWeather.get("temperature")).append(" \u00B0" + "C, ")
                 .append("облачность ")

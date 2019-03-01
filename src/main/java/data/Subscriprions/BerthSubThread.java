@@ -72,15 +72,17 @@ public class BerthSubThread extends Thread {
     }
 
     private void berthState() {
-        for (String chatId : Subs.berthSubs.keySet()) {
-            String[] berths = Subs.berthSubs.get(chatId).split(" ");
-            StringBuilder builder = new StringBuilder();
-            for (String num : berths) {
-                builder.append(PortContent.getBerthByNumber(Integer.valueOf(num)));
+        for (String chatId : Subs.users.keySet()) {
+            if (Subs.users.get(chatId).get(2).equals("true")) {
+                String[] berths = Subs.users.get(chatId).get(1).split(" ");
+                StringBuilder builder = new StringBuilder();
+                for (String num : berths) {
+                    builder.append(PortContent.getBerthByNumber(Integer.valueOf(num)));
+                }
+                if (builder.length() < 1) builder.append("На выбраных вами причалах судов нет");
+                OpcBot.getOpcBotInstance().sendMsg(OpcBot.getOpcBotInstance().createMsg(chatId),
+                        builder.toString());
             }
-            if (builder.length() < 1) builder.append("На выбраных вами причалах судов нет");
-            OpcBot.getOpcBotInstance().sendMsg(OpcBot.getOpcBotInstance().createMsg(chatId),
-                    builder.toString());
         }
     }
 }

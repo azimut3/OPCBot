@@ -14,21 +14,7 @@ public class OdessaPortCheckApplication {
 
     public static void main(String[] args) {
         System.out.println("managers.OpcBot: starting...");
-       /* Properties botInfo = new Properties();
-        try {
-            FileInputStream fis = new FileInputStream(managers.OdessaPortCheckApplication.class
-                    .getResource("bot.properties").getFile());
-            botInfo.load(fis);
 
-            managers.OpcBot.setBotToken(botInfo.getProperty("botToken"));
-            managers.OpcBot.setBotUsername(botInfo.getProperty("botName"));
-
-            fis.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
         JdbcConnector jdbcConnector = new JdbcConnector();
         Thread portUpdateThread = new PortUpdateThread("portUpdateThread");
         portUpdateThread.start();

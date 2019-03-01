@@ -3,7 +3,6 @@ package managers;
 import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
@@ -13,7 +12,7 @@ import java.util.TreeMap;
 import data.Port.PortContent;
 
 public class Parser {
-    public static void parsePort(){
+    public static boolean parsePort(){
         String blogUrl = "http://www.port.odessa.ua/ua/pro-port/pozitsiya-suden/2012-11-21-09-16-27";
         try {
             TreeMap<Integer, ArrayList<ArrayList<String>>> portBerths = new TreeMap<>();
@@ -26,7 +25,7 @@ public class Parser {
                 ArrayList<String> vessel = new ArrayList<>();
                 Elements line = rows.get(r).select("td");
                 if (line.get(0).text().length()>2) continue;
-                Integer berth = Integer.parseInt(line.get(0).text());
+                Integer berth = Integer.parseInt(line.get(0).text().replaceAll("\\D", ""));
                 if (!portBerths.containsKey(berth)) {
                     vessels = new ArrayList<>();
                     portBerths.put(berth, vessels);
@@ -37,11 +36,10 @@ public class Parser {
                 vessel.add(line.get(4).text());
                 vessel.add(line.get(5).text());
                 vessels.add(vessel);
-                //Elements cols = row.select("td");// разбиваем полученную строку по тегу  на столбы
-                //PortContent.converLineToData(cols.text());
-                //System.out.println(cols.text());
+
             }
             PortContent.portBerths = portBerths;
+            return true;
         }
         catch (HttpStatusException ex) {
             ex.printStackTrace();
@@ -49,5 +47,6 @@ public class Parser {
         catch (IOException e) {
             e.printStackTrace();
         }
+        return false;
     }
 }

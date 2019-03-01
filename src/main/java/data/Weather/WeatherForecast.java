@@ -35,6 +35,7 @@ public class WeatherForecast {
                 Calendar calendar = new GregorianCalendar();
                 //System.out.println(weather.get(WeatherTemplate.DATE));
                 calendar.setTime(dateFormat.parse(weather.get(WeatherTemplate.DATE)));
+                //System.out.println(formatDay.format(calendar.getTime()));
                 dateNum = Integer.parseInt(formatDay.format(calendar.getTime())) -
                         Integer.parseInt(UkrCalendar.getDay());
                 //System.out.println(dateNum + " num");

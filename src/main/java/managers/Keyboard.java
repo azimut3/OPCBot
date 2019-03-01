@@ -46,17 +46,21 @@ public class Keyboard {
         List<List<InlineKeyboardButton>> buttons = new ArrayList<>();
         List<InlineKeyboardButton> buttons1 = new ArrayList<>();
         List<InlineKeyboardButton> buttons2 = new ArrayList<>();
+        List<InlineKeyboardButton> buttons3 = new ArrayList<>();
         if (portMenu) {
             buttons1.add(new InlineKeyboardButton().setText("Отслеживать обновления")
                     .setCallbackData("/subscribePort"));
             buttons.add(buttons1);
         } else {
-            buttons1.add(new InlineKeyboardButton().setText("Отслеживать статус причалов")
-                    .setCallbackData("/subBerthUpdateInstruction"));
-            buttons2.add(new InlineKeyboardButton().setText("Отслеживать причалы")
-                    .setCallbackData("/subBerthInstruction"));
+            buttons1.add(new InlineKeyboardButton().setText("Обычное оповещение")
+                    .setCallbackData("/subscribeBerths"));
+            buttons2.add(new InlineKeyboardButton().setText("Изменение статуса причалов")
+                    .setCallbackData("/subscribeBerthsOnChanges"));
+            buttons3.add(new InlineKeyboardButton().setText("Выбор причалов для отслеживания")
+                    .setCallbackData("/sequenceOfBerths"));
             buttons.add(buttons1);
             buttons.add(buttons2);
+            buttons.add(buttons3);
         }
         InlineKeyboardMarkup markupKeyboard = new InlineKeyboardMarkup();
         sendMessage.setReplyMarkup(markupKeyboard);
@@ -105,7 +109,7 @@ public class Keyboard {
         markupKeyboard.setKeyboard(buttons);
     }
 
-    public static void setBerthFollowKeyboard(SendMessage sendMessage, boolean updates) {
+    /*public static void setBerthFollowKeyboard(SendMessage sendMessage, boolean updates) {
         List<List<InlineKeyboardButton>> buttons = new ArrayList<>();
         List<InlineKeyboardButton> buttons2 = new ArrayList<>();
         if (updates) {
@@ -120,5 +124,5 @@ public class Keyboard {
         InlineKeyboardMarkup markupKeyboard = new InlineKeyboardMarkup();
         sendMessage.setReplyMarkup(markupKeyboard);
         markupKeyboard.setKeyboard(buttons);
-    }
+    }*/
 }

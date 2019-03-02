@@ -29,17 +29,17 @@ public class BerthSubThread extends Thread {
                         System.out.println("До утренней рассылки причалов " +
                                 (60*(timeMorning-hours) - (60-minutesMorning)));
                         BerthSubThread.sleep(1000*60*60*(timeMorning-hours) -
-                                - 1000*60*(60-minutesMorning));
+                                - 1000*60*(minutes));
                         berthState();
                         System.out.println("=== Berth state was sent(morning)* ===");
-                        BerthSubThread.sleep(1000*60*10*(24 - timeEvening + timeMorning));
+                        BerthSubThread.sleep(1000*60*10*(timeEvening-timeMorning));
                         berthState();
                         System.out.println("=== Berth state was sent(evening)* ===");
                     } else if (hours > timeMorning && hours < timeEvening) {
                         System.out.println("До вечерней рассылки причалов " + (60*(timeEvening-hours) -
                                 - (60-minutesEvening)));
                         BerthSubThread.sleep(1000*60*60*(timeEvening-hours) -
-                                - 1000*60*(60-minutesEvening));
+                                - 1000*60*(minutes));
                         berthState();
                         System.out.println("=== Berth state was sent(evening)* ===");
                     } else {
@@ -47,20 +47,20 @@ public class BerthSubThread extends Thread {
                         System.out.println("До утренней рассылки причалов "
                                 + (60*(24 - hours + timeMorning) - (60-minutesMorning)));
                         BerthSubThread.sleep(1000*60*60*(24 - hours + timeMorning) -
-                                - 1000*60*(60-minutesMorning));
+                                - 1000*60*(minutes));
                         berthState();
                         System.out.println("=== Berth state was sent(morning)* ===");
-                        BerthSubThread.sleep(1000*60*10*(24 - timeEvening + timeMorning));
+                        BerthSubThread.sleep(1000*60*10*(timeEvening-timeMorning));
                         berthState();
                         System.out.println("=== Berth state was sent(evening)* ===");
                     }
                     firstLaunch = false;
                 }
+                BerthSubThread.sleep(1000*60*10*((24 - timeEvening) + timeMorning));
                 berthState();
-                BerthSubThread.sleep(1000*60*60*(timeEvening-timeMorning));
                 System.out.println("=== Berth state was sent(morning) ===");
+                BerthSubThread.sleep(1000*60*60*(timeEvening-timeMorning));
                 berthState();
-                BerthSubThread.sleep(1000*60*10*(24 - timeEvening + timeMorning));
                 System.out.println("=== Berth state was sent(evening) ===");
 
             } catch (InterruptedException e) {

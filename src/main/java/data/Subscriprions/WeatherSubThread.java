@@ -27,7 +27,7 @@ public class WeatherSubThread extends Thread{
                         WeatherSubThread.sleep(1000*60*60*(timeMorning-hours) - 1000*60*(minutes));
                         morningMessages();
                         System.out.println("=== Weather forecast for today was sent(morning)* ===");
-                        WeatherSubThread.sleep(1000*60*10*(24 - timeEvening + timeMorning));
+                        WeatherSubThread.sleep(1000*60*60*(timeEvening-timeMorning));
                         eveningMessages();
                         System.out.println("=== Weather forecast for 3 days was sent(evening)* ===");
                     } else if (hours > timeMorning && hours < timeEvening) {
@@ -40,21 +40,21 @@ public class WeatherSubThread extends Thread{
                         //if (minutes > 0) hours++;
                         System.out.println("До утренней рассылки погоды " +
                                         (60*(24 - hours + timeMorning) - minutes));
-                        WeatherSubThread.sleep(1000*60*60*(24 - hours + timeMorning) -
+                        WeatherSubThread.sleep(1000*60*60*((24 - hours) + timeMorning) -
                                  - 1000*60*(minutes));
                         morningMessages();
                         System.out.println("=== Weather forecast for today was sent(morning)* ===");
-                        WeatherSubThread.sleep(1000*60*10*(24 - timeEvening + timeMorning));
+                        WeatherSubThread.sleep(1000*60*60*(timeEvening-timeMorning));
                         eveningMessages();
                         System.out.println("=== Weather forecast for 3 days was sent(evening)* ===");
                     }
                     firstLaunch = false;
                 }
+                WeatherSubThread.sleep(1000*60*60*((24 - timeEvening) + timeMorning));
                 morningMessages();
-                WeatherSubThread.sleep(1000*60*60*(timeEvening-timeMorning));
                 System.out.println("=== Weather forecast for today was sent(morning) ===");
+                WeatherSubThread.sleep(1000*60*60*(timeEvening-timeMorning));
                 eveningMessages();
-                WeatherSubThread.sleep(1000*60*10*(24 - timeEvening + timeMorning));
                 System.out.println("=== Weather forecast for 3 days was sent(evening) ===");
 
             } catch (InterruptedException e) {

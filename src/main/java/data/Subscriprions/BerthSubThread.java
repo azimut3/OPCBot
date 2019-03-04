@@ -37,12 +37,13 @@ public class BerthSubThread extends Thread {
                     }
                     firstLaunch = false;
                 }
-                BerthSubThread.sleep(1000*60*10*((24 - timeEvening) + timeMorning));
+                BerthSubThread.sleep(1000 * 60 * 60 * ((24 - timeEvening) + timeMorning));
                 berthState();
                 System.out.println("=== Berth state was sent(morning) ===");
-                BerthSubThread.sleep(1000*60*60*(timeEvening-timeMorning));
+                BerthSubThread.sleep(1000 * 60 * 60 * (timeEvening - timeMorning));
                 berthState();
                 System.out.println("=== Berth state was sent(evening) ===");
+
 
             } catch (InterruptedException e) {
                 System.out.println("Berth state thread has been interrupted");
@@ -56,6 +57,8 @@ public class BerthSubThread extends Thread {
             if (Subs.users.get(chatId).get(2).equals("true")) {
                 String[] berths = Subs.users.get(chatId).get(1).split(" ");
                 StringBuilder builder = new StringBuilder();
+                builder.append("Сводка по порту:").append(System.lineSeparator())
+                        .append(System.lineSeparator());
                 for (String num : berths) {
                     builder.append(PortContent.getBerthByNumber(Integer.valueOf(num)));
                 }

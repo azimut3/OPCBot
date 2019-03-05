@@ -1,11 +1,7 @@
 package data.Port;
 
-import data.Subscriprions.Subs;
 import data.Subscriprions.UpdateBerths;
 import managers.Parser;
-
-import java.util.ArrayList;
-import java.util.Set;
 
 public class PortUpdateThread extends Thread{
 
@@ -17,7 +13,7 @@ public class PortUpdateThread extends Thread{
         while (true) {
             try {
                 PortContent.oldPortBerths = PortContent.portBerths;
-                PortContent.clearTable();
+                PortContent.portBerths.clear();
                 if (!Parser.parsePort()) {
                     Thread.sleep(1000*60*3);
                     continue;

@@ -1,6 +1,8 @@
 package data.DatabaseConnector;
 
 import data.Subscriprions.Subs;
+import managers.Admin;
+import managers.OpcBot;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -59,7 +61,6 @@ public class JdbcConnector {
             statement.executeUpdate("INSERT INTO users VALUES(" + chatId + ", " + weatherUpdate +
                             ", " + berthSequence + ", "+ berthSub + ", " + berthUpdate + ", " + status
                     + ", " + userInfo + ");");
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -77,6 +78,7 @@ public class JdbcConnector {
                     user.get(3), user.get(4), user.get(5));
             System.out.println(user.get(5));
             Subs.users.put(userId, user);
+            Admin.newUser(userId);
         }
     }
 

@@ -1,5 +1,6 @@
 package managers;
 
+import data.Subscriprions.Subs;
 import org.telegram.telegrambots.api.methods.ParseMode;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Update;
@@ -96,5 +97,7 @@ public class OpcBot extends TelegramLongPollingBot {
     public static void setBotToken(String botToken) {
         OpcBot.botToken = botToken;
     }
+
+
 }
 

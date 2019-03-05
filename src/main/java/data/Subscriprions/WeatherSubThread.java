@@ -19,7 +19,7 @@ public class WeatherSubThread extends Thread{
                 if (firstLaunch){
                     int hours = Integer.parseInt(UkrCalendar.getHours());
                     int minutes = Integer.parseInt(UkrCalendar.getMinutes());
-                    if (hours < timeMorning){
+                    if (hours < timeMorning || hours > timeEvening){
                         BerthSubThread.sleep(SubsLauncher.getTime(hours, minutes, timeMorning));
                         morningMessages();
                         System.out.println("=== Weather forecast for today was sent(morning) ===");

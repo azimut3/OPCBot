@@ -23,7 +23,7 @@ public class BerthSubThread extends Thread {
                     int hours = Integer.parseInt(UkrCalendar.getHours());
                     int minutes = Integer.parseInt(UkrCalendar.getMinutes());
                     System.out.println("time " + hours + ":" + minutes);
-                    if (hours < timeMorning){
+                    if (hours < timeMorning || hours > timeEvening){
                         BerthSubThread.sleep(SubsLauncher.getTime(hours, minutes, timeMorning));
                         berthState();
                         System.out.println("=== Berth state was sent(morning) ===");

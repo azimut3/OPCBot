@@ -58,7 +58,28 @@ public class Subs {
         return UkrCalendar.getFullDate();
     }
 
-    public static void saveSubs() {
-
+    public static String getStats() {
+        StringBuilder builder = new StringBuilder();
+        int usersNum = users.size();
+        int weatherSubs = 0;
+        int berthSubs = 0;
+        int berthUpdate = 0;
+        for (String user : users.keySet()){
+            if (users.get(user).get(0).equals("true")) weatherSubs++;
+            if (users.get(user).get(2).equals("true")) berthSubs++;
+            if (users.get(user).get(3).equals("true")) berthUpdate++;
+        }
+        builder.append("Всего пользователей: ").append(usersNum)
+                .append(System.lineSeparator())
+                .append("Подписаны на погоду: ").append(weatherSubs).append("/").append(usersNum)
+                .append(System.lineSeparator())
+                .append("Подписаны на причалы: ").append(berthSubs).append("/").append(usersNum)
+                .append(System.lineSeparator())
+                .append("Подписаны на статус судов: ").append(berthUpdate).append("/")
+                .append(usersNum)
+                .append(System.lineSeparator());
+        return builder.toString();
     }
+
+
 }

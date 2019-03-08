@@ -10,17 +10,12 @@ import org.telegram.telegrambots.api.methods.send.SendMessage;
 public class CommandInterpreter {
 
     public static String processCommand(String command, SendMessage message){
-        //System.out.println("Команда: " + command);
+
         switch (command){
             case "/start":
                 Keyboard.getMainKeyboard(message);
                 JdbcConnector.addBasicUser(message.getChatId());
                 OpcBot.getOpcBotInstance().sendMsg(message, start);
-                break;
-            case "/wipedata":
-                JdbcConnector.wipeData();
-                Subs.users.clear();
-                System.out.println("Data wiped!");
                 break;
             case "/port":
                 Keyboard.setPortKeyboard(message, true);
@@ -75,6 +70,18 @@ public class CommandInterpreter {
             case "/subscribeBerths":
                 Subs.subscribeBerths(message.getChatId());
                 break;
+
+            case "stats":
+                if (Subs.users.get(message.getChatId()).get(4).equals("admin")){
+                    OpcBot.getOpcBotInstance().sendMsg(message, Subs.getStats());
+                }
+                break;
+
+            case "/announce":
+                if (Subs.users.get(message.getChatId()).get(4).equals("admin")){
+                    OpcBot.getOpcBotInstance().sendMsg(message, Subs.getStats());
+                }
+                break;
         }
 
         if (command.startsWith("bs ") || command.startsWith("bsu ")) {
@@ -83,18 +90,19 @@ public class CommandInterpreter {
                 OpcBot.getOpcBotInstance().sendMsg(message,
                         "<pre>Некорректный ввод</pre>");
             } else {
-            Subs.setBerthSequence(message.getChatId(), berths);
-            OpcBot.getOpcBotInstance().sendMsg(message,
+                Subs.setBerthSequence(message.getChatId(), berths);
+                OpcBot.getOpcBotInstance().sendMsg(message,
                     "Вы подписаны на [" + berths + "] причал(-ы)");
             }
         }
+
         return "<pre>Invalid command</pre>";
     }
 
     static String about = "Данный бот разработан для получения справочной информации о наличии " +
             "судов в одесском порту, текущей погоде и почасовом прогнозе " +
             "погоды на 3 дня. Информация по порту берется с сайта ОМТП (http://www.port.odessa.ua)" +
-            " и обновляется раз в 30 минут, а погода предоставляется благодаря погодному сервису " +
+            " и обновляется раз в 15 минут, а погода предоставляется благодаря погодному сервису " +
             "openweathermap.org. Текущая погода обновляется каждые 10 минут, а почасовой прогноз " +
             "каждые 3 часа. " + System.lineSeparator() +
             "Бот написан мной, Горчинским Игорем, email: i.horchynskyi@gmail.com.";

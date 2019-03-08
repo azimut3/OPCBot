@@ -8,7 +8,7 @@ import java.util.Set;
 import java.util.TreeMap;
 
 public class UpdateBerths {
-    private static TreeMap<String, ArrayList<ArrayList<String>>> changes = new TreeMap();
+    private static TreeMap<String, ArrayList<ArrayList<String>>> changes = new TreeMap<>();
 
     public static void compareResults(){
 
@@ -21,11 +21,11 @@ public class UpdateBerths {
                         putInChangesMap(String.valueOf(s), vesselsArr.get(0), "+");
                 } else {
                     for (ArrayList<String> arr : PortContent.portBerths.get(s)){
+                        boolean put = true;
                         for (ArrayList<String> arrOld : PortContent.oldPortBerths.get(s)){
-                            if (!arrOld.contains(arr.get(0))) {
-                                putInChangesMap(String.valueOf(s), arr.get(0), "+");
-                            }
+                            if (arrOld.contains(arr.get(0))) put = false;
                         }
+                        if (put) putInChangesMap(String.valueOf(s), arr.get(0), "+");
                     }
                 }
             }
@@ -36,16 +36,16 @@ public class UpdateBerths {
                         putInChangesMap(String.valueOf(s), vesselsArr.get(0), "-");
                 } else {
                     for (ArrayList<String> arr : PortContent.oldPortBerths.get(s)){
+                        boolean put = true;
                         for (ArrayList<String> arrNew : PortContent.portBerths.get(s)){
-                            if (!arrNew.contains(arr.get(0))) {
-                                putInChangesMap(String.valueOf(s), arr.get(0), "-");
-                            }
+                            if (arrNew.contains(arr.get(0))) put = false;
                         }
+                        if (put) putInChangesMap(String.valueOf(s), arr.get(0), "-");
                     }
                 }
             }
         }
-
+        System.out.println(PortContent.oldPortBerths);
         whoToSend();
     }
 

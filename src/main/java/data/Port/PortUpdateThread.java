@@ -3,6 +3,9 @@ package data.Port;
 import data.Subscriprions.UpdateBerths;
 import managers.Parser;
 
+import java.util.ArrayList;
+import java.util.TreeMap;
+
 public class PortUpdateThread extends Thread{
 
     public PortUpdateThread(String name) {
@@ -12,12 +15,14 @@ public class PortUpdateThread extends Thread{
     public void run(){
         while (true) {
             try {
-                PortContent.oldPortBerths = PortContent.portBerths;
-                PortContent.portBerths.clear();
+                TreeMap<Integer, ArrayList<ArrayList<String>>> tempOldMap = PortContent.portBerths;
+                PortContent.portBerths = new TreeMap<>();
                 if (!Parser.parsePort()) {
                     Thread.sleep(1000*60*3);
+                    PortContent.portBerths = tempOldMap;
                     continue;
                 }
+                PortContent.oldPortBerths = tempOldMap;
                 System.out.println("=== Vessels in port were updated ===");
                 UpdateBerths.compareResults();
                 Thread.sleep(1800000);

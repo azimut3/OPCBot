@@ -19,8 +19,7 @@ public class UpdateBerths {
                 if (!oldBerths.contains(s)) {
                     for (ArrayList<String> vesselsArr : PortContent.portBerths.get(s))
                         putInChangesMap(String.valueOf(s), vesselsArr.get(0), "+");
-                }
-                if (oldBerths.contains(s)){
+                } else {
                     for (ArrayList<String> arr : PortContent.portBerths.get(s)){
                         for (ArrayList<String> arrOld : PortContent.oldPortBerths.get(s)){
                             if (!arrOld.contains(arr.get(0))) {
@@ -35,8 +34,7 @@ public class UpdateBerths {
                 if (!newBerths.contains(s)) {
                     for (ArrayList<String> vesselsArr : PortContent.oldPortBerths.get(s))
                         putInChangesMap(String.valueOf(s), vesselsArr.get(0), "-");
-                }
-                if (newBerths.contains(s)){
+                } else {
                     for (ArrayList<String> arr : PortContent.oldPortBerths.get(s)){
                         for (ArrayList<String> arrNew : PortContent.portBerths.get(s)){
                             if (!arrNew.contains(arr.get(0))) {
@@ -67,7 +65,7 @@ public class UpdateBerths {
             for (String berth : changes.keySet()) {
                 if (Subs.users.get(user).get(1).contains(berth + " ")) {
                     for (ArrayList<String> arr: changes.get(berth)) {
-                        boolean changeValue = arr.get(1).equals("+") ? true : false;
+                        boolean changeValue = arr.get(1).equals("+");
                         notifyUsers(user, berth, changeValue, arr.get(0));
                     }
                 }

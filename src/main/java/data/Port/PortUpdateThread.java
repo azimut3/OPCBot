@@ -23,9 +23,11 @@ public class PortUpdateThread extends Thread{
                     continue;
                 }
                 PortContent.oldPortBerths = tempOldMap;
+                System.out.println("Old bertList " + PortContent.oldPortBerths);
+                System.out.println("New bertList " + PortContent.portBerths);
                 System.out.println("=== Vessels in port were updated ===");
                 UpdateBerths.compareResults();
-                Thread.sleep(1000*60*15);
+                Thread.sleep(1000*15);
             } catch (InterruptedException e) {
                 System.out.println("Port thread has been interrupted");
                 e.printStackTrace();

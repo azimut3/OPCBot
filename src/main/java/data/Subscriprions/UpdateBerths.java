@@ -45,7 +45,7 @@ public class UpdateBerths {
                 }
             }
         }
-        System.out.println(PortContent.oldPortBerths);
+
         whoToSend();
     }
 
@@ -75,7 +75,7 @@ public class UpdateBerths {
 
     public static void notifyUsers(String chatId, String updatedBerth, boolean added, String vessel){
 
-        StringBuilder builder = new StringBuilder();
+       /* StringBuilder builder = new StringBuilder();
         if (added){
             builder.append("Судно " + vessel + " пришвартовано на " + updatedBerth + " причал");
             builder.append(System.lineSeparator());
@@ -85,6 +85,6 @@ public class UpdateBerths {
         }
 
         OpcBot.getOpcBotInstance().sendMsg(OpcBot.getOpcBotInstance().createMsg(chatId),
-                builder.toString());
+                builder.toString());*/
     }
 }

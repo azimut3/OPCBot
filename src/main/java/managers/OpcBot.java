@@ -23,10 +23,9 @@ public class OpcBot extends TelegramLongPollingBot {
             chatId = String.valueOf(update.getCallbackQuery().getMessage().getChatId());
         }
         if(update.hasMessage()) {
-            message = update.getMessage().getText();
             chatId = update.getMessage().getChatId().toString();
         }
-        CommandInterpreter.processCommand(message, createMsg(chatId));
+        CommandInterpreter.processCommand(update, createMsg(chatId));
         //reply(chatId, message);
     }
 

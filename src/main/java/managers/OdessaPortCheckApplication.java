@@ -23,6 +23,8 @@ public class OdessaPortCheckApplication {
         Thread forecastWeatherThread = new ForecastThread("forecastWeatherThread");
         forecastWeatherThread.start();
         SubsLauncher.LaunchSubs();
+        StatsReaper reaper = new StatsReaper("statsReaper");
+        reaper.start();
         OpcBot.setBotToken(SecretData.botToken);
         OpcBot.setBotUsername(SecretData.botName);
 

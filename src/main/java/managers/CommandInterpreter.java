@@ -6,15 +6,16 @@ import data.Weather.WeatherForecast;
 import data.WeatherUpdate;
 import data.Port.PortContent;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
+import org.telegram.telegrambots.api.objects.Update;
 
 public class CommandInterpreter {
 
-    public static String processCommand(String command, SendMessage message){
-
-        switch (command){
+    public static String processCommand(Update command, SendMessage message){
+        JdbcConnector.updateCalls(String.valueOf(command.getMessage().getChatId()));
+        switch (command.getMessage().getText()){
             case "/start":
                 Keyboard.getMainKeyboard(message);
-                JdbcConnector.addBasicUser(message.getChatId());
+                JdbcConnector.addBasicUser(command);
                 OpcBot.getOpcBotInstance().sendMsg(message, start);
                 break;
             case "/port":
@@ -76,6 +77,11 @@ public class CommandInterpreter {
                     OpcBot.getOpcBotInstance().sendMsg(message, Subs.getStats());
                 }
                 break;
+            case "month":
+                if (Subs.users.get(message.getChatId()).get(4).equals("admin")){
+                    Admin.sendMonthStats();
+                }
+                break;
 
             case "/announce":
                 if (Subs.users.get(message.getChatId()).get(4).equals("admin")){
@@ -84,8 +90,9 @@ public class CommandInterpreter {
                 break;
         }
 
-        if (command.startsWith("bs ") || command.startsWith("bsu ")) {
-            String berths = command.replaceAll("[^\\d\\s]", "").trim();
+        String comandMsg = command.getMessage().getText();
+        if (comandMsg.startsWith("bs ") || comandMsg.startsWith("bsu ")) {
+            String berths = comandMsg.replaceAll("[^\\d\\s]", "").trim();
             if (berths.length() < 1) {
                 OpcBot.getOpcBotInstance().sendMsg(message,
                         "<pre>Некорректный ввод</pre>");

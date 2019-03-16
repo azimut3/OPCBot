@@ -7,11 +7,11 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class WeatherForecast {
-    private static WeatherForecast weatherForecastInstance;
+    private static volatile WeatherForecast weatherForecastInstance;
 
-    private static ArrayList<ForecastWeather> todayForecast = new ArrayList<>();
-    private static ArrayList<ForecastWeather> tomorrowForecast = new ArrayList<>();
-    private static ArrayList<ForecastWeather> afterTomorrowForecast = new ArrayList<>();
+    private static volatile ArrayList<ForecastWeather> todayForecast = new ArrayList<>();
+    private static volatile ArrayList<ForecastWeather> tomorrowForecast = new ArrayList<>();
+    private static volatile ArrayList<ForecastWeather> afterTomorrowForecast = new ArrayList<>();
 
     private WeatherForecast(){}
 

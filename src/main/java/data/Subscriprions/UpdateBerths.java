@@ -1,6 +1,5 @@
 package data.Subscriprions;
 
-import data.Port.PortContent;
 import managers.OpcBot;
 
 import java.util.ArrayList;
@@ -8,21 +7,22 @@ import java.util.Set;
 import java.util.TreeMap;
 
 public class UpdateBerths {
-    private static TreeMap<String, ArrayList<ArrayList<String>>> changes = new TreeMap<>();
+    private static volatile TreeMap<String, ArrayList<ArrayList<String>>> changes;
 
-    public static void compareResults(){
-
-        if (PortContent.oldPortBerths.size() > 1) {
-            Set<Integer> newBerths = PortContent.portBerths.keySet();
-            Set<Integer> oldBerths = PortContent.oldPortBerths.keySet();
+    public static synchronized void compareResults(TreeMap<Integer, ArrayList<ArrayList<String>>> oldOne,
+                       TreeMap<Integer, ArrayList<ArrayList<String>>> newOne){
+        changes = new TreeMap<>();
+        if (oldOne.size() > 0) {
+            Set<Integer> newBerths = newOne.keySet();
+            Set<Integer> oldBerths = oldOne.keySet();
             for (Integer s : newBerths) {
                 if (!oldBerths.contains(s)) {
-                    for (ArrayList<String> vesselsArr : PortContent.portBerths.get(s))
+                    for (ArrayList<String> vesselsArr : newOne.get(s))
                         putInChangesMap(String.valueOf(s), vesselsArr.get(0), "+");
                 } else {
-                    for (ArrayList<String> arr : PortContent.portBerths.get(s)){
+                    for (ArrayList<String> arr : newOne.get(s)){
                         boolean put = true;
-                        for (ArrayList<String> arrOld : PortContent.oldPortBerths.get(s)){
+                        for (ArrayList<String> arrOld : oldOne.get(s)){
                             if (arrOld.contains(arr.get(0))) put = false;
                         }
                         if (put) putInChangesMap(String.valueOf(s), arr.get(0), "+");
@@ -32,12 +32,12 @@ public class UpdateBerths {
 
             for (Integer s : oldBerths) {
                 if (!newBerths.contains(s)) {
-                    for (ArrayList<String> vesselsArr : PortContent.oldPortBerths.get(s))
+                    for (ArrayList<String> vesselsArr : oldOne.get(s))
                         putInChangesMap(String.valueOf(s), vesselsArr.get(0), "-");
                 } else {
-                    for (ArrayList<String> arr : PortContent.oldPortBerths.get(s)){
+                    for (ArrayList<String> arr : oldOne.get(s)){
                         boolean put = true;
-                        for (ArrayList<String> arrNew : PortContent.portBerths.get(s)){
+                        for (ArrayList<String> arrNew : newOne.get(s)){
                             if (arrNew.contains(arr.get(0))) put = false;
                         }
                         if (put) putInChangesMap(String.valueOf(s), arr.get(0), "-");
@@ -73,9 +73,19 @@ public class UpdateBerths {
         }
     }
 
-    public static void notifyUsers(String chatId, String updatedBerth, boolean added, String vessel){
+    public static void whoToSendToConsole() {
+        System.out.println(changes);
+        for (String berth : changes.keySet()) {
+            for (ArrayList<String> arr: changes.get(berth)) {
+                boolean changeValue = arr.get(1).equals("+");
+                notifyUsers(null, berth, changeValue, arr.get(0));
+            }
+        }
+    }
 
-       /* StringBuilder builder = new StringBuilder();
+    private static void notifyUsers(String chatId, String updatedBerth, boolean added, String vessel){
+
+        StringBuilder builder = new StringBuilder();
         if (added){
             builder.append("Судно " + vessel + " пришвартовано на " + updatedBerth + " причал");
             builder.append(System.lineSeparator());
@@ -83,8 +93,8 @@ public class UpdateBerths {
             builder.append("Судно " + vessel + " отшвартовано с " + updatedBerth + " причала");
             builder.append(System.lineSeparator());
         }
-
+        if (chatId == null) System.out.println(builder.toString());
         OpcBot.getOpcBotInstance().sendMsg(OpcBot.getOpcBotInstance().createMsg(chatId),
-                builder.toString());*/
+                builder.toString());
     }
 }

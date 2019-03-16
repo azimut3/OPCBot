@@ -6,8 +6,8 @@ import java.util.TreeMap;
 
 public class PortContent {
     private static PortContent portContentInstance;
-    public static TreeMap<Integer, ArrayList<ArrayList<String>>> portBerths = new TreeMap<>();
-    public static TreeMap<Integer, ArrayList<ArrayList<String>>> oldPortBerths = new TreeMap<>();
+    public static volatile TreeMap<Integer, ArrayList<ArrayList<String>>> portBerths = new TreeMap<>();
+    public static volatile TreeMap<Integer, ArrayList<ArrayList<String>>> oldPortBerths = new TreeMap<>();
 
     private PortContent() {
     }

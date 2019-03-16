@@ -10,14 +10,14 @@ import java.util.TreeMap;
 public class Subs {
     private static Subs subberInstance;
 
-    public static TreeMap<String, ArrayList<String>> users = new TreeMap<>();
+    public static volatile TreeMap<String, ArrayList<String>> users = new TreeMap<>();
 
     public static Subs getSubberInstance() {
         if (subberInstance == null) subberInstance = new Subs();
         return subberInstance;
     }
 
-    public static void subscribeWeather(String user){
+    public static synchronized void subscribeWeather(String user){
         boolean valueB = !Boolean.parseBoolean(users.get(user).get(0));
         String value = String.valueOf(valueB);
         JdbcConnector.editWeatherSub(user, value);
@@ -27,13 +27,13 @@ public class Subs {
         System.out.println("user: " + user + " followed weather updates");
     }
 
-    public static void setBerthSequence(String user, String berths){
+    public static synchronized void setBerthSequence(String user, String berths){
         users.get(user).set(1, berths);
         JdbcConnector.editSelectedBerths(user, berths);
         System.out.println("user: " + user + " followed berths - " + berths);
     }
 
-    public static void subscribeBerths(String user){
+    public static synchronized void subscribeBerths(String user){
         boolean valueB = !Boolean.parseBoolean(users.get(user).get(2));
         String value = String.valueOf(valueB);
         JdbcConnector.editBerthSub(user, value);
@@ -43,7 +43,7 @@ public class Subs {
         System.out.println("user: " + user + " followed berths notifications");
     }
 
-    public static void subscribeBerthsOnChanges(String user){
+    public static synchronized void subscribeBerthsOnChanges(String user){
         boolean valueB = !Boolean.parseBoolean(users.get(user).get(3));
         String value = String.valueOf(valueB);
         JdbcConnector.editBerthUpdate(user, value);

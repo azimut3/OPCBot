@@ -2,11 +2,14 @@ package managers;
 
 import data.Subscriprions.Subs;
 
-public class Admin {
+import java.util.ArrayList;
 
-    public static synchronized void newUser(String userId) {
-        notifyAdmin("Новый пользователь зарегестрирован (" + userId + ")." +
-                System.lineSeparator() +
+public class Admin {
+    public static volatile ArrayList<String> stats = new ArrayList<>();
+
+    public static synchronized void newUser(String userId, String name, String surname) {
+        notifyAdmin("Новый пользователь зарегестрирован " + name + " " + surname +
+                        " (" + userId + ")." +  System.lineSeparator() +
                 "Всего пользователей: " + Subs.users.size());
     }
 
@@ -15,4 +18,13 @@ public class Admin {
                 OpcBot.getOpcBotInstance().createMsg(SecretData.admin), text);
     }
 
+    public static synchronized void sendMonthStats() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Статистика за месяц:").append(System.lineSeparator());
+        builder.append("(всего, акт, просм, день)").append(System.lineSeparator());
+        for (String stat : stats) {
+            builder.append(stat).append(System.lineSeparator());
+        }
+        notifyAdmin(builder.toString());
+    }
 }

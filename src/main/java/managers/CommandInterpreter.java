@@ -69,7 +69,7 @@ public class CommandInterpreter {
                 builderWeather.append(Subs.users.get(message.getChatId()).get(0).equals("true") ?
                         "Вы уже подписаны на рассылку погоды" :
                         "Вы не подписаны на рассылку погоды").append(System.lineSeparator());
-                OpcBot.getOpcBotInstance().sendMsg(message, followWeather);
+                OpcBot.getOpcBotInstance().sendMsg(message, builderWeather.toString());
                 break;
             case "/subscribeWeather":
                 Subs.subscribeWeather(message.getChatId());

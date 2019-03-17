@@ -142,7 +142,7 @@ public class JdbcConnector {
         Statement statement = null;
         try {
             statement = getConnection().createStatement();
-            statement.executeQuery("select count(chat_id), avg(calls)users from users");
+            statement.executeQuery("select count(chat_id), avg(calls)users from users where calls>0");
         } catch (SQLException e) {
             e.printStackTrace();
         }

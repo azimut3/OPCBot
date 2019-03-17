@@ -10,12 +10,12 @@ import org.telegram.telegrambots.api.objects.Update;
 
 public class CommandInterpreter {
 
-    public static String processCommand(Update command, SendMessage message){
-        JdbcConnector.updateCalls(String.valueOf(command.getMessage().getChatId()));
-        switch (command.getMessage().getText()){
+    public static String processCommand(String command, SendMessage message, Update update){
+        JdbcConnector.updateCalls(String.valueOf(message.getChatId()));
+        switch (command){
             case "/start":
                 Keyboard.getMainKeyboard(message);
-                JdbcConnector.addBasicUser(command);
+                JdbcConnector.addBasicUser(update);
                 OpcBot.getOpcBotInstance().sendMsg(message, start);
                 break;
             case "/port":
@@ -50,10 +50,25 @@ public class CommandInterpreter {
                 break;
             case "/subscribePort":
                 Keyboard.setPortKeyboard(message, false);
-                OpcBot.getOpcBotInstance().sendMsg(message, followPort);
+                StringBuilder builder = new StringBuilder();
+                System.out.println(Subs.users.get(message.getChatId()));
+                builder.append(followPort).append(System.lineSeparator())
+                        .append(Subs.users.get(message.getChatId()).get(2).equals("true") ?
+                                "Вы уже подписаны на рассылку сводки" :
+                                "Вы не подписаны на рассылку сводки").append(System.lineSeparator())
+                        .append(Subs.users.get(message.getChatId()).get(3).equals("true") ?
+                                "Вы уже подписаны на рассылку уведомлений" :
+                                "Вы не подписаны на рассылку уведомлений").append(System.lineSeparator())
+                        .append("Выбраны причалы: [" + Subs.users.get(message.getChatId()).get(1))
+                        .append("]");
+                OpcBot.getOpcBotInstance().sendMsg(message, builder.toString());
                 break;
             case "/weatherSubscription":
                 Keyboard.setWeatherSubscribeKeyboard(message);
+                StringBuilder builderWeather = new StringBuilder();
+                builderWeather.append(Subs.users.get(message.getChatId()).get(0).equals("true") ?
+                        "Вы уже подписаны на рассылку погоды" :
+                        "Вы не подписаны на рассылку погоды").append(System.lineSeparator());
                 OpcBot.getOpcBotInstance().sendMsg(message, followWeather);
                 break;
             case "/subscribeWeather":
@@ -90,7 +105,7 @@ public class CommandInterpreter {
                 break;
         }
 
-        String comandMsg = command.getMessage().getText();
+        String comandMsg = command;
         if (comandMsg.startsWith("bs ") || comandMsg.startsWith("bsu ")) {
             String berths = comandMsg.replaceAll("[^\\d\\s]", "").trim();
             if (berths.length() < 1) {

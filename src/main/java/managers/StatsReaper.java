@@ -29,12 +29,8 @@ public class StatsReaper extends Thread{
                }
            }
 
-           String usersTotal = String.valueOf(Subs.users.size());
+           Admin.sendStats();
            String usersActiveStats = JdbcConnector.getUsersAndAvgCalls();
-           Admin.notifyAdmin("Зарегестрировано пользователей: " + usersTotal);
-           Admin.notifyAdmin("Сегодня было активно пользователей (просмотров на пользователя):");
-           Admin.notifyAdmin(usersActiveStats);
-
            Admin.stats.add(Subs.users.size() + " " +
                    usersActiveStats.replaceAll("\\W\\S", "") + " " +
                    UkrCalendar.getFullDate());

@@ -89,7 +89,7 @@ public class CommandInterpreter {
 
             case "stats":
                 if (Subs.users.get(message.getChatId()).get(4).equals("admin")){
-                    OpcBot.getOpcBotInstance().sendMsg(message, Subs.getStats());
+                    Admin.sendStats();
                 }
                 break;
             case "month":
@@ -98,11 +98,11 @@ public class CommandInterpreter {
                 }
                 break;
 
-            case "/announce":
+            /*case "/announce":
                 if (Subs.users.get(message.getChatId()).get(4).equals("admin")){
                     OpcBot.getOpcBotInstance().sendMsg(message, Subs.getStats());
                 }
-                break;
+                break;*/
         }
 
         String comandMsg = command;

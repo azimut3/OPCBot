@@ -93,7 +93,7 @@ public class UpdateBerths {
             builder.append("Судно " + vessel + " отшвартовано с " + updatedBerth + " причала");
             builder.append(System.lineSeparator());
         }
-        if (chatId == null) System.out.println(builder.toString());
+        //if (chatId == null) System.out.println(builder.toString());
         OpcBot.getOpcBotInstance().sendMsg(OpcBot.getOpcBotInstance().createMsg(chatId),
                 builder.toString());
     }

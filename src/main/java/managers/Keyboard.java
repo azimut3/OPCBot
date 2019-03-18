@@ -52,10 +52,10 @@ public class Keyboard {
                     .setCallbackData("/subscribePort"));
             buttons.add(buttons1);
         } else {
-            buttons1.add(new InlineKeyboardButton().setText("Обычное оповещение")
-                    .setCallbackData("/subscribeBerths"));
-            buttons2.add(new InlineKeyboardButton().setText("Изменение статуса причалов")
+            buttons1.add(new InlineKeyboardButton().setText("Отслеживать статус причалов")
                     .setCallbackData("/subscribeBerthsOnChanges"));
+            buttons2.add(new InlineKeyboardButton().setText("Получать сводку")
+                    .setCallbackData("/subscribeBerths"));
             buttons3.add(new InlineKeyboardButton().setText("Выбор причалов для отслеживания")
                     .setCallbackData("/sequenceOfBerths"));
             buttons.add(buttons1);

@@ -50,8 +50,8 @@ public class Admin {
                 .append("Подписаны на статус судов: ").append(berthUpdate).append("/")
                 .append(usersNum)
                 .append(System.lineSeparator())
-                .append("Сегодня было активно пользователей (просмотров на пользователя):")
+                .append("Сегодня было активно пользователей (просмотров в среднем на пользователя) :")
                 .append(usersActiveStats);
-        Admin.notifyAdmin(builder.toString());
+        notifyAdmin(builder.toString());
     }
 }

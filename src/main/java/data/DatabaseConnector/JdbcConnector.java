@@ -13,11 +13,11 @@ public class JdbcConnector {
 
     public JdbcConnector() {
         try {
-            String dbUrl = "jdbc:postgresql://ec2-79-125-6-250.eu-west-1.compute.amazonaws.com:5432" +
+            /*String dbUrl = "jdbc:postgresql://ec2-79-125-6-250.eu-west-1.compute.amazonaws.com:5432" +
                     "/d988nf711pgp3d?user=usxauwamyzthkf&" +
                     "password=c453e9900374256011124e409486b3674edc8687cf880977e7c2f3580be7436b&" +
-                    "sslmode=require";
-            //String dbUrl = System.getenv("JDBC_DATABASE_URL");
+                    "sslmode=require";*/
+            String dbUrl = System.getenv("JDBC_DATABASE_URL");
             connection = DriverManager.getConnection(dbUrl);
             initTable();
         } catch (SQLException e1) {
@@ -142,12 +142,19 @@ public class JdbcConnector {
         Statement statement = null;
         try {
             statement = getConnection().createStatement();
-            statement.executeQuery("select count(chat_id), avg(calls)users from users where calls>0");
+            ResultSet result = statement
+                    .executeQuery("select count(chat_id), avg(calls)users from users where calls>0");
+            result.next();
+
+            return statement.getResultSet().getString(1) +
+                    " (" + Math.round(Double.parseDouble(statement.getResultSet()
+                    .getString(2)) * 100) / 100 + ")";
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        String[] stats = statement.toString().split(" ");
-        return stats[0] + " (" + Math.round(Double.parseDouble(stats[1])*100)/100 + ")";
+        return "";
+
     }
 
     public static Connection getConnection() {

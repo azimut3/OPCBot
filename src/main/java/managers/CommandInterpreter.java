@@ -12,7 +12,7 @@ public class CommandInterpreter {
 
     public static String processCommand(String command, SendMessage message, Update update){
         JdbcConnector.updateCalls(String.valueOf(message.getChatId()));
-        switch (command){
+        switch (command.toLowerCase()){
             case "/start":
                 Keyboard.getMainKeyboard(message);
                 JdbcConnector.addBasicUser(update);
@@ -22,7 +22,7 @@ public class CommandInterpreter {
                 Keyboard.setPortKeyboard(message, true);
                 OpcBot.getOpcBotInstance().sendMsg(message, PortContent.getPortInfo());
                 break;
-            case "Порт":
+            case "порт":
                 Keyboard.setPortKeyboard(message, true);
                 OpcBot.getOpcBotInstance().sendMsg(message, PortContent.getPortInfo());
                 break;
@@ -30,7 +30,7 @@ public class CommandInterpreter {
                 Keyboard.setWeatherKeyboard(message, true);
                 OpcBot.getOpcBotInstance().sendMsg(message, WeatherUpdate.getCurrentWeather());
                 break;
-            case "Погода":
+            case "погода":
                 Keyboard.setWeatherKeyboard(message, true);
                 OpcBot.getOpcBotInstance().sendMsg(message, WeatherUpdate.getCurrentWeather());
                 break;
@@ -41,10 +41,10 @@ public class CommandInterpreter {
             case "/about":
                 OpcBot.getOpcBotInstance().sendMsg(message, about);
                 break;
-            case "О боте":
+            case "о боте":
                 OpcBot.getOpcBotInstance().sendMsg(message, about);
                 break;
-            case "Поделиться":
+            case "поделиться":
                 Keyboard.setShareKeyboard(message, shareBody);
                 OpcBot.getOpcBotInstance().sendMsg(message, shareHead + shareBody);
                 break;
@@ -54,21 +54,21 @@ public class CommandInterpreter {
                 System.out.println(Subs.users.get(message.getChatId()));
                 builder.append(followPort).append(System.lineSeparator())
                         .append(Subs.users.get(message.getChatId()).get(2).equals("true") ?
-                                "Вы уже подписаны на рассылку сводки" :
-                                "Вы не подписаны на рассылку сводки").append(System.lineSeparator())
+                                "[Вы уже подписаны на рассылку сводки]" :
+                                "[Вы не подписаны на рассылку сводки]").append(System.lineSeparator())
                         .append(Subs.users.get(message.getChatId()).get(3).equals("true") ?
-                                "Вы уже подписаны на рассылку уведомлений" :
-                                "Вы не подписаны на рассылку уведомлений").append(System.lineSeparator())
-                        .append("Выбраны причалы: [" + Subs.users.get(message.getChatId()).get(1))
-                        .append("]");
+                                "[Вы уже подписаны на рассылку уведомлений]" :
+                                "[Вы не подписаны на рассылку уведомлений]").append(System.lineSeparator())
+                        .append("[Выбраны причалы: {" + Subs.users.get(message.getChatId()).get(1))
+                        .append("} ]");
                 OpcBot.getOpcBotInstance().sendMsg(message, builder.toString());
                 break;
             case "/weatherSubscription":
                 Keyboard.setWeatherSubscribeKeyboard(message);
                 StringBuilder builderWeather = new StringBuilder();
                 builderWeather.append(Subs.users.get(message.getChatId()).get(0).equals("true") ?
-                        "Вы уже подписаны на рассылку погоды" :
-                        "Вы не подписаны на рассылку погоды").append(System.lineSeparator());
+                        "[Вы уже подписаны на рассылку погоды]" :
+                        "[Вы не подписаны на рассылку погоды]").append(System.lineSeparator());
                 OpcBot.getOpcBotInstance().sendMsg(message, builderWeather.toString());
                 break;
             case "/subscribeWeather":
@@ -105,9 +105,8 @@ public class CommandInterpreter {
                 break;*/
         }
 
-        String comandMsg = command;
-        if (comandMsg.startsWith("bs ") || comandMsg.startsWith("bsu ")) {
-            String berths = comandMsg.replaceAll("[^\\d\\s]", "").trim();
+        if (command.startsWith("bs ") || command.startsWith("bsu ")) {
+            String berths = command.replaceAll("[^\\d\\s]", "").trim();
             if (berths.length() < 1) {
                 OpcBot.getOpcBotInstance().sendMsg(message,
                         "<pre>Некорректный ввод</pre>");
@@ -127,7 +126,7 @@ public class CommandInterpreter {
             " и обновляется раз в 15 минут, а погода предоставляется благодаря погодному сервису " +
             "openweathermap.org. Текущая погода обновляется каждые 10 минут, а почасовой прогноз " +
             "каждые 3 часа. " + System.lineSeparator() +
-            "Бот написан мной, Горчинским Игорем, email: i.horchynskyi@gmail.com.";
+            "Бот написан Горчинским Игорем, email: i.horchynskyi@gmail.com.";
 
     static String start = "Добро пожаловать в <strong>OdessaPortCheck_bot</strong>(OPCbot)!" +
             System.lineSeparator() + System.lineSeparator() +
@@ -143,9 +142,9 @@ public class CommandInterpreter {
             "Попробуй и ты: t.me/OdessaPortCheck_bot";
 
     static String followPort = "Вы можете подписаться" +
-            " на уведомления по изменению статуса причалов (судно пришвартовано/" +
-            "отшвартовано - вам будет приходить уведомление) либо простое отслеживание, " +
-            "уведомление по состоянию выбранных причалов два раза в сутки (5:00 и 17:00)." +
+            " на отслеживание статуса причалов (судно пришвартовано/" +
+            "отшвартовано - вам будет приходить уведомление) либо на сводку по причалам, " +
+            "сводка по выбранным причалов два раза в сутки (5:00 и 17:00)." +
             System.lineSeparator() + "<i>(Можно выбрать оба варианта уведомления)</i>";
 
     static String followWeather = "Вы можете подписаться" +

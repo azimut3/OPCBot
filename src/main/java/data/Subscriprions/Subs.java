@@ -40,7 +40,8 @@ public class Subs {
         JdbcConnector.editBerthSub(user, value);
         users.get(user).set(2, value);
         OpcBot.getOpcBotInstance().sendMsg(OpcBot.getOpcBotInstance().createMsg(user),
-                "Вы " + (valueB ? "подписались на":"отписались от") + " оповещения по причалам");
+                "Вы " + (valueB ? "подписались на рассылку сводки по причалам" :
+                        "отписались от рассылки сводки по причалам"));
         System.out.println("user: " + user + " followed berths notifications");
     }
 
@@ -51,7 +52,7 @@ public class Subs {
         users.get(user).set(3, value);
         OpcBot.getOpcBotInstance().sendMsg(OpcBot.getOpcBotInstance().createMsg(user),
                 "Вы " + (valueB ? "подписались на":"отписались от") +
-                        " уведомления о статусе по причалов");
+                        " уведомления о статусе причалов");
         System.out.println("user: " + user + " followed berths updates");
     }
 

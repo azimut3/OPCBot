@@ -1,7 +1,6 @@
 package managers;
 
 import data.DatabaseConnector.JdbcConnector;
-import data.Subscriprions.BerthSubThread;
 import data.Subscriprions.Subs;
 import data.Subscriprions.SubsLauncher;
 
@@ -17,7 +16,8 @@ public class StatsReaper extends Thread{
                int hours = Integer.parseInt(UkrCalendar.getHours());
                int minutes = Integer.parseInt(UkrCalendar.getMinutes());
                try {
-                   BerthSubThread.sleep(SubsLauncher.getTime(hours, minutes, 24));
+                   StatsReaper.sleep(SubsLauncher.getTime(hours, minutes, 0));
+                   firstLaunch = false;
                } catch (InterruptedException e) {
                    e.printStackTrace();
                }

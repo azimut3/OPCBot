@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c64ec7b1-9447-4f3c-be4e-bd3aac8781ef" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/managers/CommandInterpreter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managers/CommandInterpreter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managers/StatsReaper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managers/StatsReaper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/CalcTest/TreadSleepTimeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CalcTest/TreadSleepTimeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/managers/CommandInterpreter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/managers/CommandInterpreter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/managers/StatsReaper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/managers/StatsReaper.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -17,7 +21,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/managers/Admin.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
+            <state relative-caret-position="357">
               <caret line="23" column="25" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -26,10 +30,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/managers/CommandInterpreter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
+            <state relative-caret-position="1207">
               <caret line="71" column="85" selection-start-line="71" selection-start-column="85" selection-end-line="71" selection-end-column="85" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -41,7 +45,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/data/Subscriprions/Subs.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
+            <state relative-caret-position="680">
               <caret line="45" column="30" selection-start-line="45" selection-start-column="30" selection-end-line="45" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -55,6 +59,30 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="425">
               <caret line="25" column="52" selection-start-line="25" selection-start-column="52" selection-end-line="25" selection-end-column="52" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/managers/OdessaPortCheckApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="442">
+              <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/managers/StatsReaper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="23" column="19" lean-forward="true" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -112,7 +140,6 @@
         <option value="$PROJECT_DIR$/src/main/java/managers/Keyboard.java" />
         <option value="$PROJECT_DIR$/src/main/java/managers/UkrCalendar.java" />
         <option value="$PROJECT_DIR$/src/main/java/data/Subscriprions/SubsLauncher.java" />
-        <option value="$PROJECT_DIR$/src/test/java/CalcTest/TreadSleepTimeTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/data/Subscriprions/WeatherSubThread.java" />
         <option value="$PROJECT_DIR$/src/main/java/data/Subscriprions/BerthSubThread.java" />
         <option value="$PROJECT_DIR$/src/main/java/managers/SecretData.java" />
@@ -125,11 +152,12 @@
         <option value="$PROJECT_DIR$/src/test/java/Subscriptions/UpdateBerthTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/data/Port/PortUpdateThread.java" />
         <option value="$PROJECT_DIR$/src/main/java/managers/OdessaPortCheckApplication.java" />
-        <option value="$PROJECT_DIR$/src/main/java/managers/StatsReaper.java" />
         <option value="$PROJECT_DIR$/src/main/java/managers/Admin.java" />
         <option value="$PROJECT_DIR$/src/main/java/data/DatabaseConnector/JdbcConnector.java" />
         <option value="$PROJECT_DIR$/src/main/java/managers/OpcBot.java" />
         <option value="$PROJECT_DIR$/src/main/java/managers/CommandInterpreter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/managers/StatsReaper.java" />
+        <option value="$PROJECT_DIR$/src/test/java/CalcTest/TreadSleepTimeTest.java" />
       </list>
     </option>
   </component>
@@ -167,6 +195,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -290,13 +319,12 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552784369994" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552896428343" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -335,7 +363,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.OdessaPortCheckApplication">
+  <component name="RunManager" selected="Application.TreadSleepTimeTest">
     <configuration name="OdessaPortCheckApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="managers.OdessaPortCheckApplication" />
       <module name="OPCBot_M" />
@@ -371,9 +399,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.TreadSleepTimeTest" />
         <item itemvalue="Application.OdessaPortCheckApplication" />
         <item itemvalue="Application.UpdateBerthTest" />
-        <item itemvalue="Application.TreadSleepTimeTest" />
       </list>
     </recent_temporary>
   </component>
@@ -407,12 +435,13 @@
       <workItem from="1552082564776" duration="4192000" />
       <workItem from="1552115192007" duration="4279000" />
       <workItem from="1552756000882" duration="13868000" />
-      <workItem from="1552774425762" duration="6383000" />
+      <workItem from="1552774425762" duration="6982000" />
+      <workItem from="1552894928611" duration="1042000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="200757000" />
+    <option name="totallyTimeSpent" value="202398000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
@@ -646,13 +675,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/CalcTest/TreadSleepTimeTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="39" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/Subscriptions/UpdateBerthTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="212">
@@ -710,16 +732,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/managers/OdessaPortCheckApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/managers/UkrCalendar.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -730,30 +742,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/managers/StatsReaper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="42" column="38" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/managers/Keyboard.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="55" column="58" selection-start-line="55" selection-start-column="58" selection-end-line="55" selection-end-column="58" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/data/Subscriprions/Subs.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="45" column="30" selection-start-line="45" selection-start-column="30" selection-end-line="45" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -772,8 +764,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/managers/Admin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
+        <state relative-caret-position="357">
           <caret line="23" column="25" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/data/Subscriprions/Subs.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="45" column="30" selection-start-line="45" selection-start-column="30" selection-end-line="45" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/managers/CommandInterpreter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1207">
+          <caret line="71" column="85" selection-start-line="71" selection-start-column="85" selection-end-line="71" selection-end-column="85" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -790,10 +802,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/managers/CommandInterpreter.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/managers/OdessaPortCheckApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="71" column="85" selection-start-line="71" selection-start-column="85" selection-end-line="71" selection-end-column="85" />
+        <state relative-caret-position="442">
+          <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/CalcTest/TreadSleepTimeTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="52" selection-start-line="8" selection-start-column="52" selection-end-line="8" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/managers/StatsReaper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="23" column="19" lean-forward="true" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

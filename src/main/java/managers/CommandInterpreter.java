@@ -48,7 +48,7 @@ public class CommandInterpreter {
                 Keyboard.setShareKeyboard(message, shareBody);
                 OpcBot.getOpcBotInstance().sendMsg(message, shareHead + shareBody);
                 break;
-            case "/subscribePort":
+            case "/subscribeport":
                 Keyboard.setPortKeyboard(message, false);
                 StringBuilder builder = new StringBuilder();
                 System.out.println(Subs.users.get(message.getChatId()));
@@ -63,7 +63,7 @@ public class CommandInterpreter {
                         .append("} ]");
                 OpcBot.getOpcBotInstance().sendMsg(message, builder.toString());
                 break;
-            case "/weatherSubscription":
+            case "/weathersubscription":
                 Keyboard.setWeatherSubscribeKeyboard(message);
                 StringBuilder builderWeather = new StringBuilder();
                 builderWeather.append(Subs.users.get(message.getChatId()).get(0).equals("true") ?
@@ -71,19 +71,19 @@ public class CommandInterpreter {
                         "[Вы не подписаны на рассылку погоды]").append(System.lineSeparator());
                 OpcBot.getOpcBotInstance().sendMsg(message, builderWeather.toString());
                 break;
-            case "/subscribeWeather":
+            case "/subscribeweather":
                 Subs.subscribeWeather(message.getChatId());
                 break;
 
-            case "/sequenceOfBerths":
+            case "/sequenceofberths":
                 OpcBot.getOpcBotInstance().sendMsg(message, berthSubInstruction);
                 break;
 
-            case "/subscribeBerthsOnChanges":
+            case "/subscribeberthsonchanges":
                 Subs.subscribeBerthsOnChanges(message.getChatId());
                 break;
 
-            case "/subscribeBerths":
+            case "/subscribeberths":
                 Subs.subscribeBerths(message.getChatId());
                 break;
 

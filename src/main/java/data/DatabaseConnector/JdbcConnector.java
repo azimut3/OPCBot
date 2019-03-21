@@ -13,11 +13,10 @@ public class JdbcConnector {
 
     public JdbcConnector() {
         try {
-            /*String dbUrl = "jdbc:postgresql://ec2-79-125-6-250.eu-west-1.compute.amazonaws.com:5432" +
-                    "/d988nf711pgp3d?user=usxauwamyzthkf&" +
-                    "password=c453e9900374256011124e409486b3674edc8687cf880977e7c2f3580be7436b&" +
-                    "sslmode=require";*/
-            String dbUrl = System.getenv("JDBC_DATABASE_URL");
+            String dbUrl = "jdbc:postgresql://ec2-79-125-6-250.eu-west-1.compute.amazonaws.com:5432/d988nf711pgp3d?" +
+            "user=usxauwamyzthkf&password=c453e9900374256011124e409486b3674edc8687cf880977e7c2f3580be7436b&" +
+            "sslmode=require";
+            //String dbUrl = System.getenv("JDBC_DATABASE_URL");
             connection = DriverManager.getConnection(dbUrl);
             initTable();
         } catch (SQLException e1) {
@@ -91,18 +90,22 @@ public class JdbcConnector {
     }
 
     public static void editWeatherSub(String chatId, String value){
+
         editUser(chatId, "weather_sub", value);
     }
 
     public static void editSelectedBerths(String chatId, String value){
+
         editUser(chatId, "selected_berths", value);
     }
 
     public static void editBerthSub(String chatId, String value){
+
         editUser(chatId, "berth_sub", value);
     }
 
     public static void editBerthUpdate(String chatId, String value){
+
         editUser(chatId, "berth_update", value);
     }
 

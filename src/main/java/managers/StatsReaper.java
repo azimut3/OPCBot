@@ -31,9 +31,11 @@ public class StatsReaper extends Thread{
 
            Admin.sendStats();
            String usersActiveStats = JdbcConnector.getUsersAndAvgCalls();
-           Admin.stats.add(Subs.users.size() + " " +
-                   usersActiveStats.replaceAll("\\W\\S", "") + " " +
-                   UkrCalendar.getFullDate());
+           StringBuilder builder = new StringBuilder();
+            builder.append(Subs.users.size()).append(" ")
+                    .append(usersActiveStats.replaceAll("[(,)]", "")).append(" ")
+                    .append(UkrCalendar.getFullDate());
+            Admin.stats.add(builder.toString());
            JdbcConnector.resetCalls();
            if (UkrCalendar.getDay().equals(1)) {
                Admin.sendMonthStats();

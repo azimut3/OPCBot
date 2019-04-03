@@ -15,7 +15,7 @@ public class UkrCalendar {
     }
 
     public static String getHours() {
-        return String.valueOf(Integer.parseInt(formatHours.format(getCalendar().getTime())) + 2);
+        return String.valueOf(Integer.parseInt(formatHours.format(getCalendar().getTime())) + 1);
     }
 
     public static String getMinutes() {

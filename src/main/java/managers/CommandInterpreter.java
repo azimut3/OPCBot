@@ -1,6 +1,6 @@
 package managers;
 
-import data.DatabaseConnector.JdbcConnector;
+import data.DatabaseConnector.UserTableConnector;
 import data.Subscriprions.Subs;
 import data.Weather.WeatherForecast;
 import data.WeatherUpdate;
@@ -11,11 +11,11 @@ import org.telegram.telegrambots.api.objects.Update;
 public class CommandInterpreter {
 
     public static String processCommand(String command, SendMessage message, Update update){
-        JdbcConnector.updateCalls(String.valueOf(message.getChatId()));
+        UserTableConnector.updateCalls(String.valueOf(message.getChatId()));
         switch (command.toLowerCase()){
             case "/start":
                 Keyboard.getMainKeyboard(message);
-                JdbcConnector.addBasicUser(update);
+                UserTableConnector.addBasicUser(update);
                 OpcBot.getOpcBotInstance().sendMsg(message, start);
                 break;
             case "/port":
@@ -53,20 +53,26 @@ public class CommandInterpreter {
                 StringBuilder builder = new StringBuilder();
                 System.out.println(Subs.users.get(message.getChatId()));
                 builder.append(followPort).append(System.lineSeparator())
-                        .append(Subs.users.get(message.getChatId()).get(2).equals("true") ?
+                        .append(Subs.users.get(message.getChatId()).getBerthStatusSubscription()
+                                .equals("true") ?
                                 "[Вы уже подписаны на рассылку сводки]" :
-                                "[Вы не подписаны на рассылку сводки]").append(System.lineSeparator())
-                        .append(Subs.users.get(message.getChatId()).get(3).equals("true") ?
+                                "[Вы не подписаны на рассылку сводки]")
+                        .append(System.lineSeparator())
+                        .append(Subs.users.get(message.getChatId()).getBerthUpdateSubscription()
+                                .equals("true") ?
                                 "[Вы уже подписаны на рассылку уведомлений]" :
                                 "[Вы не подписаны на рассылку уведомлений]").append(System.lineSeparator())
-                        .append("[Выбраны причалы: {" + Subs.users.get(message.getChatId()).get(1))
+                        .append("[Выбраны причалы: {" + Subs.users.get(message.getChatId())
+                                .getBerthsSelected())
                         .append("} ]");
                 OpcBot.getOpcBotInstance().sendMsg(message, builder.toString());
                 break;
             case "/weathersubscription":
                 Keyboard.setWeatherSubscribeKeyboard(message);
                 StringBuilder builderWeather = new StringBuilder();
-                builderWeather.append(Subs.users.get(message.getChatId()).get(0).equals("true") ?
+                builderWeather.append(followWeather).append(System.lineSeparator());
+                builderWeather.append(Subs.users.get(message.getChatId()).getWeatherSubscription()
+                        .equals("true") ?
                         "[Вы уже подписаны на рассылку погоды]" :
                         "[Вы не подписаны на рассылку погоды]").append(System.lineSeparator());
                 OpcBot.getOpcBotInstance().sendMsg(message, builderWeather.toString());
@@ -79,21 +85,21 @@ public class CommandInterpreter {
                 OpcBot.getOpcBotInstance().sendMsg(message, berthSubInstruction);
                 break;
 
-            case "/subscribeberthsonchanges":
-                Subs.subscribeBerthsOnChanges(message.getChatId());
+            case "/subscribeberthsupdates":
+                Subs.subscribeBerthsUpdate(message.getChatId());
                 break;
 
-            case "/subscribeberths":
-                Subs.subscribeBerths(message.getChatId());
+            case "/subscribeberthsstatus":
+                Subs.subscribeBerthsStatus(message.getChatId());
                 break;
 
             case "stats":
-                if (Subs.users.get(message.getChatId()).get(4).equals("admin")){
+                if (Subs.users.get(message.getChatId()).getStatus().equals("admin")){
                     Admin.sendStats();
                 }
                 break;
             case "month":
-                if (Subs.users.get(message.getChatId()).get(4).equals("admin")){
+                if (Subs.users.get(message.getChatId()).getStatus().equals("admin")){
                     Admin.sendMonthStats();
                 }
                 break;
@@ -111,7 +117,7 @@ public class CommandInterpreter {
                 OpcBot.getOpcBotInstance().sendMsg(message,
                         "<pre>Некорректный ввод</pre>");
             } else {
-                Subs.setBerthSequence(message.getChatId(), berths);
+                Subs.setBerthsSelected(message.getChatId(), berths);
                 OpcBot.getOpcBotInstance().sendMsg(message,
                     "Вы подписаны на [" + berths + "] причал(-ы)");
             }

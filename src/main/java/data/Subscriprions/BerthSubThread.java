@@ -54,8 +54,8 @@ public class BerthSubThread extends Thread {
 
     private void berthState() {
         for (String chatId : Subs.users.keySet()) {
-            if (Subs.users.get(chatId).get(2).equals("true")) {
-                String[] berths = Subs.users.get(chatId).get(1).split(" ");
+            if (Subs.users.get(chatId).getBerthStatusSubscription().equals("true")) {
+                String[] berths = Subs.users.get(chatId).getBerthsSelected().split(" ");
                 StringBuilder builder = new StringBuilder();
                 builder.append("Сводка по порту:").append(System.lineSeparator())
                         .append(System.lineSeparator());

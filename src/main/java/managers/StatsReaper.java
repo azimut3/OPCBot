@@ -1,6 +1,7 @@
 package managers;
 
-import data.DatabaseConnector.JdbcConnector;
+import data.DatabaseConnector.StatsTable;
+import data.DatabaseConnector.UserTableConnector;
 import data.Subscriprions.Subs;
 import data.Subscriprions.SubsLauncher;
 
@@ -30,13 +31,14 @@ public class StatsReaper extends Thread{
            }
 
            Admin.sendStats();
-           String usersActiveStats = JdbcConnector.getUsersAndAvgCalls();
-           StringBuilder builder = new StringBuilder();
+           String usersActiveStats = UserTableConnector.getUsersAndAvgCalls();
+           /*StringBuilder builder = new StringBuilder();
             builder.append(Subs.users.size()).append(" ")
                     .append(usersActiveStats.replaceAll("[(,)]", "")).append(" ")
                     .append(UkrCalendar.getFullDate());
-            Admin.stats.add(builder.toString());
-           JdbcConnector.resetCalls();
+            Admin.stats.add(builder.toString());*/
+            StatsTable.recordStats();
+           UserTableConnector.resetCalls();
            if (UkrCalendar.getDay().equals(1)) {
                Admin.sendMonthStats();
                Admin.stats.clear();

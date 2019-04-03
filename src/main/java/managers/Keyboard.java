@@ -53,9 +53,9 @@ public class Keyboard {
             buttons.add(buttons1);
         } else {
             buttons1.add(new InlineKeyboardButton().setText("Отслеживать статус причалов")
-                    .setCallbackData("/subscribeBerthsOnChanges"));
+                    .setCallbackData("/subscribeBerthsUpdates"));
             buttons2.add(new InlineKeyboardButton().setText("Получать сводку")
-                    .setCallbackData("/subscribeBerths"));
+                    .setCallbackData("/subscribeBerthsStatus"));
             buttons3.add(new InlineKeyboardButton().setText("Выбор причалов для отслеживания")
                     .setCallbackData("/sequenceOfBerths"));
             buttons.add(buttons1);
@@ -77,7 +77,7 @@ public class Keyboard {
             buttons.add(buttons1);
         }
         buttons2.add(new InlineKeyboardButton().setText("Отслеживать погоду")
-                .setCallbackData("/weatherSubscription"));
+                .setCallbackData("/weathersubscription"));
         buttons.add(buttons2);
 
         InlineKeyboardMarkup markupKeyboard = new InlineKeyboardMarkup();
@@ -101,7 +101,7 @@ public class Keyboard {
         List<List<InlineKeyboardButton>> buttons = new ArrayList<>();
         List<InlineKeyboardButton> buttons2 = new ArrayList<>();
         buttons2.add(new InlineKeyboardButton().setText("Подписаться")
-                .setCallbackData("/subscribeWeather"));
+                .setCallbackData("/subscribeweather"));
         buttons.add(buttons2);
 
         InlineKeyboardMarkup markupKeyboard = new InlineKeyboardMarkup();

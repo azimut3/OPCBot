@@ -1,6 +1,6 @@
 package managers;
 
-import data.DatabaseConnector.JdbcConnector;
+import data.DatabaseConnector.UserTableConnector;
 import data.Subscriprions.Subs;
 
 import java.util.ArrayList;
@@ -36,11 +36,11 @@ public class Admin {
         int berthSubs = 0;
         int berthUpdate = 0;
         for (String user : Subs.users.keySet()) {
-            if (Subs.users.get(user).get(0).equals("true")) weatherSubs++;
-            if (Subs.users.get(user).get(2).equals("true")) berthSubs++;
-            if (Subs.users.get(user).get(3).equals("true")) berthUpdate++;
+            if (Subs.users.get(user).getWeatherSubscription().equals("true")) weatherSubs++;
+            if (Subs.users.get(user).getBerthStatusSubscription().equals("true")) berthSubs++;
+            if (Subs.users.get(user).getBerthUpdateSubscription().equals("true")) berthUpdate++;
         }
-        String usersActiveStats = JdbcConnector.getUsersAndAvgCalls();
+        String usersActiveStats = UserTableConnector.getUsersAndAvgCalls();
         builder.append("Зарегестрировано пользователей: ").append(usersNum)
                 .append(System.lineSeparator())
                 .append("Подписаны на погоду: ").append(weatherSubs).append("/").append(usersNum)

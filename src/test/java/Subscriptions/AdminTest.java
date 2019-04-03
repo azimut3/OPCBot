@@ -1,13 +1,13 @@
 package Subscriptions;
 
-import data.DatabaseConnector.JdbcConnector;
+import data.DatabaseConnector.UserTableConnector;
 import data.Subscriprions.Subs;
 import managers.UkrCalendar;
 
 public class AdminTest {
     public static void main(String ... args){
-        new JdbcConnector();
-        String usersActiveStats = JdbcConnector.getUsersAndAvgCalls();
+        new UserTableConnector();
+        String usersActiveStats = UserTableConnector.getUsersAndAvgCalls();
         System.out.println(usersActiveStats);
         StringBuilder builder = new StringBuilder();
         builder.append(Subs.users.size()).append(" ")

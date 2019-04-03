@@ -50,7 +50,7 @@ public class WeatherSubThread extends Thread{
 
     private void morningMessages() {
         for (String chatId : Subs.users.keySet()) {
-            if (Subs.users.get(chatId).get(0).equals("true")) {
+            if (Subs.users.get(chatId).getWeatherSubscription().equals("true")) {
                 OpcBot.getOpcBotInstance().sendMsg(OpcBot.getOpcBotInstance().createMsg(chatId),
                         WeatherForecast.getTodaysForecast());
             }
@@ -59,7 +59,7 @@ public class WeatherSubThread extends Thread{
 
     private void eveningMessages() {
         for (String chatId : Subs.users.keySet()) {
-            if (Subs.users.get(chatId).get(0).equals("true")) {
+            if (Subs.users.get(chatId).getWeatherSubscription().equals("true")) {
                 OpcBot.getOpcBotInstance().sendMsg(OpcBot.getOpcBotInstance().createMsg(chatId),
                         WeatherForecast.getThreeDayForecast());
             }

@@ -63,7 +63,7 @@ public class UpdateBerths {
     private static void whoToSend() {
         for (String user : Subs.users.keySet()){
             for (String berth : changes.keySet()) {
-                if (Subs.users.get(user).get(1).contains(berth + " ")) {
+                if (Subs.users.get(user).getBerthsSelected().contains(berth + " ")) {
                     for (ArrayList<String> arr: changes.get(berth)) {
                         boolean changeValue = arr.get(1).equals("+");
                         notifyUsers(user, berth, changeValue, arr.get(0));

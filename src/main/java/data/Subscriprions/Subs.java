@@ -1,17 +1,15 @@
 package data.Subscriprions;
 
-import data.DatabaseConnector.JdbcConnector;
-import managers.Admin;
+import data.DatabaseConnector.UserTableConnector;
 import managers.OpcBot;
 import managers.UkrCalendar;
 
-import java.util.ArrayList;
 import java.util.TreeMap;
 
 public class Subs {
     private static Subs subberInstance;
 
-    public static volatile TreeMap<String, ArrayList<String>> users = new TreeMap<>();
+    public static volatile TreeMap<String, User> users = new TreeMap<>();
 
     public static Subs getSubberInstance() {
         if (subberInstance == null) subberInstance = new Subs();
@@ -19,37 +17,37 @@ public class Subs {
     }
 
     public static synchronized void subscribeWeather(String user){
-        boolean valueB = !Boolean.parseBoolean(users.get(user).get(0));
+        boolean valueB = !Boolean.parseBoolean(users.get(user).getWeatherSubscription());
         String value = String.valueOf(valueB);
-        JdbcConnector.editWeatherSub(user, value);
-        users.get(user).set(0, value);
+        UserTableConnector.editWeatherSub(user, value);
+        users.get(user).setWeatherSubscription(value);
         OpcBot.getOpcBotInstance().sendMsg(OpcBot.getOpcBotInstance().createMsg(user),
                 "Вы " + (valueB ? "подписались на рассылку":"отписались от рассылки") + " погоды");
         System.out.println("user: " + user + " followed weather updates");
     }
 
-    public static synchronized void setBerthSequence(String user, String berths){
-        users.get(user).set(1, berths);
-        JdbcConnector.editSelectedBerths(user, berths);
+    public static synchronized void setBerthsSelected(String user, String berths){
+        users.get(user).setBerthsSelected(berths);
+        UserTableConnector.editSelectedBerths(user, berths);
         System.out.println("user: " + user + " followed berths - " + berths);
     }
 
-    public static synchronized void subscribeBerths(String user){
-        boolean valueB = !Boolean.parseBoolean(users.get(user).get(2));
+    public static synchronized void subscribeBerthsStatus(String user){
+        boolean valueB = !Boolean.parseBoolean(users.get(user).getBerthStatusSubscription());
         String value = String.valueOf(valueB);
-        JdbcConnector.editBerthSub(user, value);
-        users.get(user).set(2, value);
+        UserTableConnector.editBerthSub(user, value);
+        users.get(user).setBerthStatusSubscription(value);
         OpcBot.getOpcBotInstance().sendMsg(OpcBot.getOpcBotInstance().createMsg(user),
                 "Вы " + (valueB ? "подписались на рассылку сводки по причалам" :
                         "отписались от рассылки сводки по причалам"));
         System.out.println("user: " + user + " followed berths notifications");
     }
 
-    public static synchronized void subscribeBerthsOnChanges(String user){
-        boolean valueB = !Boolean.parseBoolean(users.get(user).get(3));
+    public static synchronized void subscribeBerthsUpdate(String user){
+        boolean valueB = !Boolean.parseBoolean(users.get(user).getBerthUpdateSubscription());
         String value = String.valueOf(valueB);
-        JdbcConnector.editBerthUpdate(user, value);
-        users.get(user).set(3, value);
+        UserTableConnector.editBerthUpdate(user, value);
+        users.get(user).setBerthUpdateSubscription(value);
         OpcBot.getOpcBotInstance().sendMsg(OpcBot.getOpcBotInstance().createMsg(user),
                 "Вы " + (valueB ? "подписались на":"отписались от") +
                         " уведомления о статусе причалов");

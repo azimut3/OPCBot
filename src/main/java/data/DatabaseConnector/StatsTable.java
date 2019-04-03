@@ -28,7 +28,6 @@ public class StatsTable {
             String day = date[0];
             String month = date[1];
             String year = date[2];
-
             statement = connection.createStatement();
             statement.executeUpdate("INSERT INTO stats (users, weather_subs, berth_subs," +
                     " berth_updates, active, calls, date, month, year)" +
@@ -38,6 +37,12 @@ public class StatsTable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public static String getMonthSTats(){
+        StringBuilder builder = new StringBuilder();
+
+        return builder.toString();
     }
 
 }

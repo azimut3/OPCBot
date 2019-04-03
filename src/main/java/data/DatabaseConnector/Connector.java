@@ -11,8 +11,8 @@ public class Connector {
 
     public static synchronized Connection getConnection() {
             try {
-                //String dbUrl = SecretData.jdbcData;
-                String dbUrl = System.getenv("JDBC_DATABASE_URL");
+                String dbUrl = SecretData.jdbcData;
+                //String dbUrl = System.getenv("JDBC_DATABASE_URL");
                 connection = DriverManager.getConnection(dbUrl);
             } catch (SQLException e1) {
                 e1.printStackTrace();

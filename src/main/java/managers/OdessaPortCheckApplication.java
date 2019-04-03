@@ -1,6 +1,5 @@
 package managers;
 
-import data.DatabaseConnector.StatsTable;
 import data.DatabaseConnector.UserTableConnector;
 import data.Subscriprions.SubsLauncher;
 import data.Weather.CurrentWeatherThread;

@@ -28,7 +28,7 @@ public class OdessaPortCheckApplication {
         reaper.start();
         OpcBot.setBotToken(SecretData.botToken);
         OpcBot.setBotUsername(SecretData.botName);
-        StatsTable.recordStats();
+
         ApiContextInitializer.init();
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
         try {

@@ -171,14 +171,26 @@ public class UserTableConnector {
             Connection connection = Connector.getConnection();
             statement = connection.createStatement();
             result = statement
-                    .executeQuery("select users, weather_subs, berth_subs,  berth_updates," +
+                    /*.executeQuery("select users, weather_subs, berth_subs,  berth_updates," +
                             " active, B.calls as calls " +
                             "from " +
                             "(select count(chat_id) users, count(weather_sub) weather_subs, " +
                             "count(berth_sub) berth_subs, count(berth_update) berth_updates " +
                             "from users where status!='admin') A, " +
                             "(select count(chat_id) active, COALESCE(avg(calls), 0) calls from users " +
-                            "where calls>0 and status!='admin') B");
+                            "where calls>0 and status!='admin') B");*/
+                    .executeQuery("with " +
+                            "users_ as (select count(chat_id) users from users " +
+                            "where status != 'admin')," +
+                            "weather_subs_ as (select count(weather_sub) weather_subs from users " +
+                            "where weather_sub = 'true' and status != 'admin')," +
+                            "berth_subs_ as (select count(berth_sub) berth_subs from users " +
+                            "where berth_sub = 'true' and status != 'admin')," +
+                            "berth_updates_ as (select count(berth_update) berth_updates from users " +
+                            "where berth_update = 'true' and status != 'admin')," +
+                            "active_ as (select count(chat_id) active, COALESCE(avg(calls), 0) calls" +
+                            " from users where calls>0 and status!='admin')" +
+                            "select * from users_, weather_subs_, berth_subs_, berth_updates_, active_");
             result.next();
             connection.close();
 

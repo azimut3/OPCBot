@@ -1,5 +1,6 @@
 package managers;
 
+import data.DatabaseConnector.StatsTable;
 import data.DatabaseConnector.UserTableConnector;
 import data.Subscriprions.SubsLauncher;
 import data.Weather.CurrentWeatherThread;
@@ -27,7 +28,7 @@ public class OdessaPortCheckApplication {
         reaper.start();
         OpcBot.setBotToken(SecretData.botToken);
         OpcBot.setBotUsername(SecretData.botName);
-
+        StatsTable.recordStats();
         ApiContextInitializer.init();
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
         try {

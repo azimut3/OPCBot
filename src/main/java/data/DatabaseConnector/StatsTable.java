@@ -58,7 +58,8 @@ public class StatsTable {
                         .append(resultSet.getString("berth_updates")).append("] ")
                         .append(resultSet.getString("date")).append(".")
                         .append(resultSet.getString("month")).append(".")
-                        .append(resultSet.getString("year"));
+                        .append(resultSet.getString("year"))
+                        .append(System.lineSeparator());
             }
         } catch (SQLException e) {
             e.printStackTrace();

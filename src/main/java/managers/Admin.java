@@ -1,5 +1,6 @@
 package managers;
 
+import data.DatabaseConnector.StatsTable;
 import data.DatabaseConnector.UserTableConnector;
 import data.Subscriprions.Subs;
 
@@ -20,13 +21,13 @@ public class Admin {
     }
 
     public static synchronized void sendMonthStats() {
-        StringBuilder builder = new StringBuilder();
+        /*StringBuilder builder = new StringBuilder();
         builder.append("Статистика за месяц:").append(System.lineSeparator());
         builder.append("(всего, акт, просм, день)").append(System.lineSeparator());
         for (String stat : stats) {
             builder.append(stat).append(System.lineSeparator());
-        }
-        notifyAdmin(builder.toString());
+        }*/
+        notifyAdmin(StatsTable.getMonthStats());
     }
 
     public static void sendStats() {

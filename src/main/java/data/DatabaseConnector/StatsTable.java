@@ -39,10 +39,34 @@ public class StatsTable {
         }
     }
 
-    public static String getMonthSTats(){
+    public static String getMonthStats(){
         StringBuilder builder = new StringBuilder();
-
+        builder.append("Статистика за месяц:").append(System.lineSeparator());
+        Statement statement;
+        try(Connection connection = Connector.getConnection()) {
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select users, weather_subs, berth_subs," +
+                            " berth_updates, active, calls, date, month, year from stats where month = '" +
+                            UkrCalendar.getFullDate().substring(3,5) + "'");
+            while (!resultSet.isLast()){
+                resultSet.next();
+                builder.append(resultSet.getString("active")).append("/")
+                        .append(resultSet.getString("users"))
+                        .append(" ~").append(resultSet.getString("calls")).append(" [")
+                        .append(resultSet.getString("weather_subs")).append("|")
+                        .append(resultSet.getString("berth_subs")).append("|")
+                        .append(resultSet.getString("berth_updates")).append("] ")
+                        .append(resultSet.getString("date")).append(".")
+                        .append(resultSet.getString("month")).append(".")
+                        .append(resultSet.getString("year"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return builder.toString();
     }
 
+    enum Table{
+
+    }
 }

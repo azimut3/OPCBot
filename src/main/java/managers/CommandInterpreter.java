@@ -1,32 +1,28 @@
 package managers;
 
-import data.DatabaseConnector.JdbcConnector;
+import data.DatabaseConnector.UserTableConnector;
 import data.Subscriprions.Subs;
 import data.Weather.WeatherForecast;
 import data.WeatherUpdate;
 import data.Port.PortContent;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
+import org.telegram.telegrambots.api.objects.Update;
 
 public class CommandInterpreter {
 
-    public static String processCommand(String command, SendMessage message){
-        //System.out.println("Команда: " + command);
-        switch (command){
+    public static String processCommand(String command, SendMessage message, Update update){
+        UserTableConnector.updateCalls(String.valueOf(message.getChatId()));
+        switch (command.toLowerCase()){
             case "/start":
                 Keyboard.getMainKeyboard(message);
-                JdbcConnector.addBasicUser(message.getChatId());
+                UserTableConnector.addBasicUser(update);
                 OpcBot.getOpcBotInstance().sendMsg(message, start);
-                break;
-            case "/wipedata":
-                JdbcConnector.wipeData();
-                Subs.users.clear();
-                System.out.println("Data wiped!");
                 break;
             case "/port":
                 Keyboard.setPortKeyboard(message, true);
                 OpcBot.getOpcBotInstance().sendMsg(message, PortContent.getPortInfo());
                 break;
-            case "Порт":
+            case "порт":
                 Keyboard.setPortKeyboard(message, true);
                 OpcBot.getOpcBotInstance().sendMsg(message, PortContent.getPortInfo());
                 break;
@@ -34,7 +30,7 @@ public class CommandInterpreter {
                 Keyboard.setWeatherKeyboard(message, true);
                 OpcBot.getOpcBotInstance().sendMsg(message, WeatherUpdate.getCurrentWeather());
                 break;
-            case "Погода":
+            case "погода":
                 Keyboard.setWeatherKeyboard(message, true);
                 OpcBot.getOpcBotInstance().sendMsg(message, WeatherUpdate.getCurrentWeather());
                 break;
@@ -45,36 +41,74 @@ public class CommandInterpreter {
             case "/about":
                 OpcBot.getOpcBotInstance().sendMsg(message, about);
                 break;
-            case "О боте":
+            case "о боте":
                 OpcBot.getOpcBotInstance().sendMsg(message, about);
                 break;
-            case "Поделиться":
+            case "поделиться":
                 Keyboard.setShareKeyboard(message, shareBody);
                 OpcBot.getOpcBotInstance().sendMsg(message, shareHead + shareBody);
                 break;
-            case "/subscribePort":
+            case "/subscribeport":
                 Keyboard.setPortKeyboard(message, false);
-                OpcBot.getOpcBotInstance().sendMsg(message, followPort);
+                StringBuilder builder = new StringBuilder();
+                System.out.println(Subs.users.get(message.getChatId()));
+                builder.append(followPort).append(System.lineSeparator())
+                        .append(Subs.users.get(message.getChatId()).getBerthStatusSubscription()
+                                .equals("true") ?
+                                "[Вы уже подписаны на рассылку сводки]" :
+                                "[Вы не подписаны на рассылку сводки]")
+                        .append(System.lineSeparator())
+                        .append(Subs.users.get(message.getChatId()).getBerthUpdateSubscription()
+                                .equals("true") ?
+                                "[Вы уже подписаны на рассылку уведомлений]" :
+                                "[Вы не подписаны на рассылку уведомлений]").append(System.lineSeparator())
+                        .append("[Выбраны причалы: {" + Subs.users.get(message.getChatId())
+                                .getBerthsSelected())
+                        .append("} ]");
+                OpcBot.getOpcBotInstance().sendMsg(message, builder.toString());
                 break;
-            case "/weatherSubscription":
+            case "/weathersubscription":
                 Keyboard.setWeatherSubscribeKeyboard(message);
-                OpcBot.getOpcBotInstance().sendMsg(message, followWeather);
+                StringBuilder builderWeather = new StringBuilder();
+                builderWeather.append(followWeather).append(System.lineSeparator());
+                builderWeather.append(Subs.users.get(message.getChatId()).getWeatherSubscription()
+                        .equals("true") ?
+                        "[Вы уже подписаны на рассылку погоды]" :
+                        "[Вы не подписаны на рассылку погоды]").append(System.lineSeparator());
+                OpcBot.getOpcBotInstance().sendMsg(message, builderWeather.toString());
                 break;
-            case "/subscribeWeather":
+            case "/subscribeweather":
                 Subs.subscribeWeather(message.getChatId());
                 break;
 
-            case "/sequenceOfBerths":
+            case "/sequenceofberths":
                 OpcBot.getOpcBotInstance().sendMsg(message, berthSubInstruction);
                 break;
 
-            case "/subscribeBerthsOnChanges":
-                Subs.subscribeBerthsOnChanges(message.getChatId());
+            case "/subscribeberthsupdates":
+                Subs.subscribeBerthsUpdate(message.getChatId());
                 break;
 
-            case "/subscribeBerths":
-                Subs.subscribeBerths(message.getChatId());
+            case "/subscribeberthsstatus":
+                Subs.subscribeBerthsStatus(message.getChatId());
                 break;
+
+            case "stats":
+                if (Subs.users.get(message.getChatId()).getStatus().equals("admin")){
+                    Admin.sendStats();
+                }
+                break;
+            case "month":
+                if (Subs.users.get(message.getChatId()).getStatus().equals("admin")){
+                    Admin.sendMonthStats();
+                }
+                break;
+
+            /*case "/announce":
+                if (Subs.users.get(message.getChatId()).get(4).equals("admin")){
+                    OpcBot.getOpcBotInstance().sendMsg(message, Subs.getStats());
+                }
+                break;*/
         }
 
         if (command.startsWith("bs ") || command.startsWith("bsu ")) {
@@ -83,21 +117,22 @@ public class CommandInterpreter {
                 OpcBot.getOpcBotInstance().sendMsg(message,
                         "<pre>Некорректный ввод</pre>");
             } else {
-            Subs.setBerthSequence(message.getChatId(), berths);
-            OpcBot.getOpcBotInstance().sendMsg(message,
+                Subs.setBerthsSelected(message.getChatId(), berths);
+                OpcBot.getOpcBotInstance().sendMsg(message,
                     "Вы подписаны на [" + berths + "] причал(-ы)");
             }
         }
+
         return "<pre>Invalid command</pre>";
     }
 
     static String about = "Данный бот разработан для получения справочной информации о наличии " +
             "судов в одесском порту, текущей погоде и почасовом прогнозе " +
             "погоды на 3 дня. Информация по порту берется с сайта ОМТП (http://www.port.odessa.ua)" +
-            " и обновляется раз в 30 минут, а погода предоставляется благодаря погодному сервису " +
+            " и обновляется раз в 15 минут, а погода предоставляется благодаря погодному сервису " +
             "openweathermap.org. Текущая погода обновляется каждые 10 минут, а почасовой прогноз " +
             "каждые 3 часа. " + System.lineSeparator() +
-            "Бот написан мной, Горчинским Игорем, email: i.horchynskyi@gmail.com.";
+            "Бот написан Горчинским Игорем, email: i.horchynskyi@gmail.com.";
 
     static String start = "Добро пожаловать в <strong>OdessaPortCheck_bot</strong>(OPCbot)!" +
             System.lineSeparator() + System.lineSeparator() +
@@ -113,9 +148,9 @@ public class CommandInterpreter {
             "Попробуй и ты: t.me/OdessaPortCheck_bot";
 
     static String followPort = "Вы можете подписаться" +
-            " на уведомления по изменению статуса причалов (судно пришвартовано/" +
-            "отшвартовано - вам будет приходить уведомление) либо простое отслеживание, " +
-            "уведомление по состоянию выбранных причалов два раза в сутки (5:00 и 17:00)." +
+            " на отслеживание статуса причалов (судно пришвартовано/" +
+            "отшвартовано - вам будет приходить уведомление) либо на сводку по причалам, " +
+            "сводка по выбранным причалов два раза в сутки (5:00 и 17:00)." +
             System.lineSeparator() + "<i>(Можно выбрать оба варианта уведомления)</i>";
 
     static String followWeather = "Вы можете подписаться" +

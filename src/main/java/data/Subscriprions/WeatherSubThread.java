@@ -19,42 +19,25 @@ public class WeatherSubThread extends Thread{
                 if (firstLaunch){
                     int hours = Integer.parseInt(UkrCalendar.getHours());
                     int minutes = Integer.parseInt(UkrCalendar.getMinutes());
-                    System.out.println("Рассылка погоды осуществляется в " + timeMorning +
-                            " и " + timeEvening);
-                    if (hours < timeMorning) {
-                        System.out.println("До утренней рассылки погоды " +
-                                + (60*(timeMorning-hours) - minutes));
-                        WeatherSubThread.sleep(1000*60*60*(timeMorning-hours) - 1000*60*(minutes));
+                    if (hours < timeMorning || hours > timeEvening){
+                        BerthSubThread.sleep(SubsLauncher.getTime(hours, minutes, timeMorning));
                         morningMessages();
-                        System.out.println("=== Weather forecast for today was sent(morning)* ===");
-                        WeatherSubThread.sleep(1000*60*10*(24 - timeEvening + timeMorning));
+                        System.out.println("=== Weather forecast for today was sent(morning) ===");
+                        BerthSubThread.sleep(1000*60*60*(timeEvening-timeMorning));
                         eveningMessages();
-                        System.out.println("=== Weather forecast for 3 days was sent(evening)* ===");
-                    } else if (hours > timeMorning && hours < timeEvening) {
-                        System.out.println("До вечерней рассылки  погоды " +
-                                + (60*(timeEvening-hours) - minutes));
-                        WeatherSubThread.sleep(1000*60*60*(timeEvening-hours) - 1000*60*(minutes));
-                        eveningMessages();
-                        System.out.println("=== Weather forecast for 3 days was sent(evening)* ===");
+                        System.out.println("=== Weather forecast for 3 days was sent(evening) ===");
                     } else {
-                        //if (minutes > 0) hours++;
-                        System.out.println("До утренней рассылки погоды " +
-                                        (60*(24 - hours + timeMorning) - minutes));
-                        WeatherSubThread.sleep(1000*60*60*(24 - hours + timeMorning) -
-                                 - 1000*60*(minutes));
-                        morningMessages();
-                        System.out.println("=== Weather forecast for today was sent(morning)* ===");
-                        WeatherSubThread.sleep(1000*60*10*(24 - timeEvening + timeMorning));
+                        BerthSubThread.sleep(SubsLauncher.getTime(hours, minutes, timeEvening));
                         eveningMessages();
-                        System.out.println("=== Weather forecast for 3 days was sent(evening)* ===");
+                        System.out.println("=== Weather forecast for 3 days was sent(evening) ===");
                     }
                     firstLaunch = false;
                 }
+                WeatherSubThread.sleep(1000*60*60*((24 - timeEvening) + timeMorning));
                 morningMessages();
-                WeatherSubThread.sleep(1000*60*60*(timeEvening-timeMorning));
                 System.out.println("=== Weather forecast for today was sent(morning) ===");
+                WeatherSubThread.sleep(1000*60*60*(timeEvening-timeMorning));
                 eveningMessages();
-                WeatherSubThread.sleep(1000*60*10*(24 - timeEvening + timeMorning));
                 System.out.println("=== Weather forecast for 3 days was sent(evening) ===");
 
             } catch (InterruptedException e) {
@@ -67,7 +50,7 @@ public class WeatherSubThread extends Thread{
 
     private void morningMessages() {
         for (String chatId : Subs.users.keySet()) {
-            if (Subs.users.get(chatId).get(0).equals("true")) {
+            if (Subs.users.get(chatId).getWeatherSubscription().equals("true")) {
                 OpcBot.getOpcBotInstance().sendMsg(OpcBot.getOpcBotInstance().createMsg(chatId),
                         WeatherForecast.getTodaysForecast());
             }
@@ -76,7 +59,7 @@ public class WeatherSubThread extends Thread{
 
     private void eveningMessages() {
         for (String chatId : Subs.users.keySet()) {
-            if (Subs.users.get(chatId).get(0).equals("true")) {
+            if (Subs.users.get(chatId).getWeatherSubscription().equals("true")) {
                 OpcBot.getOpcBotInstance().sendMsg(OpcBot.getOpcBotInstance().createMsg(chatId),
                         WeatherForecast.getThreeDayForecast());
             }

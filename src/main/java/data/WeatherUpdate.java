@@ -11,7 +11,7 @@ import java.net.URL;
 import java.util.TreeMap;
 
 public class WeatherUpdate {
-    private static TreeMap<String, String> currentWeather = null;
+    private static volatile TreeMap<String, String> currentWeather = null;
 
     private static final String URL_CURRENT = "http://api.openweathermap.org/data/2.5/weather?";
     private static final String URL_FORECAST = "http://api.openweathermap.org/data/2.5/forecast?";

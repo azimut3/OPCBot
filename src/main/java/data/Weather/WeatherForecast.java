@@ -7,11 +7,11 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class WeatherForecast {
-    private static WeatherForecast weatherForecastInstance;
+    private static volatile WeatherForecast weatherForecastInstance;
 
-    private static ArrayList<ForecastWeather> todayForecast = new ArrayList<>();
-    private static ArrayList<ForecastWeather> tomorrowForecast = new ArrayList<>();
-    private static ArrayList<ForecastWeather> afterTomorrowForecast = new ArrayList<>();
+    private static volatile ArrayList<ForecastWeather> todayForecast = new ArrayList<>();
+    private static volatile ArrayList<ForecastWeather> tomorrowForecast = new ArrayList<>();
+    private static volatile ArrayList<ForecastWeather> afterTomorrowForecast = new ArrayList<>();
 
     private WeatherForecast(){}
 
@@ -35,6 +35,7 @@ public class WeatherForecast {
                 Calendar calendar = new GregorianCalendar();
                 //System.out.println(weather.get(WeatherTemplate.DATE));
                 calendar.setTime(dateFormat.parse(weather.get(WeatherTemplate.DATE)));
+                //System.out.println(formatDay.format(calendar.getTime()));
                 dateNum = Integer.parseInt(formatDay.format(calendar.getTime())) -
                         Integer.parseInt(UkrCalendar.getDay());
                 //System.out.println(dateNum + " num");

@@ -1,6 +1,7 @@
 package managers;
 
-import data.DatabaseConnector.JdbcConnector;
+import data.DatabaseConnector.StatsTable;
+import data.DatabaseConnector.UserTableConnector;
 import data.Subscriprions.SubsLauncher;
 import data.Weather.CurrentWeatherThread;
 import data.Weather.ForecastThread;
@@ -15,7 +16,7 @@ public class OdessaPortCheckApplication {
     public static void main(String[] args) {
         System.out.println("managers.OpcBot: starting...");
 
-        JdbcConnector jdbcConnector = new JdbcConnector();
+        UserTableConnector userTableConnector = new UserTableConnector();
         Thread portUpdateThread = new PortUpdateThread("portUpdateThread");
         portUpdateThread.start();
         Thread currentWeatherThread = new CurrentWeatherThread("currentWeatherThread");
@@ -23,6 +24,8 @@ public class OdessaPortCheckApplication {
         Thread forecastWeatherThread = new ForecastThread("forecastWeatherThread");
         forecastWeatherThread.start();
         SubsLauncher.LaunchSubs();
+        StatsReaper reaper = new StatsReaper("statsReaper");
+        reaper.start();
         OpcBot.setBotToken(SecretData.botToken);
         OpcBot.setBotUsername(SecretData.botName);
 

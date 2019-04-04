@@ -1,5 +1,6 @@
 package managers;
 
+import data.Subscriprions.Subs;
 import org.telegram.telegrambots.api.methods.ParseMode;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Update;
@@ -25,7 +26,7 @@ public class OpcBot extends TelegramLongPollingBot {
             message = update.getMessage().getText();
             chatId = update.getMessage().getChatId().toString();
         }
-        CommandInterpreter.processCommand(message, createMsg(chatId));
+        CommandInterpreter.processCommand(message, createMsg(chatId), update);
         //reply(chatId, message);
     }
 
@@ -96,5 +97,7 @@ public class OpcBot extends TelegramLongPollingBot {
     public static void setBotToken(String botToken) {
         OpcBot.botToken = botToken;
     }
+
+
 }
 

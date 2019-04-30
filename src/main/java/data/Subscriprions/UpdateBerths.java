@@ -36,7 +36,7 @@ public class UpdateBerths {
         }
     }
 
-    public static Set<String> sendInfoAboutBerths(TreeMap<String, User> users,
+    public static synchronized Set<String> sendInfoAboutBerths(TreeMap<String, User> users,
                                               TreeMap<String, List<Vessel>> changes,
                                               OpcBot bot) {
         Set<String> set = new HashSet<>();

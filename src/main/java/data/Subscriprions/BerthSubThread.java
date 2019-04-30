@@ -26,27 +26,27 @@ public class BerthSubThread extends Thread {
                     if (hours < timeMorning || hours > timeEvening){
                         BerthSubThread.sleep(SubsLauncher.getTime(hours, minutes, timeMorning));
                         berthState();
-                        System.out.println("=== Berth state was sent(morning) ===");
+                        System.out.println("=== Vessel state was sent(morning) ===");
                         BerthSubThread.sleep(1000*60*60*(timeEvening-timeMorning));
                         berthState();
-                        System.out.println("=== Berth state was sent(evening) ===");
+                        System.out.println("=== Vessel state was sent(evening) ===");
                     } else {
                         BerthSubThread.sleep(SubsLauncher.getTime(hours, minutes, timeEvening));
                         berthState();
-                        System.out.println("=== Berth state was sent(evening) ===");
+                        System.out.println("=== Vessel state was sent(evening) ===");
                     }
                     firstLaunch = false;
                 }
                 BerthSubThread.sleep(1000 * 60 * 60 * ((24 - timeEvening) + timeMorning));
                 berthState();
-                System.out.println("=== Berth state was sent(morning) ===");
+                System.out.println("=== Vessel state was sent(morning) ===");
                 BerthSubThread.sleep(1000 * 60 * 60 * (timeEvening - timeMorning));
                 berthState();
-                System.out.println("=== Berth state was sent(evening) ===");
+                System.out.println("=== Vessel state was sent(evening) ===");
 
 
             } catch (InterruptedException e) {
-                System.out.println("Berth state thread has been interrupted");
+                System.out.println("Vessel state thread has been interrupted");
                 e.printStackTrace();
             }
         }
@@ -60,7 +60,7 @@ public class BerthSubThread extends Thread {
                 builder.append("Сводка по порту:").append(System.lineSeparator())
                         .append(System.lineSeparator());
                 for (String num : berths) {
-                    builder.append(PortContent.getBerthByNumber(Integer.valueOf(num)));
+                    builder.append(PortContent.getBerthByNumber(num));
                 }
                 if (builder.length() < 1) builder.append("На выбраных вами причалах судов нет");
                 OpcBot.getOpcBotInstance().sendMsg(OpcBot.getOpcBotInstance().createMsg(chatId),

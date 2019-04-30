@@ -59,11 +59,11 @@ public class UpdateBerths {
     protected static String notifyUsers(String chatId, Vessel vessel, OpcBot bot){
         StringBuilder builder = new StringBuilder();
         if (vessel.isMoored()){
-            builder.append("Судно " + vessel + " пришвартовано на " + vessel.getBerth() +
+            builder.append("Судно " + vessel.getVesselName() + " пришвартовано на " + vessel.getBerth() +
                     " причал");
             builder.append(System.lineSeparator());
         } else {
-            builder.append("Судно " + vessel + " отшвартовано с " + vessel.getBerth() +
+            builder.append("Судно " + vessel.getVesselName() + " отшвартовано с " + vessel.getBerth() +
                     " причала");
             builder.append(System.lineSeparator());
         }

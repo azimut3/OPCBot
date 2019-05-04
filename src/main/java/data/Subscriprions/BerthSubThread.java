@@ -20,8 +20,8 @@ public class BerthSubThread extends Thread {
         while (true) {
             try {
                 if (firstLaunch){
-                    int hours = Integer.parseInt(UkrCalendar.getHours());
-                    int minutes = Integer.parseInt(UkrCalendar.getMinutes());
+                    int hours = Integer.parseInt(UkrCalendar.getCurrentHours());
+                    int minutes = Integer.parseInt(UkrCalendar.getCurrentMinutes());
                     System.out.println("time " + hours + ":" + minutes);
                     if (hours < timeMorning || hours > timeEvening){
                         BerthSubThread.sleep(SubsLauncher.getTime(hours, minutes, timeMorning));

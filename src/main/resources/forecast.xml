@@ -1,0 +1,138 @@
+<weatherdata>
+<location>
+<name>Odessa</name>
+<type/>
+<country>UA</country>
+<timezone/>
+<location altitude="0" latitude="46.4775" longitude="30.7326" geobase="geonames" geobaseid="698740"/>
+</location>
+<credit/>
+<meta>
+<lastupdate/>
+<calctime>0.0076</calctime>
+<nextupdate/>
+</meta>
+<sun rise="2019-05-04T02:38:56" set="2019-05-04T17:08:44"/>
+<forecast>
+<time from="2019-05-04T12:00:00" to="2019-05-04T15:00:00">
+<symbol number="802" name="слегка облачно" var="03n"/>
+<precipitation/>
+<windDirection deg="174.129" code="S" name="South"/>
+<windSpeed mps="6.04" name="Moderate breeze"/>
+<temperature unit="celsius" value="10.83" min="10.83" max="12.89"/>
+<pressure unit="hPa" value="1010.93"/>
+<humidity value="77" unit="%"/>
+<clouds value="слегка облачно" all="31" unit="%"/>
+</time>
+<time from="2019-05-04T18:00:00" to="2019-05-04T21:00:00">
+<symbol number="801" name="облачно" var="02n"/>
+<precipitation/>
+<windDirection deg="172.57" code="S" name="South"/>
+<windSpeed mps="6.1" name="Moderate breeze"/>
+<temperature unit="celsius" value="10.26" min="10.26" max="13.35"/>
+<pressure unit="hPa" value="1010.88"/>
+<humidity value="77" unit="%"/>
+<clouds value="облачно" all="21" unit="%"/>
+</time>
+<time from="2019-05-05T12:00:00" to="2019-05-05T15:00:00">
+<symbol number="802" name="слегка облачно" var="03d"/>
+<precipitation/>
+<windDirection deg="152.963" code="SSE" name="South-southeast"/>
+<windSpeed mps="8.69" name="Fresh Breeze"/>
+<temperature unit="celsius" value="16.53" min="16.53" max="16.53"/>
+<pressure unit="hPa" value="1009.32"/>
+<humidity value="69" unit="%"/>
+<clouds value="слегка облачно" all="35" unit="%"/>
+</time>
+<time from="2019-05-05T15:00:00" to="2019-05-05T18:00:00">
+<symbol number="801" name="облачно" var="02n"/>
+<precipitation/>
+<windDirection deg="152.831" code="SSE" name="South-southeast"/>
+<windSpeed mps="5.09" name="Gentle Breeze"/>
+<temperature unit="celsius" value="13.43" min="13.43" max="13.43"/>
+<pressure unit="hPa" value="1008.75"/>
+<humidity value="88" unit="%"/>
+<clouds value="облачно" all="22" unit="%"/>
+</time>
+<time from="2019-05-06T12:00:00" to="2019-05-06T15:00:00">
+<symbol number="800" name="ясно" var="01d"/>
+<precipitation/>
+<windDirection deg="139.367" code="SE" name="SouthEast"/>
+<windSpeed mps="6.68" name="Moderate breeze"/>
+<temperature unit="celsius" value="17.25" min="17.25" max="17.25"/>
+<pressure unit="hPa" value="1004.13"/>
+<humidity value="72" unit="%"/>
+<clouds value="ясно" all="1" unit="%"/>
+</time>
+<time from="2019-05-06T15:00:00" to="2019-05-06T18:00:00">
+<symbol number="800" name="ясно" var="01n"/>
+<precipitation/>
+<windDirection deg="133.559" code="SE" name="SouthEast"/>
+<windSpeed mps="4.22" name="Gentle Breeze"/>
+<temperature unit="celsius" value="14" min="14" max="14"/>
+<pressure unit="hPa" value="1003.87"/>
+<humidity value="87" unit="%"/>
+<clouds value="ясно" all="0" unit="%"/>
+</time>
+<time from="2019-05-07T12:00:00" to="2019-05-07T15:00:00">
+<symbol number="500" name="легкий дождь" var="10d"/>
+<precipitation unit="3h" value="1.562" type="rain"/>
+<windDirection deg="272.949" code="W" name="West"/>
+<windSpeed mps="5" name="Gentle Breeze"/>
+<temperature unit="celsius" value="17.45" min="17.45" max="17.45"/>
+<pressure unit="hPa" value="1006.44"/>
+<humidity value="65" unit="%"/>
+<clouds value="облачно" all="24" unit="%"/>
+</time>
+<time from="2019-05-07T15:00:00" to="2019-05-07T18:00:00">
+<symbol number="500" name="легкий дождь" var="10n"/>
+<precipitation unit="3h" value="0.126" type="rain"/>
+<windDirection deg="301.482" code="WNW" name="West-northwest"/>
+<windSpeed mps="5.9" name="Moderate breeze"/>
+<temperature unit="celsius" value="12.15" min="12.15" max="12.15"/>
+<pressure unit="hPa" value="1008.46"/>
+<humidity value="79" unit="%"/>
+<clouds value="облачно" all="15" unit="%"/>
+</time>
+<time from="2019-05-08T12:00:00" to="2019-05-08T15:00:00">
+<symbol number="803" name="пасмурно" var="04d"/>
+<precipitation/>
+<windDirection deg="354.808" code="" name=""/>
+<windSpeed mps="5.45" name=""/>
+<temperature unit="celsius" value="14.38" min="14.38" max="14.38"/>
+<pressure unit="hPa" value="1013.32"/>
+<humidity value="65" unit="%"/>
+<clouds value="пасмурно" all="83" unit="%"/>
+</time>
+<time from="2019-05-08T15:00:00" to="2019-05-08T18:00:00">
+<symbol number="804" name="пасмурно" var="04n"/>
+<precipitation/>
+<windDirection deg="337.881" code="NNW" name="North-northwest"/>
+<windSpeed mps="3.39" name=""/>
+<temperature unit="celsius" value="12.15" min="12.15" max="12.15"/>
+<pressure unit="hPa" value="1013.84"/>
+<humidity value="73" unit="%"/>
+<clouds value="пасмурно" all="92" unit="%"/>
+</time>
+<time from="2019-05-09T12:00:00" to="2019-05-09T15:00:00">
+<symbol number="500" name="легкий дождь" var="10d"/>
+<precipitation unit="3h" value="0.188" type="rain"/>
+<windDirection deg="189.607" code="S" name="South"/>
+<windSpeed mps="6.6" name="Moderate breeze"/>
+<temperature unit="celsius" value="16.35" min="16.35" max="16.35"/>
+<pressure unit="hPa" value="1009.97"/>
+<humidity value="58" unit="%"/>
+<clouds value="пасмурно" all="67" unit="%"/>
+</time>
+<time from="2019-05-09T15:00:00" to="2019-05-09T18:00:00">
+<symbol number="802" name="слегка облачно" var="03n"/>
+<precipitation/>
+<windDirection deg="186.586" code="S" name="South"/>
+<windSpeed mps="5.07" name="Gentle Breeze"/>
+<temperature unit="celsius" value="11.99" min="11.99" max="11.99"/>
+<pressure unit="hPa" value="1010.27"/>
+<humidity value="71" unit="%"/>
+<clouds value="слегка облачно" all="40" unit="%"/>
+</time>
+</forecast>
+</weatherdata>

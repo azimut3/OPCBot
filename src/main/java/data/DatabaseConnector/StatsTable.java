@@ -17,7 +17,7 @@ public class StatsTable {
         //Connection connection = Connector.getConnection();
         Statement statement;
         ResultSet result = UserTableConnector.getUsersStats();
-        String[] date = UkrCalendar.getFullDate().split("\\.");
+        String[] date = UkrCalendar.getCurrentFullDate().split("\\.");
         try(Connection connection = Connector.getConnection()) {
             String users = result.getString("users");
             String weather_subs = result.getString("weather_subs");
@@ -47,7 +47,7 @@ public class StatsTable {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("select users, weather_subs, berth_subs," +
                             " berth_updates, active, calls, date, month, year from stats where month = '" +
-                            UkrCalendar.getFullDate().substring(3,5) + "'");
+                            UkrCalendar.getCurrentFullDate().substring(3,5) + "'");
             while (!resultSet.isLast()){
                 resultSet.next();
                 builder.append(resultSet.getString("active")).append("/")

@@ -55,7 +55,7 @@ public class Subs {
     }
 
     public static String getBasicDateInfo(){
-        return UkrCalendar.getFullDate();
+        return UkrCalendar.getCurrentFullDate();
     }
 
 

@@ -6,21 +6,21 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class WeatherForecast {
-    private static volatile WeatherForecast weatherForecastInstance;
+public class WeatherForecastOld {
+   /* private static volatile WeatherForecast weatherForecastInstance;
 
-    private static volatile ArrayList<ForecastWeather> todayForecast = new ArrayList<>();
-    private static volatile ArrayList<ForecastWeather> tomorrowForecast = new ArrayList<>();
-    private static volatile ArrayList<ForecastWeather> afterTomorrowForecast = new ArrayList<>();
+    private static volatile ArrayList<DayForecast> todayForecast = new ArrayList<>();
+    private static volatile ArrayList<DayForecast> tomorrowForecast = new ArrayList<>();
+    private static volatile ArrayList<DayForecast> afterTomorrowForecast = new ArrayList<>();
 
     private WeatherForecast(){}
 
     public static WeatherForecast getWeatherForecastInstance() {
         if (weatherForecastInstance == null) weatherForecastInstance = new WeatherForecast();
         return weatherForecastInstance;
-    }
+    }*/
 
-    public void setWeatherForecast(ArrayList<TreeMap<String, String>> forecast){
+    /*public void setWeatherForecast(ArrayList<TreeMap<String, String>> forecast){
         SimpleDateFormat formatDay = new SimpleDateFormat("d");
         formatDay.setTimeZone(TimeZone.getTimeZone("Europe/Kiev"));
         todayForecast.clear();
@@ -29,7 +29,7 @@ public class WeatherForecast {
         int dateNum = 0;
         for (TreeMap<String, String> weather : forecast) {
             //System.out.println(weather);
-            ForecastWeather forecastWeather = new ForecastWeather();
+            DayForecast forecastWeather = new DayForecast();
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
             try {
                 Calendar calendar = new GregorianCalendar();
@@ -37,7 +37,7 @@ public class WeatherForecast {
                 calendar.setTime(dateFormat.parse(weather.get(WeatherTemplate.DATE)));
                 //System.out.println(formatDay.format(calendar.getTime()));
                 dateNum = Integer.parseInt(formatDay.format(calendar.getTime())) -
-                        Integer.parseInt(UkrCalendar.getDay());
+                        Integer.parseInt(UkrCalendar.getCurrentDay());
                 //System.out.println(dateNum + " num");
                 forecastWeather.setDay(calendar);
             } catch (ParseException e) {
@@ -55,8 +55,8 @@ public class WeatherForecast {
             else if (dateNum == 1) tomorrowForecast.add(forecastWeather);
             else if (dateNum == 2) afterTomorrowForecast.add(forecastWeather);
         }
-    }
-
+    }*/
+/*
     public static String getThreeDayForecast() {
         StringBuilder builder = new StringBuilder();
         builder.append("Прогноз погоды на 3 дня:").append(System.lineSeparator())
@@ -73,11 +73,11 @@ public class WeatherForecast {
                 .append(System.lineSeparator());
         builder.append(getForecast(todayForecast)).append(System.lineSeparator());
         return builder.toString();
-    }
+    }*/
 
-    private static String getForecast(ArrayList<ForecastWeather> forecast) {
+   /* private static String getForecast(ArrayList<DayForecast> forecast) {
         StringBuilder builder = new StringBuilder();
-        for (ForecastWeather weather : forecast) {
+        for (DayForecast weather : forecast) {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM' ('HH:mm')'");
             builder.append(dateFormat.format(weather.getDay().getTime())).append(": ")
                     .append(weather.getWeatherState()).append(", ")
@@ -93,9 +93,9 @@ public class WeatherForecast {
             }
         }
         return builder.toString();
-    }
+    }*/
 
-    private class ForecastWeather extends WeatherTemplate {
+    /*private class DayForecast extends WeatherTemplate {
         private Calendar day;
         private String precipitation;
 
@@ -116,5 +116,5 @@ public class WeatherForecast {
         }
 
 
-    }
+    }*/
 }

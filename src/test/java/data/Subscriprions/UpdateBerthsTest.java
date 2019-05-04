@@ -1,13 +1,10 @@
 package data.Subscriprions;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 import data.Port.Vessel;
 import managers.OpcBot;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.jupiter.api.*;
-import org.mockito.Spy;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
@@ -60,23 +57,6 @@ class UpdateBerthsTest extends UpdateBerths {
         Assert.assertEquals(ludvig , "22 ".concat(list.get(0).getVesselName())
                 .concat(" ").concat(String.valueOf(list.get(0).isMoored())));
     }
-
-    /*@DisplayName("Test for sender of berth state changes")
-    @TestFactory
-    Collection<DynamicTest> testSender(){
-        OpcBot bot = mock(OpcBot.class);
-        TreeMap<String, String> returnedMap = sendInfoAboutBerths(users, map, bot);
-
-        return Arrays.asList(
-                DynamicTest.dynamicTest("id1 - Arthur",
-                        () -> assertEquals("id1 ".concat(arthur), returnedMap.get("King Arthur"))),
-                DynamicTest.dynamicTest("id1 - Solomon",
-                        () -> assertEquals("id1 ".concat(solomon), returnedMap.get("King Solomon"))),
-                DynamicTest.dynamicTest("id1 - LuDvig",
-                        () -> assertEquals("id1 ".concat(ludvig), returnedMap.get("King Ludvig"))),
-                DynamicTest.dynamicTest("id4 - LuDvig",
-                        () -> assertEquals("id4 ".concat(ludvig), returnedMap.get("King Ludvig"))));
-    }*/
 
     @Test
     void testSender(){

@@ -1,6 +1,6 @@
 package data.Subscriprions;
 
-import data.Weather.WeatherForecast;
+import data.Weather.FiveDaysForecast;
 import managers.OpcBot;
 import managers.UkrCalendar;
 
@@ -17,8 +17,8 @@ public class WeatherSubThread extends Thread{
         while (true) {
             try {
                 if (firstLaunch){
-                    int hours = Integer.parseInt(UkrCalendar.getHours());
-                    int minutes = Integer.parseInt(UkrCalendar.getMinutes());
+                    int hours = Integer.parseInt(UkrCalendar.getCurrentHours());
+                    int minutes = Integer.parseInt(UkrCalendar.getCurrentMinutes());
                     if (hours < timeMorning || hours > timeEvening){
                         BerthSubThread.sleep(SubsLauncher.getTime(hours, minutes, timeMorning));
                         morningMessages();
@@ -52,7 +52,7 @@ public class WeatherSubThread extends Thread{
         for (String chatId : Subs.users.keySet()) {
             if (Subs.users.get(chatId).getWeatherSubscription().equals("true")) {
                 OpcBot.getOpcBotInstance().sendMsg(OpcBot.getOpcBotInstance().createMsg(chatId),
-                        WeatherForecast.getTodaysForecast());
+                        FiveDaysForecast.getFiveDaysForecast().printTodaysForecast());
             }
         }
     }
@@ -61,7 +61,7 @@ public class WeatherSubThread extends Thread{
         for (String chatId : Subs.users.keySet()) {
             if (Subs.users.get(chatId).getWeatherSubscription().equals("true")) {
                 OpcBot.getOpcBotInstance().sendMsg(OpcBot.getOpcBotInstance().createMsg(chatId),
-                        WeatherForecast.getThreeDayForecast());
+                        FiveDaysForecast.getFiveDaysForecast().printThreeDaysForecast());
             }
         }
     }

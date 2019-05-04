@@ -1,6 +1,6 @@
-package data;
+package data.Weather;
 
-import data.Weather.WeatherTemplate;
+import managers.UkrCalendar;
 
 import javax.xml.namespace.QName;
 import javax.xml.stream.XMLEventReader;
@@ -11,7 +11,6 @@ import javax.xml.stream.events.EndElement;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.TreeMap;
 
 public class StaxReader {
@@ -100,10 +99,10 @@ public class StaxReader {
         return currentWeather;
     }
 
-    public static ArrayList<TreeMap<String, String>> parseWeatherForecast(InputStream file) {
-        ArrayList<TreeMap<String, String>> weatherForecast = new ArrayList<>();
-        TreeMap<String, String> forecast = new TreeMap<>();
+    public static FiveDaysForecast parseWeatherForecast(InputStream file) {
+        DayForecast dayForecast = null;
         XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
+        FiveDaysForecast fiveDaysForecast = FiveDaysForecast.setUpNewForecast();
         try {
             XMLEventReader xmlEventReader = xmlInputFactory.createXMLEventReader(file);
             while(xmlEventReader.hasNext()){
@@ -112,31 +111,36 @@ public class StaxReader {
                     StartElement startElement = xmlEvent.asStartElement();
 
                     if(startElement.getName().getLocalPart().equals("time")){
-                        Attribute Attr = startElement.getAttributeByName(new QName("from"));
-                        if(Attr != null){
-                            forecast.put(WeatherTemplate.DATE, Attr.getValue());
-                            //System.out.println(Attr.getValue());
+                        Attribute attrStart = startElement.getAttributeByName(new QName("from"));
+                        Attribute attrEnd = startElement.getAttributeByName(new QName("to"));
+                        if(attrStart != null){
+                            dayForecast = new DayForecast();
+                            dayForecast.setDay(attrStart.getValue());
+                            dayForecast.setTimeStart(attrStart.getValue());
+                        }
+                        if(attrEnd != null){
+                            dayForecast.setTimeEnd(attrEnd.getValue());
                         }
                     }
 
                     if(startElement.getName().getLocalPart().equals("temperature")){
                         Attribute attr = startElement.getAttributeByName(new QName("value"));
                         if(attr != null){
-                            forecast.put(WeatherTemplate.TEMPERATURE, attr.getValue());
+                            dayForecast.setTemperature(attr.getValue());
                         }
                     }
 
                     if(startElement.getName().getLocalPart().equals("humidity")){
                         Attribute attr = startElement.getAttributeByName(new QName("value"));
                         if(attr != null){
-                            forecast.put(WeatherTemplate.HUMIDITY, attr.getValue());
+                            dayForecast.setHumidity(attr.getValue());
                         }
                     }
 
                     if(startElement.getName().getLocalPart().equals("pressure")){
                         Attribute attr = startElement.getAttributeByName(new QName("value"));
                         if(attr != null){
-                            forecast.put(WeatherTemplate.PRESSURE, attr.getValue());
+                            dayForecast.setPressure(attr.getValue());
                         }
                     }
 
@@ -144,7 +148,7 @@ public class StaxReader {
                     if(startElement.getName().getLocalPart().equals("windSpeed")) {
                         Attribute attr = startElement.getAttributeByName(new QName("mps"));
                         if (attr != null) {
-                            forecast.put(WeatherTemplate.WIND_SPEED, attr.getValue());
+                            dayForecast.setWindSpeed(attr.getValue());
                         }
                     }
                     //}
@@ -152,26 +156,26 @@ public class StaxReader {
                     if(startElement.getName().getLocalPart().equals("clouds")){
                         Attribute attrDescr = startElement.getAttributeByName(new QName("value"));
                         if(attrDescr != null){
-                            forecast.put(WeatherTemplate.CLOUDS, attrDescr.getValue());
+                            dayForecast.setCloudsCoverage(attrDescr.getValue());
                         }
                         //TODO добавить процент затученности
                         Attribute attr = startElement.getAttributeByName(new QName("all"));
                         if(attr != null){
-                            forecast.put("clouds%", attr.getValue());
+                            dayForecast.setCloudsCoverageInPercents(attr.getValue());
                         }
                     }
 
                     if(startElement.getName().getLocalPart().equals("precipitation")){
                         Attribute attr = startElement.getAttributeByName(new QName("value"));
                         if(attr != null){
-                            forecast.put(WeatherTemplate.PRECIPITATION, attr.getValue());
+                            dayForecast.setPrecipitation(attr.getValue());
                         }
                     }
 
                     if(startElement.getName().getLocalPart().equals("symbol")){
                         Attribute attr = startElement.getAttributeByName(new QName("name"));
                         if(attr != null){
-                            forecast.put(WeatherTemplate.WEATHER_STATE, attr.getValue());
+                            dayForecast.setWeatherState(attr.getValue());
                         }
                     }
 
@@ -179,8 +183,7 @@ public class StaxReader {
                 if(xmlEvent.isEndElement()){
                     EndElement endElement = xmlEvent.asEndElement();
                     if(endElement.getName().getLocalPart().equals("time")){
-                        weatherForecast.add(forecast);
-                        forecast = new TreeMap<>();
+                        fiveDaysForecast.addDayForecast(dayForecast, UkrCalendar.getFiveDaysAndMonthAfterCurrent());
                     }
                 }
             }
@@ -188,6 +191,6 @@ public class StaxReader {
         } catch (XMLStreamException e) {
             e.printStackTrace();
         }
-        return weatherForecast;
+        return fiveDaysForecast;
     }
 }

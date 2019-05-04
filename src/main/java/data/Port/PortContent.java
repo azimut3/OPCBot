@@ -1,9 +1,6 @@
 package data.Port;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 
 public class PortContent {
     private static PortContent portContentInstance;
@@ -39,7 +36,7 @@ public class PortContent {
             ArrayList<Vessel> vessels = portBerths.get(key);
             for (Vessel vessel : vessels) {
                 builder.append(formatString(key, 2)).append(" | ").append(vessel.getVesselName())
-                        .append(" <i>(").append(vessel.getDate()).append(")</i>")
+                        .append(" <i>(").append(vessel.getDay()).append(")</i>")
                         .append(System.lineSeparator());
             }
         } else builder.append("");
@@ -61,7 +58,14 @@ public class PortContent {
     }
 
     private static TreeMap<String, List<Vessel>> getBerthMap(List<Vessel> list){
-        TreeMap<String, List<Vessel>> map = new TreeMap<>();
+        TreeMap<String, List<Vessel>> map = new TreeMap<>((o1, o2) -> {
+            if (o1.length()==o2.length()) return o1.compareTo(o2);
+            if (o1.length()>o2.length()) return 1;
+            if (o1.length()<o2.length()) return -1;
+            if (o1.length()==1&&o2.length()==2) return -1;
+            if (o1.length()==2&&o2.length()==1) return 1;
+            return o1.compareTo(o2);
+        });
         for(Vessel vessel : list){
             if(map.containsKey(vessel.getBerth())){
                 map.get(vessel.getBerth()).add(vessel);

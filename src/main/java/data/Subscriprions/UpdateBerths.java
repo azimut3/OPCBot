@@ -52,7 +52,7 @@ public class UpdateBerths {
                 }
             }
         }
-        System.out.println("map" + set);
+        //System.out.println("set" + set);
         return set;
     }
 
@@ -74,78 +74,4 @@ public class UpdateBerths {
                 .concat(String.valueOf(vessel.isMoored()));
     }
 
-    /*public static void whoToSendToConsole() {
-        System.out.println(changes);
-        for (String berth : changes.keySet()) {
-            for (ArrayList<String> arr: changes.get(berth)) {
-                boolean changeValue = arr.get(1).equals("+");
-                notifyUsers(null, berth, changeValue, arr.get(0));
-            }
-        }
-    }*/
-    /*private static void sendInfoAboutBerths() {
-        for (String user : Subs.users.keySet()){
-            if (Subs.users.get(user).getBerthUpdateSubscription().equals("true")) {
-                for (String berth : changes.keySet()) {
-                    if (Subs.users.get(user).getBerthsSelected().contains(berth + " ")) {
-                        for (ArrayList<String> arr : changes.get(berth)) {
-                            boolean changeValue = arr.get(1).equals("+");
-                            notifyUsers(user, berth, changeValue, arr.get(0));
-                        }
-                    }
-                }
-            }
-        }
-    }*/
-    /* public static synchronized void getChangesOnPortUpdate(TreeMap<Integer, ArrayList<Vessel>> oldOne,
-                        TreeMap<Integer, ArrayList<Vessel>> newOne){
-         changes = new TreeMap<>();
-         if (oldOne.size() > 0) {
-             Set<Integer> newBerths = newOne.keySet();
-             Set<Integer> oldBerths = oldOne.keySet();
-             for (Integer newBerthNum : newBerths) {
-                 if (!oldBerths.contains(newBerthNum)) {
-                     for (Vessel vessel : newOne.get(newBerthNum))
-                         putInChangesMap(String.valueOf(newBerthNum), vessel.getVesselName(), "+");
-                 } else {
-                     for (Vessel vesselNew : newOne.get(newBerthNum)){
-                         boolean put = true;
-                         for (Vessel vesselOld : oldOne.get(newBerthNum)){
-                             if (vesselOld.equals(vesselNew)) put = false;
-                         }
-                         if (put) putInChangesMap(String.valueOf(newBerthNum), vesselNew.getVesselName(), "+");
-                     }
-                 }
-             }
-
-             for (Integer s : oldBerths) {
-                 if (!newBerths.contains(s)) {
-                     for (Vessel vessel : oldOne.get(s))
-                         putInChangesMap(String.valueOf(s), vessel.getVesselName(), "-");
-                 } else {
-                     for (Vessel vesselOld : oldOne.get(s)){
-                         boolean put = true;
-                         for (Vessel vesselNew : newOne.get(s)){
-                             if (vesselNew.equals(vesselOld)) put = false;
-                         }
-                         if (put) putInChangesMap(String.valueOf(s),  vesselOld.getVesselName(), "-");
-                     }
-                 }
-             }
-         }
-
-         sendInfoAboutBerths();
-     }
-
-     private static void putInChangesMap(String berth, String vesselName, String change) {
-         if (!changes.containsKey(berth)){
-             ArrayList<Vessel> vesselsMoored = new ArrayList<>();
-             vesselsMoored.add(new Vessel().setVesselName(vesselName).setBerth(berth));
-             changes.put(berth, vesselsMoored);
-         }
-         ArrayList<String> vessel = new ArrayList<>();
-         vessel.add(vesselName);
-         vessel.add(change);
-         changes.get(berth).add(vessel);
-     }*/
 }

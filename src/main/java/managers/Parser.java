@@ -34,12 +34,12 @@ public class Parser {
                     List<Vessel> vessels = new ArrayList<>();
                     vessels.add(new Vessel().setBerth(berth)
                             .setVesselName(line.get(1).text())
-                            .setDate(line.get(2).text()));
+                            .setDay(line.get(2).text()));
                     portBerths.put(berth, vessels);
                 } else{
                     portBerths.get(berth).add(new Vessel().setBerth(berth)
                             .setVesselName(line.get(1).text())
-                            .setDate(line.get(2).text()));
+                            .setDay(line.get(2).text()));
                 }*/
 
 

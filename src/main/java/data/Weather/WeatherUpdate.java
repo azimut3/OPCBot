@@ -1,7 +1,5 @@
-package data;
+package data.Weather;
 
-import data.Weather.WeatherForecast;
-import data.Weather.WeatherTemplate;
 import managers.SecretData;
 
 import java.io.IOException;
@@ -26,7 +24,6 @@ public class WeatherUpdate {
         try {
             url = new URL(URL_CURRENT + ID + API_KEY + UNITS + LANG + MODE);
             currentWeather = StaxReader.parseCurrentWeather((InputStream) url.getContent());
-            //System.out.println(currentWeather);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -38,10 +35,7 @@ public class WeatherUpdate {
         URL url = null;
         try {
             url = new URL(URL_FORECAST + ID + API_KEY + UNITS + LANG + MODE);
-            WeatherForecast.getWeatherForecastInstance().
-                    setWeatherForecast(StaxReader
-                            .parseWeatherForecast((InputStream) url.getContent()));
-            //System.out.println(currentWeather);
+            StaxReader.parseWeatherForecast((InputStream) url.getContent());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -54,7 +48,6 @@ public class WeatherUpdate {
         try {
             url = new URL(source + ID + API_KEY + UNITS + LANG + MODE);
             return StaxReader.parseCurrentWeather((InputStream) url.getContent());
-            //System.out.println(currentWeather);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {

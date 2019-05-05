@@ -3,7 +3,6 @@ package data.Port;
 import data.Subscriprions.Subs;
 import data.Subscriprions.UpdateBerths;
 import managers.OpcBot;
-import managers.Parser;
 
 import java.util.ArrayList;
 import java.util.List;

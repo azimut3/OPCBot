@@ -4,10 +4,10 @@ import managers.UkrCalendar;
 
 public class UkrCallendarTest {
     public UkrCallendarTest(){
-        System.out.println("Дата: " + UkrCalendar.getFullDate());
-        System.out.println("Часы: " + UkrCalendar.getHours());
-        System.out.println("Минуты: " + UkrCalendar.getMinutes());
-        System.out.println("День: " + UkrCalendar.getDay());
+        System.out.println("Дата: " + UkrCalendar.getCurrentFullDate());
+        System.out.println("Часы: " + UkrCalendar.getCurrentHours());
+        System.out.println("Минуты: " + UkrCalendar.getCurrentMinutes());
+        System.out.println("День: " + UkrCalendar.getCurrentDay());
     }
 
 }

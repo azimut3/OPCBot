@@ -71,14 +71,18 @@ public class Keyboard {
         List<List<InlineKeyboardButton>> buttons = new ArrayList<>();
         List<InlineKeyboardButton> buttons1 = new ArrayList<>();
         List<InlineKeyboardButton> buttons2 = new ArrayList<>();
+        List<InlineKeyboardButton> buttons3 = new ArrayList<>();
         if (showForecast) {
             buttons1.add(new InlineKeyboardButton().setText("Прогноз на 3 дня")
                     .setCallbackData("/forecast"));
+            buttons2.add(new InlineKeyboardButton().setText("Прогноз на 5 дней")
+                    .setCallbackData("/fivedaysforecast"));
             buttons.add(buttons1);
+            buttons.add(buttons2);
         }
-        buttons2.add(new InlineKeyboardButton().setText("Отслеживать погоду")
+        buttons3.add(new InlineKeyboardButton().setText("Отслеживать погоду")
                 .setCallbackData("/weathersubscription"));
-        buttons.add(buttons2);
+        buttons.add(buttons3);
 
         InlineKeyboardMarkup markupKeyboard = new InlineKeyboardMarkup();
         sendMessage.setReplyMarkup(markupKeyboard);

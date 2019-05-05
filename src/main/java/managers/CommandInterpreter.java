@@ -2,8 +2,8 @@ package managers;
 
 import data.DatabaseConnector.UserTableConnector;
 import data.Subscriprions.Subs;
-import data.Weather.WeatherForecast;
-import data.WeatherUpdate;
+import data.Weather.FiveDaysForecast;
+import data.Weather.WeatherUpdate;
 import data.Port.PortContent;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Update;
@@ -36,8 +36,14 @@ public class CommandInterpreter {
                 break;
             case "/forecast":
                 Keyboard.setWeatherKeyboard(message, false);
-                OpcBot.getOpcBotInstance().sendMsg(message, WeatherForecast.getThreeDayForecast());
+                OpcBot.getOpcBotInstance().sendMsg(message,
+                        FiveDaysForecast.getFiveDaysForecast().printThreeDaysForecast());
                 break;
+            case "/fivedaysforecast":
+                Keyboard.setWeatherKeyboard(message, false);
+                OpcBot.getOpcBotInstance().sendMsg(message,
+                        FiveDaysForecast.getFiveDaysForecast().printFiveDaysForecast());
+            break;
             case "/about":
                 OpcBot.getOpcBotInstance().sendMsg(message, about);
                 break;

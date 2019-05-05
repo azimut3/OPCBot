@@ -2,7 +2,6 @@ package managers;
 
 import data.DatabaseConnector.StatsTable;
 import data.DatabaseConnector.UserTableConnector;
-import data.Subscriprions.Subs;
 import data.Subscriprions.SubsLauncher;
 
 public class StatsReaper extends Thread{
@@ -14,8 +13,8 @@ public class StatsReaper extends Thread{
         boolean firstLaunch = true;
         while (true) {
            if (firstLaunch) {
-               int hours = Integer.parseInt(UkrCalendar.getHours());
-               int minutes = Integer.parseInt(UkrCalendar.getMinutes());
+               int hours = Integer.parseInt(UkrCalendar.getCurrentHours());
+               int minutes = Integer.parseInt(UkrCalendar.getCurrentMinutes());
                try {
                    StatsReaper.sleep(SubsLauncher.getTime(hours, minutes, 0));
                    firstLaunch = false;
@@ -35,11 +34,11 @@ public class StatsReaper extends Thread{
            /*StringBuilder builder = new StringBuilder();
             builder.append(Subs.users.size()).append(" ")
                     .append(usersActiveStats.replaceAll("[(,)]", "")).append(" ")
-                    .append(UkrCalendar.getFullDate());
+                    .append(UkrCalendar.getCurrentFullDate());
             Admin.stats.add(builder.toString());*/
             StatsTable.recordStats();
            UserTableConnector.resetCalls();
-           if (UkrCalendar.getDay().equals(1)) {
+           if (UkrCalendar.getCurrentDay().equals(1)) {
                Admin.sendMonthStats();
                Admin.stats.clear();
            }

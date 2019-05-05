@@ -9,6 +9,10 @@ public class User {
     private String status;
     private String info;
 
+    public User(){
+
+    }
+
     public User(String userChatId, String info){
         this.userChatId = userChatId;
         this.weatherSubscription = "false";
@@ -35,55 +39,62 @@ public class User {
         return userChatId;
     }
 
-    public void setUserChatId(String userChatId) {
+    public User setUserChatId(String userChatId) {
         this.userChatId = userChatId;
+        return this;
     }
 
     public String getWeatherSubscription() {
         return weatherSubscription;
     }
 
-    public void setWeatherSubscription(String weatherSubscription) {
+    public User setWeatherSubscription(String weatherSubscription) {
         this.weatherSubscription = weatherSubscription;
+        return this;
     }
 
     public String getBerthsSelected() {
         return berthsSelected;
     }
 
-    public void setBerthsSelected(String berthsSelected) {
+    public User setBerthsSelected(String berthsSelected) {
         this.berthsSelected = berthsSelected;
+        return this;
     }
 
     public String getBerthStatusSubscription() {
         return berthStatusSubscription;
     }
 
-    public void setBerthStatusSubscription(String berthStatusSubscription) {
+    public User setBerthStatusSubscription(String berthStatusSubscription) {
         this.berthStatusSubscription = berthStatusSubscription;
+        return this;
     }
 
     public String getBerthUpdateSubscription() {
         return berthUpdateSubscription;
     }
 
-    public void setBerthUpdateSubscription(String berthUpdateSubscription) {
+    public User setBerthUpdateSubscription(String berthUpdateSubscription) {
         this.berthUpdateSubscription = berthUpdateSubscription;
+        return this;
     }
 
     public String getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public User setStatus(String status) {
         this.status = status;
+        return this;
     }
 
     public String getInfo() {
         return info;
     }
 
-    public void setInfo(String info) {
+    public User setInfo(String info) {
         this.info = info;
+        return this;
     }
 }

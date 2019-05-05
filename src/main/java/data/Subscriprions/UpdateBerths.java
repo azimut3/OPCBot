@@ -1,100 +1,77 @@
 package data.Subscriprions;
 
+import data.Port.Vessel;
 import managers.OpcBot;
 
-import java.util.ArrayList;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 
 public class UpdateBerths {
-    private static volatile TreeMap<String, ArrayList<ArrayList<String>>> changes;
 
-    public static synchronized void compareResults(TreeMap<Integer, ArrayList<ArrayList<String>>> oldOne,
-                       TreeMap<Integer, ArrayList<ArrayList<String>>> newOne){
-        changes = new TreeMap<>();
-        if (oldOne.size() > 0) {
-            Set<Integer> newBerths = newOne.keySet();
-            Set<Integer> oldBerths = oldOne.keySet();
-            for (Integer s : newBerths) {
-                if (!oldBerths.contains(s)) {
-                    for (ArrayList<String> vesselsArr : newOne.get(s))
-                        putInChangesMap(String.valueOf(s), vesselsArr.get(0), "+");
-                } else {
-                    for (ArrayList<String> arr : newOne.get(s)){
-                        boolean put = true;
-                        for (ArrayList<String> arrOld : oldOne.get(s)){
-                            if (arrOld.contains(arr.get(0))) put = false;
+    public static synchronized TreeMap<String, List<Vessel>> getChangesOnPortUpdate(
+        List<Vessel> oldOne, List<Vessel> newOne){
+
+        TreeMap<String, List<Vessel>> changes = new TreeMap<>();
+        for (Vessel vessel : oldOne) {
+            if (!newOne.contains(vessel)) {
+                vessel.setMoored(false);
+                putInChangesMap(vessel, changes);
+            }
+        }
+        for (Vessel vessel : newOne) {
+            if (!oldOne.contains(vessel)) {
+                vessel.setMoored(true);
+                putInChangesMap(vessel, changes);
+            }
+        }
+        return changes;
+    }
+
+    private static void putInChangesMap(Vessel vessel, TreeMap<String, List<Vessel>> changes) {
+        if (changes.containsKey(vessel.getBerth())){
+            changes.get(vessel.getBerth()).add(vessel);
+        } else {
+            ArrayList<Vessel> list = new ArrayList<>();
+            list.add(vessel);
+            changes.put(vessel.getBerth(), list);
+        }
+    }
+
+    public static synchronized Set<String> sendInfoAboutBerths(TreeMap<String, User> users,
+                                              TreeMap<String, List<Vessel>> changes,
+                                              OpcBot bot) {
+        Set<String> set = new HashSet<>();
+        for (String user : users.keySet()){
+            if (users.get(user).getBerthUpdateSubscription().equals("true")) {
+                for (String berthNumber : changes.keySet()) {
+                    if (users.get(user).getBerthsSelected().matches("^" + berthNumber +
+                            "\\s.+|.+\\s" + berthNumber + "\\s.+|.+\\s" + berthNumber + "$|^" + berthNumber + "$")) {
+                        for (Vessel vessel : changes.get(berthNumber)) {
+                            set.add(notifyUsers(user, vessel, bot));
                         }
-                        if (put) putInChangesMap(String.valueOf(s), arr.get(0), "+");
-                    }
-                }
-            }
-
-            for (Integer s : oldBerths) {
-                if (!newBerths.contains(s)) {
-                    for (ArrayList<String> vesselsArr : oldOne.get(s))
-                        putInChangesMap(String.valueOf(s), vesselsArr.get(0), "-");
-                } else {
-                    for (ArrayList<String> arr : oldOne.get(s)){
-                        boolean put = true;
-                        for (ArrayList<String> arrNew : newOne.get(s)){
-                            if (arrNew.contains(arr.get(0))) put = false;
-                        }
-                        if (put) putInChangesMap(String.valueOf(s), arr.get(0), "-");
                     }
                 }
             }
         }
-
-        whoToSend();
+        //System.out.println("set" + set);
+        return set;
     }
 
-    private static void putInChangesMap(String berth, String vesselName, String change) {
-        if (!changes.containsKey(berth)){
-            ArrayList<ArrayList<String>> vesselsMoored = new ArrayList<>();
-            changes.put(berth, vesselsMoored);
-        }
-        ArrayList<String> vessel = new ArrayList<>();
-        vessel.add(vesselName);
-        vessel.add(change);
-        changes.get(berth).add(vessel);
-    }
-
-    private static void whoToSend() {
-        for (String user : Subs.users.keySet()){
-            for (String berth : changes.keySet()) {
-                if (Subs.users.get(user).getBerthsSelected().contains(berth + " ")) {
-                    for (ArrayList<String> arr: changes.get(berth)) {
-                        boolean changeValue = arr.get(1).equals("+");
-                        notifyUsers(user, berth, changeValue, arr.get(0));
-                    }
-                }
-            }
-        }
-    }
-
-    public static void whoToSendToConsole() {
-        System.out.println(changes);
-        for (String berth : changes.keySet()) {
-            for (ArrayList<String> arr: changes.get(berth)) {
-                boolean changeValue = arr.get(1).equals("+");
-                notifyUsers(null, berth, changeValue, arr.get(0));
-            }
-        }
-    }
-
-    private static void notifyUsers(String chatId, String updatedBerth, boolean added, String vessel){
-
+    protected static String notifyUsers(String chatId, Vessel vessel, OpcBot bot){
         StringBuilder builder = new StringBuilder();
-        if (added){
-            builder.append("Судно " + vessel + " пришвартовано на " + updatedBerth + " причал");
+        if (vessel.isMoored()){
+            builder.append("Судно " + vessel.getVesselName() + " пришвартовано на " + vessel.getBerth() +
+                    " причал");
             builder.append(System.lineSeparator());
         } else {
-            builder.append("Судно " + vessel + " отшвартовано с " + updatedBerth + " причала");
+            builder.append("Судно " + vessel.getVesselName() + " отшвартовано с " + vessel.getBerth() +
+                    " причала");
             builder.append(System.lineSeparator());
         }
         //if (chatId == null) System.out.println(builder.toString());
-        OpcBot.getOpcBotInstance().sendMsg(OpcBot.getOpcBotInstance().createMsg(chatId),
-                builder.toString());
+        bot.sendMsg(bot.createMsg(chatId), builder.toString());
+        return chatId.concat(" ").concat(vessel.getBerth()).concat(" ")
+                .concat(vessel.getVesselName()).concat(" ")
+                .concat(String.valueOf(vessel.isMoored()));
     }
+
 }

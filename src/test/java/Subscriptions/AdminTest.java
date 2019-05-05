@@ -12,7 +12,7 @@ public class AdminTest {
         StringBuilder builder = new StringBuilder();
         builder.append(Subs.users.size()).append(" ")
                 .append(usersActiveStats.replaceAll("[(,)]", "")).append(" ")
-                .append(UkrCalendar.getFullDate());
+                .append(UkrCalendar.getCurrentFullDate());
         System.out.println(builder);
     }
 }

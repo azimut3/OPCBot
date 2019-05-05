@@ -1,7 +1,5 @@
 package data.Weather;
 
-import data.WeatherUpdate;
-
 public class ForecastThread extends Thread{
 
     public ForecastThread(String name) {

@@ -79,6 +79,14 @@ public class UkrCalendar {
         return daysArray;
     }
 
+   /* public synchronized static ArrayList<String> getFiveDaysAndMonth(int today) {
+        ArrayList<String> daysArray = new ArrayList<>();
+        for (int i = 0; i<5; i++){
+            daysArray.add(getDay(zonedDateTime.plusDays(i)));
+        }
+        return daysArray;
+    }*/
+
     public synchronized static String getCurrentFullDate() {
         int day = zonedDateTime.getDayOfMonth();
         int month = zonedDateTime.getMonthValue();

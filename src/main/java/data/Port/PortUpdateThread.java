@@ -24,8 +24,8 @@ public class PortUpdateThread extends Thread{
                     continue;
                 }
                 PortContent.oldPortBerths = tempOldMap;
-                System.out.println("Old bertList " + PortContent.oldPortBerths);
-                System.out.println("New bertList " + PortContent.portBerths);
+                //System.out.println("Old bertList " + PortContent.oldPortBerths);
+                //System.out.println("New bertList " + PortContent.portBerths);
                 System.out.println("=== Vessels in port were updated ===");
                 if (PortContent.oldPortBerths.size()>0) {
                     UpdateBerths.sendInfoAboutBerths(Subs.users,

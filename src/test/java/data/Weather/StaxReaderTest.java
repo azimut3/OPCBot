@@ -1,6 +1,7 @@
 package data.Weather;
 
 import org.junit.jupiter.api.DynamicTest;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
 
 import java.io.InputStream;
@@ -23,8 +24,8 @@ class StaxReaderTest extends StaxReader {
         List<DayForecast> seventhy = fiveDaysForecast.getFourthDayForecast();
 
         return Arrays.asList(
-                DynamicTest.dynamicTest("4 day, day",
-                        () -> assertEquals("4", fourth.get(0).getDay())),
+                DynamicTest.dynamicTest("6 day, day",
+                        () -> assertEquals("6", fourth.get(0).getDay())),
                 DynamicTest.dynamicTest("4 day, weather state",
                         () -> assertEquals("слегка облачно", fourth.get(0).getWeatherState())),
                 DynamicTest.dynamicTest("6 day, temperature",
@@ -36,5 +37,10 @@ class StaxReaderTest extends StaxReader {
                 DynamicTest.dynamicTest("7 day, preciptation",
                         () -> assertEquals("1.562", seventhy.get(0).getPrecipitation()))
                 );
+    }
+
+    @Test
+    void testPrinter(){
+
     }
 }

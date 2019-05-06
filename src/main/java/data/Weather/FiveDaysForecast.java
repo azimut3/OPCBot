@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FiveDaysForecast {
-    private static FiveDaysForecast fiveDaysForecastInstance;
+    private volatile static FiveDaysForecast fiveDaysForecastInstance;
 
     private volatile List<DayForecast> firstDayForecast = new ArrayList<>();
     private volatile List<DayForecast> secondDayForecast = new ArrayList<>();
@@ -64,7 +64,7 @@ public class FiveDaysForecast {
         return fifthDayForecast;
     }
 
-    public String printTodaysForecast() {
+    public synchronized String printTodaysForecast() {
         StringBuilder builder = new StringBuilder();
         builder.append("Прогноз погоды на сегодня:").append(System.lineSeparator())
                 .append(System.lineSeparator());
@@ -72,7 +72,7 @@ public class FiveDaysForecast {
         return builder.toString();
     }
 
-    public String printThreeDaysForecast() {
+    public synchronized String printThreeDaysForecast() {
         StringBuilder builder = new StringBuilder();
         builder.append("Прогноз погоды на 3 дня:").append(System.lineSeparator())
                 .append(System.lineSeparator());
@@ -82,7 +82,7 @@ public class FiveDaysForecast {
         return builder.toString();
     }
 
-    public String printFiveDaysForecast() {
+    public synchronized String printFiveDaysForecast() {
         StringBuilder builder = new StringBuilder();
         builder.append("Прогноз погоды на 5 дней:").append(System.lineSeparator())
                 .append(System.lineSeparator());
@@ -128,7 +128,7 @@ public class FiveDaysForecast {
         }
     }
 
-    public static FiveDaysForecast setUpNewForecast(){
+    public synchronized static FiveDaysForecast setUpNewForecast(){
         return fiveDaysForecastInstance = new FiveDaysForecast();
     }
 }

@@ -14,7 +14,7 @@
 </meta>
 <sun rise="2019-05-04T02:38:56" set="2019-05-04T17:08:44"/>
 <forecast>
-<time from="2019-05-04T12:00:00" to="2019-05-04T15:00:00">
+<time from="2019-05-06T12:00:00" to="2019-05-06T15:00:00">
 <symbol number="802" name="слегка облачно" var="03n"/>
 <precipitation/>
 <windDirection deg="174.129" code="S" name="South"/>
@@ -24,7 +24,7 @@
 <humidity value="77" unit="%"/>
 <clouds value="слегка облачно" all="31" unit="%"/>
 </time>
-<time from="2019-05-04T18:00:00" to="2019-05-04T21:00:00">
+<time from="2019-05-06T18:00:00" to="2019-05-06T21:00:00">
 <symbol number="801" name="облачно" var="02n"/>
 <precipitation/>
 <windDirection deg="172.57" code="S" name="South"/>
@@ -34,7 +34,7 @@
 <humidity value="77" unit="%"/>
 <clouds value="облачно" all="21" unit="%"/>
 </time>
-<time from="2019-05-05T12:00:00" to="2019-05-05T15:00:00">
+<time from="2019-05-07T12:00:00" to="2019-05-07T15:00:00">
 <symbol number="802" name="слегка облачно" var="03d"/>
 <precipitation/>
 <windDirection deg="152.963" code="SSE" name="South-southeast"/>
@@ -44,7 +44,7 @@
 <humidity value="69" unit="%"/>
 <clouds value="слегка облачно" all="35" unit="%"/>
 </time>
-<time from="2019-05-05T15:00:00" to="2019-05-05T18:00:00">
+<time from="2019-05-07T15:00:00" to="2019-05-07T18:00:00">
 <symbol number="801" name="облачно" var="02n"/>
 <precipitation/>
 <windDirection deg="152.831" code="SSE" name="South-southeast"/>
@@ -54,7 +54,7 @@
 <humidity value="88" unit="%"/>
 <clouds value="облачно" all="22" unit="%"/>
 </time>
-<time from="2019-05-06T12:00:00" to="2019-05-06T15:00:00">
+<time from="2019-05-08T12:00:00" to="2019-05-08T15:00:00">
 <symbol number="800" name="ясно" var="01d"/>
 <precipitation/>
 <windDirection deg="139.367" code="SE" name="SouthEast"/>
@@ -64,7 +64,7 @@
 <humidity value="72" unit="%"/>
 <clouds value="ясно" all="1" unit="%"/>
 </time>
-<time from="2019-05-06T15:00:00" to="2019-05-06T18:00:00">
+<time from="2019-05-08T15:00:00" to="2019-05-08T18:00:00">
 <symbol number="800" name="ясно" var="01n"/>
 <precipitation/>
 <windDirection deg="133.559" code="SE" name="SouthEast"/>
@@ -74,7 +74,7 @@
 <humidity value="87" unit="%"/>
 <clouds value="ясно" all="0" unit="%"/>
 </time>
-<time from="2019-05-07T12:00:00" to="2019-05-07T15:00:00">
+<time from="2019-05-09T12:00:00" to="2019-05-09T15:00:00">
 <symbol number="500" name="легкий дождь" var="10d"/>
 <precipitation unit="3h" value="1.562" type="rain"/>
 <windDirection deg="272.949" code="W" name="West"/>
@@ -84,7 +84,7 @@
 <humidity value="65" unit="%"/>
 <clouds value="облачно" all="24" unit="%"/>
 </time>
-<time from="2019-05-07T15:00:00" to="2019-05-07T18:00:00">
+<time from="2019-05-09T15:00:00" to="2019-05-09T18:00:00">
 <symbol number="500" name="легкий дождь" var="10n"/>
 <precipitation unit="3h" value="0.126" type="rain"/>
 <windDirection deg="301.482" code="WNW" name="West-northwest"/>
@@ -94,7 +94,7 @@
 <humidity value="79" unit="%"/>
 <clouds value="облачно" all="15" unit="%"/>
 </time>
-<time from="2019-05-08T12:00:00" to="2019-05-08T15:00:00">
+<time from="2019-05-10T12:00:00" to="2019-05-10T15:00:00">
 <symbol number="803" name="пасмурно" var="04d"/>
 <precipitation/>
 <windDirection deg="354.808" code="" name=""/>
@@ -104,7 +104,7 @@
 <humidity value="65" unit="%"/>
 <clouds value="пасмурно" all="83" unit="%"/>
 </time>
-<time from="2019-05-08T15:00:00" to="2019-05-08T18:00:00">
+<time from="2019-05-10T15:00:00" to="2019-05-10T18:00:00">
 <symbol number="804" name="пасмурно" var="04n"/>
 <precipitation/>
 <windDirection deg="337.881" code="NNW" name="North-northwest"/>
@@ -114,7 +114,7 @@
 <humidity value="73" unit="%"/>
 <clouds value="пасмурно" all="92" unit="%"/>
 </time>
-<time from="2019-05-09T12:00:00" to="2019-05-09T15:00:00">
+<time from="2019-05-11T12:00:00" to="2019-05-11T15:00:00">
 <symbol number="500" name="легкий дождь" var="10d"/>
 <precipitation unit="3h" value="0.188" type="rain"/>
 <windDirection deg="189.607" code="S" name="South"/>
@@ -124,7 +124,7 @@
 <humidity value="58" unit="%"/>
 <clouds value="пасмурно" all="67" unit="%"/>
 </time>
-<time from="2019-05-09T15:00:00" to="2019-05-09T18:00:00">
+<time from="2019-05-11T15:00:00" to="2019-05-11T18:00:00">
 <symbol number="802" name="слегка облачно" var="03n"/>
 <precipitation/>
 <windDirection deg="186.586" code="S" name="South"/>

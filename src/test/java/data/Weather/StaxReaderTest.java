@@ -1,5 +1,6 @@
 package data.Weather;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
@@ -39,8 +40,5 @@ class StaxReaderTest extends StaxReader {
                 );
     }
 
-    @Test
-    void testPrinter(){
 
-    }
 }

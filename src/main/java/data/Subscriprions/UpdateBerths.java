@@ -47,7 +47,7 @@ public class UpdateBerths {
                             "\\s.+|.+\\s" + berthNumber + "\\s.+|.+\\s" + berthNumber + "$|^" + berthNumber + "$")) {
                         for (Vessel vessel : changes.get(berthNumber)) {
                             set.add(notifyUsers(user, vessel, bot));
-                            System.out.println("===Info about berths was sent===");
+                            //System.out.println("===Info about berths was sent===");
                         }
                     }
                 }

@@ -109,12 +109,6 @@ public class CommandInterpreter {
                     Admin.sendMonthStats();
                 }
                 break;
-
-            /*case "/announce":
-                if (Subs.users.get(message.getChatId()).get(4).equals("admin")){
-                    OpcBot.getOpcBotInstance().sendMsg(message, Subs.getStats());
-                }
-                break;*/
         }
 
         if (command.startsWith("bs ") || command.startsWith("bsu ")) {
@@ -126,6 +120,31 @@ public class CommandInterpreter {
                 Subs.setBerthsSelected(message.getChatId(), berths);
                 OpcBot.getOpcBotInstance().sendMsg(message,
                     "Вы подписаны на [" + berths + "] причал(-ы)");
+            }
+        }
+
+        if (command.startsWith("/announce ")){
+            if (Subs.users.get(message.getChatId()).getStatus().equals("admin")) {
+//                    OpcBot.getOpcBotInstance().sendMsg(message, Subs.getStats());
+                Admin.notifyAll(command.replaceAll("^/announce", ""));
+            }
+        }
+
+        if (command.startsWith("/reply ")) {
+            Admin.notifyAdmin("(" + message.getChatId() + ")" +
+                    update.getMessage().getChat().getFirstName() + " " +
+                    update.getMessage().getChat().getLastName() + ": " +
+                    command.replaceAll("^/reply", ""));
+            OpcBot.getOpcBotInstance().sendMsg(message, "Ваше сообщение отправлено!");
+        }
+
+        if (command.startsWith("/replyto")) {
+            if (Subs.users.get(message.getChatId()).getStatus().equals("admin")) {
+                String toUser = command.replaceAll("[^\\s\\d{9}\\s]", "").trim();
+                OpcBot.getOpcBotInstance().sendMsg(
+                        OpcBot.getOpcBotInstance().createMsg(toUser),
+                        command.replaceAll("/replyto " + toUser, ""));
+                OpcBot.getOpcBotInstance().sendMsg(message, "Ваше сообщение " + toUser + " отправлено!");
             }
         }
 

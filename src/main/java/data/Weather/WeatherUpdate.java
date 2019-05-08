@@ -73,5 +73,4 @@ public class WeatherUpdate {
                 .append(System.lineSeparator());
         return weather.toString();
     }
-
 }

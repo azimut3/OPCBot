@@ -1,6 +1,7 @@
 package data.Subscriprions;
 
 import data.Port.PortContent;
+import managers.Admin;
 import managers.OpcBot;
 import managers.UkrCalendar;
 
@@ -48,6 +49,8 @@ public class BerthSubThread extends Thread {
             } catch (InterruptedException e) {
                 System.out.println("Vessel state thread has been interrupted");
                 e.printStackTrace();
+                Admin.notifyAdmin("Vessel state thread has been interrupted");
+                Admin.notifyAdmin(e.getMessage());
             }
         }
     }

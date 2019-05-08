@@ -1,6 +1,7 @@
 package data.Subscriprions;
 
 import data.Weather.FiveDaysForecast;
+import managers.Admin;
 import managers.OpcBot;
 import managers.UkrCalendar;
 
@@ -43,6 +44,8 @@ public class WeatherSubThread extends Thread{
             } catch (InterruptedException e) {
                 System.out.println("Weather forecast thread has been interrupted");
                 e.printStackTrace();
+                Admin.notifyAdmin("Weather forecast thread has been interrupted");
+                Admin.notifyAdmin(e.getMessage());
             }
 
         }

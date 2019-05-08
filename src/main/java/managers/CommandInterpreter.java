@@ -140,7 +140,7 @@ public class CommandInterpreter {
 
         if (command.startsWith("/replyto")) {
             if (Subs.users.get(message.getChatId()).getStatus().equals("admin")) {
-                String toUser = command.replaceAll("[^\\s\\d{9}\\s]", "").trim();
+                String toUser = command.replaceAll("(?:\\s\\d{9}\\s)", "").trim();
                 OpcBot.getOpcBotInstance().sendMsg(
                         OpcBot.getOpcBotInstance().createMsg(toUser),
                         command.replaceAll("/replyto " + toUser, ""));
